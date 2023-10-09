@@ -1,3 +1,4 @@
+<h1 align="center"> Ecommerce Photo Store - 🎨 <i>PG's Pixies</i> 📸 </h1>
 
 </br>
 <hr>
