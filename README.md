@@ -133,7 +133,7 @@ J -->|Buyer filters by| E
 # Implementation
 ## **Week 0: Project Design**
 - [X] Week 0: Define project directories and files
-- [ ] Week 0: Use Figma to build ecommerce store design
+- [X] Week 0: Use Figma to build ecommerce store design
 
 ## **Week 1: Project Setup and HTML/CSS**
 - [X] Project Setup: Create a Django project.
