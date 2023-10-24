@@ -137,17 +137,17 @@ J -->|Buyer filters by| E
 
 ## **Week 1: Project Setup and HTML/CSS**
 - [X] Project Setup: Create a Django project.
-- [ ] HTML/CSS: Review and strengthen your HTML and CSS skills.
+- [ ] HTML/CSS: Review and strengthen HTML and CSS skills.
 - Resources: Online HTML/CSS tutorials, Django documentation.
 
 ## **Week 2: Django Fundamentals**
-- [ ] Django Basics: Learn about Django's project structure, settings, and apps.
+- [X] Django Basics: Learn about Django's project structure, settings, and apps.
 - [ ] Models: Create Django models for products and categories.
 - Resources: Official Django documentation, Django for Beginners book.
 
 ## **Week 3: Django Views and Templates**
-- [ ] Views: Create views to render product listings and detail pages.
-- [ ] Templates: Build HTML templates for product pages.
+- [X] Views: Create views to render product listings and detail pages.
+- [X] Templates: Build HTML templates for product pages.
 - Resources: Django documentation on views and templates.
 
 ## **Week 4: User Authentication**
