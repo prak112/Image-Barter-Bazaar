@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PG's Picsies</title>
+    <link rel="stylesheet" href="{% static 'photostore/styles.css' %}">
+</head>
+<body>
+    <div class="header-container">
+        <header>
+            <nav>
+                <div class="logo">
+                    <img class="logo" src="{% static 'photostore/logo.jpg' %}" alt="logo">
+                </div>
+                <div class="search-bar">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <input class="search-text" type="text" placeholder="Search here...">
+                        <button type="submit">
+                            <img class="search-icon" src="{% static 'photostore/search-icon.jpg' %}" alt="search-icon">
+                        </button>
+                    </form>
+                </div>
+                <div class="nav-menu item">
+                    <a class="login" href="{% url 'users:login' %}" target="_blank" rel="noopener">Log In</a>
+                </div>
+                <div class="nav-menu item">
+                    <a href="{% url 'photostore:products' %}" target="_blank" rel="noopener">Products</a>
+                </div>
+                <div class="nav-menu item">
+                    <a href="{% url 'photostore:about_us' %}" target="_blank" rel="noopener">About Us</a>
+                </div>
+                <div class="nav-menu item">
+                    <a href="{% url 'photostore:checkout' %}" target="_blank" rel="noopener">
+                        <img class="cart-icon" src="{% static 'photostore/cart-icon.jpg' %}" alt="cart-icon">
+                    </a>
+                </div>
+            </nav>
+        </header>    
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+
+    </footer>
+    
+</body>
+</html>
