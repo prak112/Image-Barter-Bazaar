@@ -1,0 +1,43 @@
+{% extends "users/layout.html" %}
+
+{% block content %}
+
+<div class="form-container">
+    <h1 class="title">Sign Up</h1>
+    <form class="form" action="{% url 'users:signup' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="first_name">First Name : </label>
+            <input type="text" id="first_name" name="first_name" placeholder="First Name" required>
+        </div>
+        <div class="form-group">
+            <label for="last_name">Last Name : </label>
+            <input type="text" id="last_name" name="last_name" placeholder="Last Name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+        </div>
+        <div class="form-group">
+            <fieldset>
+            <legend>Customer Type</legend>
+                <label><input type="radio" id="artist" name="customer_type" value="artist" checked> Artist</label>
+                <label><input type="radio" id="photographer" name="customer_type" value="photgrapher"> Photographer</label>
+                <label><input type="radio" id="enthusiast" name="customer_type" value="enthusiast"> Enthusiast</label>
+            </fieldset>
+        </div>
+        <button type="submit" class="form-button register">Creat Accuont</button>
+        <p><b>Already have an account ?</b></p>
+        <button type="redirect" class="form-button login">Login</button>
+    </form>
+</div>
+
+{% endblock %}

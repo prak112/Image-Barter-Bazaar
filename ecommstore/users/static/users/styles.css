@@ -1,3 +1,19 @@
+body{
+    background-color: #000;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #fff;
+
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+
+div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .logo-container{
     width: 200px;
     height: 200px;
@@ -9,4 +25,52 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+a{
+    color: goldenrod
+}
+
+.form-container{
+    margin: 0 auto;
+    width: 50%;
+}
+
+.form-group{
+    padding-left: 10px;
+    padding-bottom: 20px;
+}
+
+.form-button{
+    margin: 0 auto;
+}
+
+.form-button.login{
+    width: 25%;
+    height: 40px;
+    border: none;
+    border-radius: 25px;
+    background-color: #0099FF;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+.form-button.register{
+    width: 50%;
+    height: 40px;
+    border: none;
+    border-radius: 50px;
+    background-color: #f2a1ab;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.form-button.register:hover {
+    background-color: #f2f;
+    cursor: pointer;
+}
+.form-button.login:hover{
+    background-color: #092fff;
+    cursor: pointer;
 }
