@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PG's Picsies</title>
+    <link rel="stylesheet" href="{% static 'users/styles.css' %}">
+    <!-- favicon --->
+    <link rel="icon" href="{% static 'users/favicon_io/favicon.ico' %}">
+</head>
+<body>
+    <div class="logo-container">
+        <image class="logo" src="{% static 'users/logo.jpg' %}" alt="logo"/>
+    </div>
+    <div class="logo-description">
+        <p>
+            Welcome to PG's Picsies
+            <br>
+            This website is created by <a href="https://www.github.com/prak112/)">Prakirth Govardhanam</a>
+            <br>
+            No data is stored or manipulated for any purposes. This is purely for learning and educational purposes.
+        </p>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>
