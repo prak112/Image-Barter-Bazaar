@@ -1,4 +1,9 @@
+# import libraries
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
+
 
 # Create your views here.
 def index(request):
@@ -7,6 +12,12 @@ def index(request):
 
 def products(request):
     return render(request, 'photostore/products.html')
+
+# def search(request, query):
+#     if request.method == "POST":
+#         return render(request, 'search.html')
+#     else:
+#         return HttpResponseRedirect(reverse('index'))
 
 
 def checkout(request):

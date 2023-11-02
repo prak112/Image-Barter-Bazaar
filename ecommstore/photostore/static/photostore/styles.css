@@ -58,6 +58,11 @@ header .login:hover{
     cursor: pointer;
 }
 
+header .search-bar{
+    padding-left: 20px;
+    background-color: rgb(122, 60, 146);
+    border-radius: 15px;
+}
 header .search-icon{
     width: 15px;
     height: 10px;
