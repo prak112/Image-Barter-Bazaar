@@ -15,3 +15,6 @@ def checkout(request):
 
 def about_us(request):
     return render(request, 'photostore/about_us.html')
+
+def license(request):
+    return render(request, 'photostore/license.html')
