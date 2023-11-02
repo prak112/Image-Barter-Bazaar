@@ -7,47 +7,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PG's Picsies</title>
     <link rel="stylesheet" href="{% static 'photostore/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'photostore/styles_index.css' %}">
 </head>
 <body>
-    <div class="header-container">
-        <header>
-            <nav>
-                <div class="logo">
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="{% url 'photostore:index' %}">
                     <img class="logo" src="{% static 'photostore/logo.jpg' %}" alt="logo">
+                </a>
                 </div>
-                <div class="search-bar">
-                    <form action="" method="POST">
-                        {% csrf_token %}
-                        <input class="search-text" type="text" placeholder="Search here...">
-                        <button type="submit">
-                            <img class="search-icon" src="{% static 'photostore/search-icon.jpg' %}" alt="search-icon">
-                        </button>
-                    </form>
-                </div>
-                <div class="nav-menu item">
-                    <a class="login" href="{% url 'users:login' %}" target="_blank" rel="noopener">Log In</a>
-                </div>
-                <div class="nav-menu item">
-                    <a href="{% url 'photostore:products' %}" target="_blank" rel="noopener">Products</a>
-                </div>
-                <div class="nav-menu item">
-                    <a href="{% url 'photostore:about_us' %}" target="_blank" rel="noopener">About Us</a>
-                </div>
-                <div class="nav-menu item">
-                    <a href="{% url 'photostore:checkout' %}" target="_blank" rel="noopener">
-                        <img class="cart-icon" src="{% static 'photostore/cart-icon.jpg' %}" alt="cart-icon">
-                    </a>
-                </div>
-            </nav>
-        </header>    
-    </div>
+            <div class="search-bar">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <input class="search-text" type="text" placeholder="Search here...">
+                    <button type="submit">
+                        <img class="search-icon" src="{% static 'photostore/search-icon.jpg' %}" alt="search-icon">
+                    </button>
+                </form>
+            </div>
+            <div class="nav-menu item">
+                <a class="login" href="{% url 'users:login' %}" target="_blank" rel="noopener">Log In</a>
+            </div>
+            <div class="nav-menu item">
+                <a href="{% url 'photostore:products' %}" target="_blank" rel="noopener">Products</a>
+            </div>
+            <div class="nav-menu item">
+                <a href="{% url 'photostore:about_us' %}" target="_blank" rel="noopener">About Us</a>
+            </div>
+            <div class="nav-menu item">
+                <a href="{% url 'photostore:checkout' %}" target="_blank" rel="noopener">
+                    <img class="cart-icon" src="{% static 'photostore/cart-icon.jpg' %}" alt="cart-icon">
+                </a>
+            </div>
+        </nav>
+    </header>    
+
 
     {% block content %}
     {% endblock %}
 
-    <footer>
 
+    <footer>
+        <nav>
+            <div class="logo-container">
+                <a href="{% url 'photostore:index' %}">
+                    <img class="logo" src="{% static 'photostore/logo.jpg' %}" alt="logo">
+                    <div class="logo-text">
+                        <p>PG's Picsies © 2023.</p>
+                        <p>Learning & Educational purpose only.</p>
+                    </div>
+                </a>
+            </div>
+            <ul>
+                <li>
+                    <a href="{% url 'photostore:about_us' %}" target="_blank" rel="noopener">About Us</a>
+                    <p>Located on Planet Earth</p>
+                    <p>Barter & Trade commerce</p>
+                </li>
+                <li>
+                    <a href="{% url 'photostore:products' %}" target="_blank" rel="noopener">Products</a>
+                    <p>Photo Credits : Pexels</p>
+                    <p>Art Credits : Pexels & Bing Copilot</p>
+                </li>
+                <li>
+                    <a href="{% url 'photostore:license' %}" target="_blank" rel="noopener">Copyrights</a>
+                    <p>MIT License : Free to Use</p>
+                    <p>Remember to cite source!</p>
+                    <p>Copyright © 2023</p>
+                </li>
+            </ul>
+        </nav>
     </footer>
-    
+
 </body>
 </html>
