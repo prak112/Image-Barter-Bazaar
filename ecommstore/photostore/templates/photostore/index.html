@@ -1,7 +1,27 @@
 {% extends "photostore/layout.html" %}
 
+
 {% block content %}
-    <h1>Welcome, User FirstName </h1>
+    {% if message %}
+        <h1> Welcome, {{ message }}! </h1>
+    {% else %}
+        <h1> Welcome to PG's Picsies! </h1>
+    {% endif %}
+    <div class="ellipse">
+        <div class="ellipse-text">
+            <p>
+            Welcome to the world of Photography and Art!</p>
+            <p> 
+            The photos and art are for free, only if 🥁 
+            you share the love ❤️ for Planet Earth 🌏</p>
+            <p>
+            Confused ? Sign up 🙃 to know more!</p>
+            <button class="ellipse-button">
+                <a href="{% url 'users:signup' %}">Sign Up!</a>
+            </button>
+        </div>
+    </div>
+    <br>
 
 {% endblock %}
 

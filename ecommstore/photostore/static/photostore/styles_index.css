@@ -1,0 +1,35 @@
+/* Welcome Intro - shape, text and button */
+.ellipse{
+    width: 70%;
+    height: 120%;
+    border: 2px solid rgba(132, 229, 164, 0.371);
+    border-radius: 50%;
+    background-color: rgba(0, 255, 128, 0.286);
+    box-shadow: 0px 5px 2px rgba(132, 229, 164, 0.371);
+    margin: 0 auto;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.ellipse-text{
+    text-align: center;
+    color: lavenderblush;
+}
+.ellipse-button{
+    background-color: whitesmoke;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+}
+.ellipse-button a{
+    text-decoration: none;
+    color: #f2f;
+    font-weight: bold;
+}
+.ellipse-button:hover{
+    transition: 0.1s;
+    transform: translateY(3px);
+    background-color: lightpink;
+    box-shadow: 0 10px 5px rgba(15, 15, 15, 0.2); 
+}
