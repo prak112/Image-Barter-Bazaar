@@ -41,6 +41,8 @@ class Product(models.Model):
         ('OOPS', 'Out of Stock')
     ]
     author = models.CharField('Author (full name)', max_length=72)  # associate to UserProfile Model
+    title = models.CharField('Title', max_length=100, null=True)
+    description = models.TextField('Image Description', max_length=200, null=True, blank=True)
     type = models.CharField('Type', max_length=10, choices=TYPE_CHOICES)
     theme = models.CharField('Theme', max_length=20, choices=THEME_CHOICES)
     size = models.CharField('Resolution', max_length=10, choices=SIZE_CHOICES)
