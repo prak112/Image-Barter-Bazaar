@@ -1,7 +1,7 @@
 /* Welcome Intro - shape, text and button */
 .ellipse{
-    width: 70%;
-    height: 120%;
+    max-width: 700px;   /*width, height of the box -- essential to contain items in the center*/
+    max-height: 550px;
     border: 2px solid rgba(132, 229, 164, 0.371);
     border-radius: 50%;
     background-color: rgba(0, 255, 128, 0.286);
@@ -32,4 +32,114 @@
     transform: translateY(3px);
     background-color: lightpink;
     box-shadow: 0 10px 5px rgba(15, 15, 15, 0.2); 
+}
+
+
+/*
+Photo and Art of the Day - title, image and description
+Theme of the Day - Products listing
+*/
+
+.box{
+    max-width: 650px;   /*width, height of the box -- essential to contain items in the center*/
+    max-height: 550px;
+    display: flex;
+    padding: 10px 10px 10px 10px;
+    margin: 0 auto;
+    align-items: center;
+    border: 2px solid rgba(132, 229, 164, 0.371);
+    border-radius: 20px;
+}
+
+.box-item{
+    display: flex;
+    justify-content: space-between;
+    
+    border-radius: 20%;
+}
+
+.box-item img
+{
+    max-width: 200px;
+    max-height: 200px;
+    border: 0 solid black;
+    border-radius: inherit;
+}
+.box-item p {
+    color: whitesmoke;
+    text-align: center;
+}
+.box-item cite{
+    padding-top: 10px;
+}
+.box-item-title{
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+
+
+/*Theme of the Day - Products listing*/
+.product-container{
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 40px;
+}
+
+.product
+{
+    max-width: 25%;   /*width, height of the box -- essential to contain items in the center*/
+    max-height: 100%;
+    margin: 0 auto;
+    border: 2px solid rgba(122, 218, 224, 0.771);
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+    justify-content: space-around;
+}
+
+.product .box-item{
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+.product .box-item img{
+    border-radius: 10px;
+}
+
+.product .box-item .box-item-title{
+    font-weight: 400;
+    font-size: medium;
+}
+.product .box-item p,
+.product .box-item cite
+{
+    display: flex;
+    flex-direction: column;
+    font-size: small;
+}
+.product button a{
+    font-size: small;
+}
+.product button{
+    background-color: black;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 10px;
+    border: 2px solid rgb(223, 238, 18);
+    margin: 0 auto;
+    font-weight: 400;
+} 
+.product button a:hover{
+    font-size: medium;
+    color: black;
+}
+.product button:hover{
+    background-color: greenyellow;
+    cursor: pointer;
+    margin: 0 auto;
+    font-weight: 500;
+    transition-duration: 0.3s;
 }

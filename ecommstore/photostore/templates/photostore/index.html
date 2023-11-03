@@ -1,11 +1,12 @@
 {% extends "photostore/layout.html" %}
-
+{% load static %}
 
 {% block content %}
+<main>
     {% if message %}
-        <h1> Welcome, {{ message }}! </h1>
+        <h1 class="heading"> Welcome, {{ message }}! </h1>
     {% else %}
-        <h1> Welcome to PG's Picsies! </h1>
+        <h1 class="heading"> Welcome to PG's Picsies! </h1>
     {% endif %}
     <div class="ellipse">
         <div class="ellipse-text">
@@ -23,6 +24,133 @@
     </div>
     <br>
 
+    <!--- Photo and Art of the Day -->
+    <div class="box">
+        <div class="box-item">
+            <img src="{% static 'images/pexels-photo-mountain.jpg' %}" alt="pexels-photo-mountain">
+        </div>
+        <div class="box-item">
+            <p>       
+                <span class="box-item-title">Photo of the Day</span><br>
+                A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
+                <cite>Photo by Daniel Handl from Pexels</cite>
+            </p>
+        </div>
+    </div>
+    
+    <div class="box">
+        <div class="box-item">
+            <p>
+                <span class="box-item-title">Art of the Day</span><br>
+                A classic landscape art of mountains, lake and a forest.<br>
+                <cite>Generated with Bing Image Creator, Generated with AI ∙ November 3, 2023 at 1:39 PM</cite>
+            </p>
+        </div>
+        <div class="box-item">
+            <img src="{% static 'images/bing-art-mountain.jfif' %}" alt="bing-art-mountain">
+            <!---"https://edusakky-my.sharepoint.com/:i:/g/personal/prakirth_govardhanam_edu_sakky_fi/Ee-ARzV7eW1Os0w_9qmP_GgBLA4gIwcJpY_HGrpWcP-khA?e=NUI4VS
+                -->
+        </div>
+    </div>
+
+    <!--- Products content based on Theme of the Day -->
+    <h2 class="heading">Theme of the Day</h2>
+    <div class="product-container">
+        <div class="product"> 
+            <div class="box-item">
+                <img src="{% static 'images/pexels-photo-mountain.jpg' %}" alt="pexels-photo-mountain">
+            </div>
+            <div class="box-item">
+                <p>
+                    <span class="box-item-title">Photo Sample 1</span><br>
+                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
+                    <cite>Photo by Daniel Handl from Pexels</cite> 
+                </p>
+            </div>
+            <button>
+                <a href="">Add To Cart</a>
+            </button>
+        </div> 
+        <div class="product">
+            <div class="box-item">
+                <img src="{% static 'images/pexels-photo-mountain.jpg' %}" alt="pexels-photo-mountain">
+            </div>            
+            <div class="box-item">
+                <p>
+                    <span class="box-item-title">Photo Sample 2</span><br>
+                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
+                    <cite>Photo by Daniel Handl from Pexels</cite> 
+                </p>
+            </div>
+            <button>
+                <a href="">Add To Cart</a>
+            </button>
+        </div>    
+        <div class="product">
+            <div class="box-item">
+                <img src="{% static 'images/pexels-photo-mountain.jpg' %}" alt="pexels-photo-mountain">
+            </div>
+            <div class="box-item">
+                <p>
+                    <span class="box-item-title">Photo Sample 3</span><br>
+                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
+                    <cite>Photo by Daniel Handl from Pexels</cite> 
+                </p>
+            </div>
+            <button>
+                <a href="">Add To Cart</a>
+            </button>
+        </div>
+    </div>
+    <div class="product-container">
+        <div class="product"> 
+            <div class="box-item">
+                <img src="{% static 'images/pexels-photo-mountain.jpg' %}" alt="pexels-photo-mountain">
+            </div>
+            <div class="box-item">
+                <p>
+                    <span class="box-item-title">Photo Sample 1</span><br>
+                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
+                    <cite>Photo by Daniel Handl from Pexels</cite> 
+                </p>
+            </div>
+            <button>
+                <a href="">Add To Cart</a>
+            </button>
+        </div> 
+        <div class="product">
+            <div class="box-item">
+                <img src="{% static 'images/pexels-photo-mountain.jpg' %}" alt="pexels-photo-mountain">
+            </div>            
+            <div class="box-item">
+                <p>
+                    <span class="box-item-title">Photo Sample 2</span><br>
+                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
+                    <cite>Photo by Daniel Handl from Pexels</cite> 
+                </p>
+            </div>
+            <button>
+                <a href="">Add To Cart</a>
+            </button>
+        </div>    
+        <div class="product">
+            <div class="box-item">
+                <img src="{% static 'images/pexels-photo-mountain.jpg' %}" alt="pexels-photo-mountain">
+            </div>
+            <div class="box-item">
+                <p>
+                    <span class="box-item-title">Photo Sample 3</span><br>
+                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
+                    <cite>Photo by Daniel Handl from Pexels</cite> 
+                </p>
+            </div>
+            <button>
+                <a href="">Add To Cart</a>
+            </button>
+        </div>
+    </div>
+    <br>  
+</main>
 {% endblock %}
 
 
