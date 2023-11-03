@@ -13,13 +13,6 @@ class UserProfile(AbstractUser):
     # define additional or custom fields
  
     login_name = models.CharField('Username (auto-generated)', max_length=150, unique=True, null=True)
- 
-    # (py311-webdev) D:\GitHub_Projects\DevSchool-Project\ecommstore>python manage.py makemigrations
-    # It is impossible to add a non-nullable field 'login_name' to userprofile without specifying a default. This is because the database needs something to populate existing rows.
-    # Please select a fix:
-    # 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
-    # 2) Quit and manually define a default value in models.py.
-
     customer_type = models.CharField('Customer Type', max_length=20, choices=USER_CHOICES)
     bio = models.TextField('Bio', max_length=200, null=True, blank=True)
 

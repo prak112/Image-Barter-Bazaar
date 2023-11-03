@@ -1,7 +1,9 @@
 from django.contrib import admin
 
-from photostore.models import Customer, Product
+from photostore.models import Customers, Products, Orders, OrderDetails
 
 # Register your models here.
-admin.site.register(Customer)
-admin.site.register(Product)
+admin.site.register(Customers)
+admin.site.register(Products)
+admin.site.register(Orders)
+admin.site.register(OrderDetails)
