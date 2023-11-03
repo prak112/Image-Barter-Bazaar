@@ -28,7 +28,11 @@ div{
 }
 
 a{
-    color: goldenrod
+    text-decoration: none;
+    color: whitesmoke;
+}
+.logo-description a{
+    color: goldenrod;       
 }
 
 .form-container{

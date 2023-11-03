@@ -23,7 +23,9 @@
         </div>
         <button type="submit" class="form-button login">Login</button>
         <p><b>Don't have an account ?</b></p>
-        <button type="redirect" class="form-button register">Create Account</button>
+        <button type="redirect" class="form-button register">
+        <a href="{% url 'users:signup' %}">Create Account</a>
+        </button>
     </form>
 </div>
 {% endblock %}

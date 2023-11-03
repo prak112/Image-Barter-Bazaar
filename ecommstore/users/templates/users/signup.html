@@ -36,7 +36,9 @@
         </div>
         <button type="submit" class="form-button register">Create Account</button>
         <p><b>Already have an account ?</b></p>
-        <button type="redirect" class="form-button login">Login</button>
+        <button type="redirect" class="form-button login">
+            <a href="{% url 'users:login' %}">Login</a>
+        </button>
     </form>
 </div>
 
