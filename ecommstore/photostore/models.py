@@ -4,7 +4,7 @@ from users.models import UserProfile
 
 # Create your models here.
 
-class Customers(models.Model): 
+class Customer(models.Model): 
     user_info = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="user_information")
     fullname = models.CharField('Full Name', max_length=128, unique=True)
     type = models.CharField('Customer Type', max_length=20)
@@ -18,7 +18,7 @@ class Customers(models.Model):
         super().save_customerType(*args, **kwargs)
 
 
-class Products(models.Model):
+class Product(models.Model):
     TYPE_CHOICES = [
         ('PH', 'Photo'),
         ('ART', 'Art'),
@@ -43,7 +43,7 @@ class Products(models.Model):
         ('AVL', 'Available'),
         ('OOPS', 'Out of Stock')
     ]
-    author = models.OneToOneField(Customers, on_delete=models.PROTECT, to_field='fullname', related_name="author_fullname")  # related to Customers Model
+    author = models.OneToOneField(Customer, on_delete=models.PROTECT, to_field='fullname', related_name="author_fullname")  # related to Customers Model
     title = models.CharField('Title', max_length=100, null=True)
     description = models.TextField('Image Description', max_length=200, null=True, blank=True)
     type = models.CharField('Type', max_length=10, choices=TYPE_CHOICES)
@@ -54,13 +54,13 @@ class Products(models.Model):
 
 
 
-class Orders(models.Model):
+class Order(models.Model):
     ORDER_STATUS_CHOICES = [
         ('PEN', 'Pending'),
         ('SHIP', 'Shipped'),
         ('DEL', 'Delivered')
     ]
-    customer = models.ForeignKey(Customers, on_delete=models.PROTECT, related_name="order_data")    # related to Customers Model
+    customer = models.ForeignKey(Customer, on_delete=models.PROTECT, related_name="order_data")    # related to Customers Model
     order_date = models.DateTimeField('Date of Order', auto_now=True)
     order_status = models.CharField('Order Status', max_length=30, choices=ORDER_STATUS_CHOICES)
     # instead of price, barter_exchange field will define checkout response
@@ -71,9 +71,9 @@ class Orders(models.Model):
     
 
 
-class OrderDetails(models.Model):
-    order = models.ForeignKey(Orders, on_delete=models.PROTECT, related_name="customer_data")    # related to Order Model
-    product = models.ManyToManyField(Products, blank=True, related_name="product_status")      # related to Products Model
+class OrderDetail(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.PROTECT, related_name="customer_data")    # related to Order Model
+    product = models.ManyToManyField(Product, blank=True, related_name="product_status")      # related to Products Model
     quantity = models.IntegerField()
 
     def save_quantity(self, *args, **kwargs):
