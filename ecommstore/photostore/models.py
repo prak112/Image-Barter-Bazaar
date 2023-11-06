@@ -63,7 +63,8 @@ class Orders(models.Model):
     customer = models.ForeignKey(Customers, on_delete=models.PROTECT, related_name="order_data")    # related to Customers Model
     order_date = models.DateTimeField('Date of Order', auto_now=True)
     order_status = models.CharField('Order Status', max_length=30, choices=ORDER_STATUS_CHOICES)
-    # price = models.DecimalField('Price', max_digits=4, decimal_places=2, default=0.00, null=True, blank=True)
+    # instead of price, barter_exchange field will define checkout response
+    barter_exchange = models.BooleanField('Photo Exchanged ?', default=False, help_text="Clarifies if customer exchanged photos or not")
 
     def __str__(self):
         return f"Customer ID {self.customer_id}\nOrdered on {self.order_date}\nOrder Status : {self.order_status}"
