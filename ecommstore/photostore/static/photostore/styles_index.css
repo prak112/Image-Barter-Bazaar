@@ -35,11 +35,7 @@
 }
 
 
-/*
-Photo and Art of the Day - title, image and description
-Theme of the Day - Products listing
-*/
-
+/*Photo and Art of the Day - title, image and description*/
 .box{
     max-width: 650px;   /*width, height of the box -- essential to contain items in the center*/
     max-height: 550px;

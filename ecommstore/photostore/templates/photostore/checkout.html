@@ -3,33 +3,100 @@
 
 {% block content %}
     <h1 class="heading">Checkout</h1>
+    <div class="checkout-title">
+        <p>
+            My Cart
+            <img class="checkout-cart-icon" src="{% static 'photostore/checkout-cart-icon.png' %}" alt="checkout-cart-icon"/>
+            <span class="checkout-items">(3)</span>
+        </p>
+    </div>
     <div class="checkout-container">
         <div class="product-container">
             <div class="product">
+                <img src="{% static 'images/bing-art-mountain.jfif' %}" alt="bing-art-mountain"/>
                 <p>
                     <span class="product-title">Mountain Art by Bing Image Creator</span><br>
                     A classic landscape art of mountains, lake and a forest.<br>
-                    <cite>Generated with Bing Image Creator, Generated with AI ∙ November 3, 2023 at 1:39 PM</cite>
-                </p>
-                <img src="{% static 'images/bing-art-mountain.jfif' %}" alt="bing-art-mountain">
-                <!---"https://edusakky-my.sharepoint.com/:i:/g/personal/prakirth_govardhanam_edu_sakky_fi/Ee-ARzV7eW1Os0w_9qmP_GgBLA4gIwcJpY_HGrpWcP-khA?e=NUI4VS
-                    -->
-                <button class="change-button">Change</button>
-                <button class="remove-button">Remove</button>
+                    <cite>Generated with Bing Image Creator</cite>
+                </p>            
+                <div class="options">
+                    <button class="change-button">
+                        <a href="">Change</a>
+                    </button>
+                    <button class="remove-button">
+                        <a href="">Remove</a>
+                    </button>
+                </div>
             </div>
         </div>
 
         <div class="product-container">
             <div class="product">
+                <img src="{% static 'images/pexels-photo-mountain.jpg' %}" alt="pexels-photo-mountain"/>
                 <p>       
                     <span class="product-title">Mountain Photo by Daniel Handl</span><br>
-                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
+                    A breathtaking view of mountains with a half moon in the sky.<br>
                     <cite>Photo by Daniel Handl from Pexels</cite>
                 </p>
-                <img src="{% static 'images/pexels-photo-mountain.jpg' %}" alt="pexels-photo-mountain">
-                <button class="change-button">Change</button>
-                <button class="remove-button">Remove</button>
+                <div class="options">
+                    <button class="change-button">
+                        <a href="">Change</a>
+                    </button>
+                    <button class="remove-button">
+                        <a href="">Remove</a>
+                    </button>
+                </div>
             </div>
+        </div>
+
+        <div class="product-container">
+            <div class="product">
+                <img src="{% static 'images/bing-art-mountain.jfif' %}" alt="bing-art-mountain"/>
+                <p>
+                    <span class="product-title">Mountain Art by Bing Image Creator</span><br>
+                    A classic landscape art of mountains, lake and a forest.<br>
+                    <cite>Generated with Bing Image Creator</cite>
+                </p>            
+                <div class="options">
+                    <button class="change-button">
+                        <a href="">Change</a>
+                    </button>
+                    <button class="remove-button">
+                        <a href="">Remove</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="payment-title">
+        <p>
+            Payment
+            <img class="checkout-cart-icon" src="{% static 'photostore/checkout-cart-icon.png' %}" alt="checkout-cart-icon"/>
+            <span class="payment-items">(3)</span>
+        </p>
+    </div>
+    <div class="payment-container">
+        <div class="payment-procedure">
+            <p>
+                The procedure is simple.<br><br>Upload an image (photo or art)&nbsp;&nbsp;relevant to Nature either
+                digital or manual. However, you should be the only one holding the copyrights, i.e., image should be your
+                own creation.<br><br>If you feel generous, feel free to upload more 🫶🏻        
+            </p>
+        </div>
+        <div class="payment-button">
+            <fieldset class="options">
+                <legend>Do you want to "Pay With Image" ?</legend>
+                <button>                    
+                    <a href="{%url 'photostore:payment' choice='Yes' %}">Yes</a>
+                </button>
+                <button>
+                    <a href="{% url 'photostore:payment' choice='No' %}">No</a>
+                </button>
+            </fieldset>
+            <br>
         </div>
     </div>
 {% endblock %}
