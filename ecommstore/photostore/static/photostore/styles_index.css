@@ -143,3 +143,37 @@ Theme of the Day - Products listing
     font-weight: 500;
     transition-duration: 0.3s;
 }
+
+.dropdown-container {
+    display: flex;
+    margin: auto;
+    padding: 10px;
+    background-color: transparent;
+    text-align: center;
+    justify-content: center;
+}
+.dropdown-container form{
+    padding: 10px;
+}
+.dropdown-menu {
+    background-color: rgba(255, 255, 255, 0.123);
+    color: whitesmoke;
+    border: none;
+    padding: 10px;
+    border: 2px solid rgba(192, 185, 233, 0.541);
+    border-radius: 15px;
+    padding-right: 20px;
+}
+.dropdown-button{
+    border-radius: 20px;
+    border: 2px solid rgba(124, 104, 236, 0.541);
+    background-color: rgb(124, 104, 236);
+    padding: 10px;
+    cursor: pointer;
+}
+.dropdown-button:hover{
+    transition-duration: 0.2s;
+    background-color: blueviolet;
+    color: whitesmoke;
+}
+

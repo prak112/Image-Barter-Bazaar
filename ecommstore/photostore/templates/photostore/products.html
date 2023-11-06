@@ -34,14 +34,37 @@
     </div>
 
     <!--- Images content based on the dropdown filters -->
-    <h1 class="heading dropdown">Type</h1>
-    <h1 class="heading dropdown">Theme</h1>
-    <h1 class="heading dropdown">Size</h1>
+    <h1 class="heading">Search Products</h1>
     <!--
         dropdown headings can include either -
             1 - hyperlinks
             2 - forms and buttons
+            3- all dropdowns can be inside one form! - chosen
     -->
+    <div class="dropdown-container">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <select name="type" class="dropdown-menu">
+                <option value="" disabled selected>All Types</option>
+                {% for type in types %}
+                    <option value="{{ type }}">{{ type }}</option>
+                {% endfor %}
+            </select>
+            <select name="theme" class="dropdown-menu">
+                <option value="" disabled selected>All Themes</option>
+                {% for theme in themes %}
+                    <option value="{{ theme }}">{{ theme }}</option>
+                {% endfor %}
+            </select>
+            <select name="size" class="dropdown-menu">
+                <option value="" disabled selected>All Sizes</option>
+                {% for size in sizes %}
+                    <option value="{{ size }}">{{ size }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Apply Filters" class="dropdown-button">
+        </form>
+    </div>
 
     <div class="product-container">
         <div class="product"> 
@@ -93,13 +116,13 @@
     <div class="product-container">
         <div class="product"> 
             <div class="box-item">
-                <img src="{% static 'images/pexels-photo-mountain.jpg' %}" alt="pexels-photo-mountain">
+                <img src="{% static 'images/bing-art-mountain.jfif' %}" alt="bing-art-mountain">
             </div>
             <div class="box-item">
                 <p>
                     <span class="box-item-title">Photo Sample 1</span><br>
-                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
-                    <cite>Photo by Daniel Handl from Pexels</cite> 
+                    A classic landscape art of mountains, lake and a forest.<br>
+                    <cite>Generated with Bing Image Creator, Generated with AI ∙ November 3, 2023 at 1:39 PM</cite>
                 </p>
             </div>
             <button>
@@ -108,13 +131,13 @@
         </div> 
         <div class="product">
             <div class="box-item">
-                <img src="{% static 'images/pexels-photo-mountain.jpg' %}" alt="pexels-photo-mountain">
-            </div>            
+                <img src="{% static 'images/bing-art-mountain.jfif' %}" alt="bing-art-mountain">
+            </div>
             <div class="box-item">
                 <p>
-                    <span class="box-item-title">Photo Sample 2</span><br>
-                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
-                    <cite>Photo by Daniel Handl from Pexels</cite> 
+                    <span class="box-item-title">Photo Sample 1</span><br>
+                    A classic landscape art of mountains, lake and a forest.<br>
+                    <cite>Generated with Bing Image Creator, Generated with AI ∙ November 3, 2023 at 1:39 PM</cite>
                 </p>
             </div>
             <button>
@@ -123,13 +146,13 @@
         </div>    
         <div class="product">
             <div class="box-item">
-                <img src="{% static 'images/pexels-photo-mountain.jpg' %}" alt="pexels-photo-mountain">
+                <img src="{% static 'images/bing-art-mountain.jfif' %}" alt="bing-art-mountain">
             </div>
             <div class="box-item">
                 <p>
-                    <span class="box-item-title">Photo Sample 3</span><br>
-                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
-                    <cite>Photo by Daniel Handl from Pexels</cite> 
+                    <span class="box-item-title">Photo Sample 1</span><br>
+                    A classic landscape art of mountains, lake and a forest.<br>
+                    <cite>Generated with Bing Image Creator, Generated with AI ∙ November 3, 2023 at 1:39 PM</cite>
                 </p>
             </div>
             <button>
