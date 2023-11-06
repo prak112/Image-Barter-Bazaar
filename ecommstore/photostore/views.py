@@ -22,6 +22,10 @@ def products(request):
 
 def checkout(request):
     return render(request, 'photostore/checkout.html')
+def payment(request, choice):
+    return render(request, 'photostore/payment.html', context={
+        "choice": choice,
+    })
 
 
 def about_us(request):

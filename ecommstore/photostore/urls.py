@@ -10,6 +10,7 @@ urlpatterns = [
     path('products', views.products, name='products'),
 #    path('search/<str:query>', views.search, name='search'),
     path('checkout', views.checkout, name='checkout'),
+    path('payment/<str:choice>', views.payment, name='payment'),
     path('about_us', views.about_us, name='about_us'),
     path('license', views.license, name='license'),
 ]
