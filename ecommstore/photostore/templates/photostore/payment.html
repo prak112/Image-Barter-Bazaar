@@ -1,0 +1,88 @@
+{% extends "photostore/layout.html" %}
+{% load static %}
+
+
+{% block content %}
+
+        {% if choice == 'Yes' %}
+
+        <h1 class="heading">Your Order</h1>
+        <div class="checkout-title">
+            <p>
+                My Cart
+                <img class="checkout-cart-icon" src="{% static 'photostore/checkout-cart-icon.png' %}" alt="checkout-cart-icon"/>
+                <span class="checkout-items">(3)</span>
+            </p>
+        </div>
+        <div class="checkout-container">
+            <div class="product-container">
+                <div class="product">
+                    <img src="{% static 'images/bing-art-mountain.jfif' %}" alt="bing-art-mountain"/>
+                    <p>
+                        <span class="product-title">Mountain Art by Bing Image Creator</span><br>
+                        A classic landscape art of mountains, lake and a forest.<br>
+                        <cite>Generated with Bing Image Creator</cite>
+                    </p>            
+                    <div class="options">
+                        <button class="change-button">
+                            <a href="">Change</a>
+                        </button>
+                        <button class="remove-button">
+                            <a href="">Remove</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="product-container">
+                <div class="product">
+                    <img src="{% static 'images/pexels-photo-mountain.jpg' %}" alt="pexels-photo-mountain"/>
+                    <p>       
+                        <span class="product-title">Mountain Photo by Daniel Handl</span><br>
+                        A breathtaking view of mountains with a half moon in the sky.<br>
+                        <cite>Photo by Daniel Handl from Pexels</cite>
+                    </p>
+                    <div class="options">
+                        <button class="change-button">
+                            <a href="">Change</a>
+                        </button>
+                        <button class="remove-button">
+                            <a href="">Remove</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="product-container">
+                <div class="product">
+                    <img src="{% static 'images/bing-art-mountain.jfif' %}" alt="bing-art-mountain"/>
+                    <p>
+                        <span class="product-title">Mountain Art by Bing Image Creator</span><br>
+                        A classic landscape art of mountains, lake and a forest.<br>
+                        <cite>Generated with Bing Image Creator</cite>
+                    </p>            
+                    <div class="options">
+                        <button class="change-button">
+                            <a href="">Change</a>
+                        </button>
+                        <button class="remove-button">
+                            <a href="">Remove</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="payment-button">
+            <button>
+                <a href="{% url 'photostore:index' %}">Pay with Image</a>
+            </button>
+            <p class="heading">Thank you for your support! 🫶🏻</p>
+        {% else %}
+            <p class="heading">Thanks for visiting!</p>
+        {% endif %}
+    </div>
+
+{% endblock %}
