@@ -1,0 +1,100 @@
+/* PRODUCTS - products.html*/
+.product-container
+{
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 40px;
+}
+
+.product
+{
+    max-width: 25%;   /*width, height of the box -- essential to contain items in the center*/
+    max-height: 100%;
+    margin: 0 auto;
+    border: 2px solid rgba(122, 218, 224, 0.771);
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+    justify-content: space-around;
+}
+
+.product .box-item
+{
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+.product .box-item img{
+    border-radius: 10px;
+}
+
+.product .box-item .box-item-title{
+    font-weight: 400;
+    font-size: medium;
+}
+.product .box-item p,
+.product .box-item cite
+{
+    display: flex;
+    flex-direction: column;
+    font-size: small;
+}
+.product button a{
+    font-size: small;
+}
+.product button{
+    background-color: black;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 10px;
+    border: 2px solid rgb(223, 238, 18);
+    margin: 0 auto;
+    font-weight: 400;
+} 
+.product button a:hover{
+    font-size: medium;
+    color: black;
+}
+.product button:hover{
+    background-color: greenyellow;
+    cursor: pointer;
+    margin: 0 auto;
+    font-weight: 500;
+    transition-duration: 0.3s;
+}
+
+.dropdown-container {
+    display: flex;
+    margin: auto;
+    padding: 10px;
+    background-color: transparent;
+    text-align: center;
+    justify-content: center;
+}
+.dropdown-container form{
+    padding: 10px;
+}
+.dropdown-menu {
+    background-color: rgba(255, 255, 255, 0.123);
+    color: whitesmoke;
+    border: none;
+    padding: 10px;
+    border: 2px solid rgba(192, 185, 233, 0.541);
+    border-radius: 15px;
+    padding-right: 20px;
+}
+.dropdown-button{
+    border-radius: 20px;
+    border: 2px solid rgba(124, 104, 236, 0.541);
+    background-color: rgb(124, 104, 236);
+    padding: 10px;
+    cursor: pointer;
+}
+.dropdown-button:hover{
+    transition-duration: 0.2s;
+    background-color: blueviolet;
+    color: whitesmoke;
+}
+

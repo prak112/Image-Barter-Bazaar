@@ -1,4 +1,4 @@
-/*GENERAL*/
+/*LAYOUT styles*/
 body{
     background-color: black;
     color: white;
@@ -30,7 +30,6 @@ body{
 
 
 /*HEADER*/
-
 header{
     position: relative;
     width: 100%;

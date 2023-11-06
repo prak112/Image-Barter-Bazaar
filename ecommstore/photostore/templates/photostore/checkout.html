@@ -1,5 +1,35 @@
 {% extends "photostore/layout.html" %}
+{% load static %}
 
 {% block content %}
-    <h1>Checkout</h1>
+    <h1 class="heading">Checkout</h1>
+    <div class="checkout-container">
+        <div class="product-container">
+            <div class="product">
+                <p>
+                    <span class="product-title">Mountain Art by Bing Image Creator</span><br>
+                    A classic landscape art of mountains, lake and a forest.<br>
+                    <cite>Generated with Bing Image Creator, Generated with AI ∙ November 3, 2023 at 1:39 PM</cite>
+                </p>
+                <img src="{% static 'images/bing-art-mountain.jfif' %}" alt="bing-art-mountain">
+                <!---"https://edusakky-my.sharepoint.com/:i:/g/personal/prakirth_govardhanam_edu_sakky_fi/Ee-ARzV7eW1Os0w_9qmP_GgBLA4gIwcJpY_HGrpWcP-khA?e=NUI4VS
+                    -->
+                <button class="change-button">Change</button>
+                <button class="remove-button">Remove</button>
+            </div>
+        </div>
+
+        <div class="product-container">
+            <div class="product">
+                <p>       
+                    <span class="product-title">Mountain Photo by Daniel Handl</span><br>
+                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
+                    <cite>Photo by Daniel Handl from Pexels</cite>
+                </p>
+                <img src="{% static 'images/pexels-photo-mountain.jpg' %}" alt="pexels-photo-mountain">
+                <button class="change-button">Change</button>
+                <button class="remove-button">Remove</button>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -1,0 +1,71 @@
+
+/* CHECKOUT - checkout.html */
+.checkout-container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    width: 75%;
+    height: 50%;
+    overflow: scroll;
+    margin: 0 auto;
+    border: 2px solid rgba(75, 233, 122, 0.771);
+    border-radius: 20px;
+}
+.checkout-container .product-container{
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 40px;
+}
+
+.checkout-container .product{
+    max-width: 50%;   /*width, height of the box -- essential to contain items in the center*/
+    max-height: 100%;
+    margin: 0 auto;
+    border: 2px solid rgba(122, 218, 224, 0.771);
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.checkout-container .product .product-title{
+    margin: 0 auto;
+    padding-top: 10px;
+}
+.checkout-container .product img{
+    border-radius: 10px;
+    width: 10%;
+    height: 25%;
+}
+
+.checkout-container .product p,
+.checkout-container .product cite
+{
+    display: flex;
+    flex-direction: column;
+    font-size: small;
+}
+.checkout-container .product button a{
+    font-size: small;
+}
+.checkout-container .product button{
+    background-color: black;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 10px;
+    border: 2px solid rgb(223, 238, 18);
+    margin: 0 auto;
+    font-weight: 400;
+} 
+.checkout-container .product button a:hover{
+    font-size: medium;
+    color: black;
+}
+.checkout-container .product button:hover{
+    background-color: greenyellow;
+    cursor: pointer;
+    margin: 0 auto;
+    font-weight: 500;
+    transition-duration: 0.3s;
+}
