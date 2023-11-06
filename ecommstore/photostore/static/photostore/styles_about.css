@@ -1,0 +1,16 @@
+.about-us{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 40px;
+    margin: 0 auto;
+}
+
+.about-us-text {
+    font-size: 20px;
+    font-family: 'Architects Daughter', cursive;
+    color: #ffffff;
+    text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px rgba(221, 221, 17, 0.747), 0 0 70px rgba(221, 221, 17, 0.747), 0 0 80px rgba(221, 221, 17, 0.747), 0 0 100px rgba(221, 221, 17, 0.747), 0 0 150px rgba(221, 221, 17, 0.747);
+    text-align: center;
+}
