@@ -2,44 +2,39 @@
 
 {% block content %}
 
+{% if message %}
+    <div class="form-message">
+        {{ message }}
+    </div>
+{% endif %}
+
+<h1 class="heading">Sign Up</h1>
 <div class="form-container">
-    <h1 class="title">Sign Up</h1>
-    <form class="form" action="{% url 'users:signup' %}" method="POST">
+    <form class="form-group" action="{% url 'users:signup' %}" method="POST">
         {% csrf_token %}
-        <div class="form-group">
-            <label for="first_name">First Name : </label>
-            <input type="text" id="first_name" name="first_name" placeholder="First Name" required>
-        </div>
-        <div class="form-group">
-            <label for="last_name">Last Name : </label>
-            <input type="text" id="last_name" name="last_name" placeholder="Last Name" required>
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Email" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Password" required>
-        </div>
-        <div class="form-group">
-            <label for="confirm_password">Confirm Password</label>
-            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
-        </div>
-        <div class="form-group">
-            <fieldset>
-            <legend>Customer Type</legend>
-                <label><input type="radio" id="artist" name="customer_type" value="artist" checked> Artist</label>
-                <label><input type="radio" id="photographer" name="customer_type" value="photgrapher"> Photographer</label>
-                <label><input type="radio" id="enthusiast" name="customer_type" value="enthusiast"> Enthusiast</label>
-            </fieldset>
-        </div>
-        <button type="submit" class="form-button register">Create Account</button>
-        <p><b>Already have an account ?</b></p>
-        <button type="redirect" class="form-button login">
-            <a href="{% url 'users:login' %}">Login</a>
-        </button>
+        <!--hidden fields-->
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        <!--visible fields-->
+        {% for field in form.visible_fields %}
+            <div class="field-wrapper">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}                    
+                {% if field.help_text %}
+                    <p style="font-size: 10px;">{{ field.help_text }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <input class="form-button register" type="submit" value="Sign Up">
     </form>
+    
+    <p class="form-group"><b>Already have an account ?</b></p>
+    <button type="redirect" class="form-button login">
+        <a href="{% url 'users:login' %}" rel="noopener" target="_blank">Login</a>
+    </button>
 </div>
 
 {% endblock %}

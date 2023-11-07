@@ -8,10 +8,23 @@ body{
     place-items: center;
 }
 
-div{
+div, p{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+/* glow headings like neon lights */
+.heading {
+    font-size: 32px;
+    font-family: 'Arial', sans-serif;
+    color: #ffffff;
+    text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #0066ff, 0 0 70px #0066ff, 0 0 80px #0066ff, 0 0 100px #0066ff, 0 0 150px #0066ff;
+    margin: 0 auto;
+    padding-top: 40px;
 }
 
 .logo-container{
@@ -36,21 +49,25 @@ a{
 }
 
 .form-container{
+    padding-bottom: 40px;
     margin: 0 auto;
     width: 50%;
 }
 
 .form-group{
-    padding-left: 10px;
-    padding-bottom: 20px;
-}
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 
-.form-button{
+    padding-left: 20px;
+    padding-bottom: 20px;
+    padding-top: 40px;
     margin: 0 auto;
 }
 
 .form-button.login{
-    width: 25%;
+    width: 40%;
     height: 40px;
     border: none;
     border-radius: 25px;
@@ -58,9 +75,10 @@ a{
     color: white;
     font-size: 16px;
     font-weight: bold;
+    margin-left: 20px;
 }
 .form-button.register{
-    width: 50%;
+    width: 35%;
     height: 40px;
     border: none;
     border-radius: 50px;
@@ -77,4 +95,9 @@ a{
 .form-button.login:hover{
     background-color: #092fff;
     cursor: pointer;
+}
+.form-message{
+    color: red;
+    font-size: 16px;
+    padding: 20px;
 }
