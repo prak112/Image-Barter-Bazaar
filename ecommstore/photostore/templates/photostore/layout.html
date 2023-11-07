@@ -29,8 +29,17 @@
                     </button>
                 </form>
             </div>
+            {% if request.user.is_authenticated %}
+                <div class="nav-menu item">
+                    <a class="user-profile" href="{% url 'users:user_profile' %}">My Profile</a>
+                </div>
+            {% endif %}
             <div class="nav-menu item">
-                <a class="login" href="{% url 'users:login' %}" target="_blank" rel="noopener">Log In</a>
+                {% if request.user.is_authenticated %}
+                    <a class="login" href="{% url 'users:logout' %}" target="_blank" rel="noopener">Log Out</a>
+                {% else %}
+                    <a class="login" href="{% url 'users:login' %}" target="_blank" rel="noopener">Log In</a>
+                {% endif %}
             </div>
             <div class="nav-menu item">
                 <a href="{% url 'photostore:products' %}" target="_blank" rel="noopener">Products</a>
