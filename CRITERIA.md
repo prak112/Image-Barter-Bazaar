@@ -12,39 +12,39 @@ Programming 45osp requirements (Ready around week 48):
 
 
 
-# FRONTEND 
+# FRONTEND & BACKEND
 
 1. [X] Header and footer on each page
 Header:
-   - Logo/image
-   - Search field for products
-   - Navigation (links in the navigation, which allows you to navigate the page)
-   - Log in/log out button (not the correct login)
-   - Link to the shopping cart
+   - [X] Logo/image
+   - [X] Search field for products
+   - [X] Navigation (links in the navigation, which allows you to navigate the page)
+   - [X] Log in/log out button (not the correct login)
+   - [X] Link to the shopping cart
 Footer
-   - Generate footer content
+   - [X] Generate footer content
 
-2. [ ] Front page
-   - Show page 5 random product
+2. [X] Front page
+   - [ ]Show page 5 random product
 
-3. [ ] Search page
-   - List the products based on the user's search
+3. [X] Search page
+   - [ ] List the products based on the user's search
 
 4. [ ] Product page (the page can be accessed either through the product on the front page or the product on the search page)
-   - Details of a certain product
-   - Can add the product to the shopping cart
+   - [ ] Details of a certain product
+   - [ ] Can add the product to the shopping cart
 
 5. [ ] Shopping cart
-   - Shows the products added to the shopping cart
-   - The user fills in their own information (name, email, address)
-   - Sends the order (not yet a real order, the information is only sent to the server)
+   - [ ] Shows the products added to the shopping cart
+   - [ ] The user fills in their own information (name, email, address) / User logs in before adding items to cart
+   - [ ] Sends the order (not yet a real order, the information is only sent to the server)
 
-6. [ ] Order confirmation page
+6. [X] Order confirmation page
    - After the order, the user will be notified of the order's success.
 
 
 
-# BACKEND
+# FUNCTIONALITY
 
 Technical implementation requirements of the Web service (Ready around week 3) :
 
