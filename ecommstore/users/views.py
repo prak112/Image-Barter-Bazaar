@@ -29,7 +29,7 @@ def signup(request):
             # form.cleaned_data["password"]
             # form.save() 
 
-            name = f"{form.cleaned_data['first_name']} {form.cleaned_data['last_name']}"
+            name = f"{form.cleaned_data['first_name']}"
             context={"message": f"Account created. Welcome, {name.capitalize()}, to PG's Picsies!"}
             return render(request, 'photostore/index.html', context=context)
         else:
@@ -44,9 +44,10 @@ def signup(request):
 class CustomLoginView(LoginView):
     template_name = 'users/login.html'
     authentication_form = LoginForm
-    # to check def get_success_url
-    success_url = 'index'
 
+    def get_success_url(self) -> str:
+        # index_url = reverse('index')
+        return reverse('photostore:index')
 
 
 def user_profile(request):

@@ -3,8 +3,8 @@
 
 {% block content %}
 <main>
-    {% if message %}
-        <h1 class="heading"> {{ message }} ! </h1>
+    {% if request.user.is_authenticated %}
+        <h1 class="heading"> {{ message }} </h1>
     {% else %}
         <h1 class="heading"> Welcome to PG's Picsies! </h1>
     {% endif %}

@@ -7,7 +7,16 @@ from django.urls import reverse
 
 # Create your views here.
 def index(request):
-    return render(request, 'photostore/index.html')
+    if request.user.is_authenticated:
+        fname = f"{request.user.first_name.capitalize()}".capitalize() 
+        lname = f"{request.user.last_name.capitalize()}".capitalize()
+        context = {
+            "message" : f"{fname} {lname}! Welcome to PG's Picsies!"
+        }
+        return render(request, 'photostore/index.html', context=context)
+
+    else:
+        return render(request, 'photostore/index.html')
 
 
 def products(request):
