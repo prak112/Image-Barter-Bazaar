@@ -124,5 +124,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# CUSTOM DEFINED SETTINGS
 # CustomerProfile Model Auth
 AUTH_USER_MODEL = 'users.UserProfile'
+
+# Database-backed sessions
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
