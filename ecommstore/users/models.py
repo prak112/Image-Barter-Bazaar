@@ -4,9 +4,9 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 class UserProfile(AbstractUser):
     USER_CHOICES = [
-        ('ART', 'Art'),
-        ('PHT', 'Photography'),
-        ('ENT', 'Curiosity')
+        ('Artist', 'Art'),
+        ('Photographer', 'Photography'),
+        ('Enthusiast', 'Curiosity')
     ]
 
     # AbstractUser model fields - username, first_name, last_name, email, username, password, is_staff, is_active, date_joined
@@ -15,7 +15,9 @@ class UserProfile(AbstractUser):
     bio = models.TextField('Bio', max_length=200, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}".capitalize()
+        fname = f"{self.user.first_name.capitalize()}".capitalize() 
+        lname = f"{self.user.last_name.capitalize()}".capitalize()
+        return f"{fname} {lname}"
 
 
 # OMITTED CODE - Purpose - SIMPLIFICATION 
