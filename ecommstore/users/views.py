@@ -54,20 +54,7 @@ def login_view(request):
     
     else: 
         return render(request, 'users/login.html', context={"form": AuthenticationForm()})
-
-
-
-# class CustomLoginView(LoginView):
-#     template_name = 'users/login.html'
-#     authentication_form = LoginForm
-
-#     def get_success_url(self) -> str:
-#         # create user session data
-#         self.session['first_name'] = self.first_name
-#         self.session['last_name'] = self.last_name
-
-#         return reverse('photostore:index')
-
+    
 
 def user_profile(request):
     return render(request, 'users/user_profile.html')
@@ -83,7 +70,3 @@ def logout_view(request):
           "message" : "Logged out successfully!"
     })
     
-
-# unknown usage
-# def redirect_to_home(request): 
-#         return redirect(reverse('photostore:index'))
