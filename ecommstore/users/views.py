@@ -5,49 +5,80 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView, LogoutView
 
-from users.forms import LoginForm, RegForm
+from users.forms import RegForm
 
 # Views
 # REGISTRATION
 def signup(request):
-    # import UserProfile, password hashing lib
+    # import UserProfile model
     from users.models import UserProfile
-    from django.contrib.auth.hashers import make_password
     
     # validate request
     if request.method == "POST":
         form = RegForm(request.POST)
 
         if form.is_valid():
-            # capitalize name
+            # process user data using Django ORM commands
+            # password = request.user.set_password(request.user.password)
+            user = UserProfile(
+                first_name=request.user.first_name,
+                last_name=request.user.last_name,
+                email=request.user.email,
+                username=request.user.username,
+                password=request.user.password,
+                customer_type=request.user.customer_type,
+                bio=request.user.bio
+                  )
             
-            # hash user-provided password
-            raw_password = form.cleaned_data["password"]
-            hashed_password = make_password(raw_password)
-            user = UserProfile(password=hashed_password)
-            user.save()
-            # form.cleaned_data["password"]
-            # form.save() 
+            # save form, authenticate user
+            user = form.save()
+            login(request, user)
 
-            name = f"{form.cleaned_data['first_name']}"
-            context={"message": f"Account created. Welcome, {name.capitalize()}, to PG's Picsies!"}
-            return render(request, 'photostore/index.html', context=context)
-        else:
+            # create user session data
+            request.session['first_name'] = user.first_name
+            request.session['last_name'] = user.last_name
+
+            return HttpResponseRedirect(reverse('photostore:index'))
+        
+        else: # errors in registration details
             return render(request, 'users/signup.html', context={"form": form})
-
-    else:
+    else: # GET request response
         return render(request, 'users/signup.html', context={"form": RegForm()})
 
 
 
 # LOGIN
-class CustomLoginView(LoginView):
-    template_name = 'users/login.html'
-    authentication_form = LoginForm
+def login_view(request):
+    from django.contrib.auth.forms import AuthenticationForm
 
-    def get_success_url(self) -> str:
-        # index_url = reverse('index')
-        return reverse('photostore:index')
+    # validate and authenticate user
+    if request.method=="POST":
+        form = AuthenticationForm(request, request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+
+            # create user session data
+            request.session['first_name'] = user.first_name
+            request.session['last_name'] = user.last_name
+
+            return HttpResponseRedirect(reverse('photostore:index'))
+    
+    else: 
+        return render(request, 'users/login.html', context={"form": AuthenticationForm()})
+
+
+
+# class CustomLoginView(LoginView):
+#     template_name = 'users/login.html'
+#     authentication_form = LoginForm
+
+#     def get_success_url(self) -> str:
+#         # create user session data
+#         self.session['first_name'] = self.first_name
+#         self.session['last_name'] = self.last_name
+
+#         return reverse('photostore:index')
 
 
 def user_profile(request):
@@ -65,5 +96,6 @@ def logout_view(request):
     })
     
 
-def redirect_to_home(request):
-        return redirect(reverse('photostore:index'))
+# unknown usage
+# def redirect_to_home(request): 
+#         return redirect(reverse('photostore:index'))
