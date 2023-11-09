@@ -1,0 +1,20 @@
+{% extends "users/layout.html" %}
+
+
+{% block content %}
+
+{% if message %}
+    <div class="form-message">
+        {{ message }}
+    </div>
+{% endif %}
+
+<h1 class="heading">Logged Out</h1>
+<div class="form-container">
+<p class="form-group"> Perhaps forgot something ?</p>
+    <div class="form-button login">
+        <a href="{% url 'users:login' %}" class="form-button login">Back to Login</a>
+    </div>
+</div>
+
+{% endblock %}

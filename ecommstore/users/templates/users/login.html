@@ -1,5 +1,6 @@
 {% extends "users/layout.html" %}
 
+
 {% block content %}
 
 {% if message %}
@@ -7,6 +8,7 @@
         {{ message }}
     </div>
 {% endif %}
+
 <h1 class="heading">Login</h1>
 <div class="form-container">
     <form action="{% url 'users:login' %}" method="POST" class="form-group">
