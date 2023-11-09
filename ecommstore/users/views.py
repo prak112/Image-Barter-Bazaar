@@ -17,19 +17,7 @@ def signup(request):
     if request.method == "POST":
         form = RegForm(request.POST)
 
-        if form.is_valid():
-            # process user data using Django ORM commands
-            # password = request.user.set_password(request.user.password)
-            user = UserProfile(
-                first_name=request.user.first_name,
-                last_name=request.user.last_name,
-                email=request.user.email,
-                username=request.user.username,
-                password=request.user.password,
-                customer_type=request.user.customer_type,
-                bio=request.user.bio
-                  )
-            
+        if form.is_valid():          
             # save form, authenticate user
             user = form.save()
             login(request, user)
@@ -91,8 +79,8 @@ def logout_view(request):
     logout(request)
     request.session.clear()
 
-    return render(request, 'users/login.html',context={
-          "message" : "Logged out successfully! Missed something ?"
+    return render(request, 'users/logout.html',context={
+          "message" : "Logged out successfully!"
     })
     
 
