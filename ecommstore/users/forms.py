@@ -1,18 +1,11 @@
 from django import forms
-# from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm
 
 from users.models import UserProfile
 
 
-# class LoginForm(AuthenticationForm):
-#     class Meta:
-#         model = UserProfile
-#         fields = ["username", "password"]
-
-
-class RegForm(forms.ModelForm):
+class RegForm(UserCreationForm):
     class Meta:
         model = UserProfile
-        fields = ["first_name", "last_name", "email", "username", "password", "customer_type", "bio"]
+        fields = ["first_name", "last_name", "email", "customer_type", "bio", "username"]
     
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
