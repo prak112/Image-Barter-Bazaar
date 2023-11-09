@@ -7,9 +7,9 @@ from django.urls import reverse
 
 # Create your views here.
 def index(request):
-    if request.user.is_authenticated:
-        fname = f"{request.user.first_name.capitalize()}".capitalize() 
-        lname = f"{request.user.last_name.capitalize()}".capitalize()
+    if request.user.is_authenticated:        
+        fname = f"{request.session.get('first_name')}".capitalize() 
+        lname = f"{request.session.get('last_name')}".capitalize()
         context = {
             "message" : f"{fname} {lname}! Welcome to PG's Picsies!"
         }
