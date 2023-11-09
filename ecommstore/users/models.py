@@ -15,8 +15,8 @@ class UserProfile(AbstractUser):
     bio = models.TextField('Bio', max_length=200, null=True, blank=True)
 
     def __str__(self):
-        fname = f"{self.user.first_name.capitalize()}".capitalize() 
-        lname = f"{self.user.last_name.capitalize()}".capitalize()
+        fname = f"{self.first_name}".capitalize() 
+        lname = f"{self.last_name}".capitalize()
         return f"{fname} {lname}"
 
 
