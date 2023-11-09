@@ -16,10 +16,12 @@
     color: lavenderblush;
 }
 .ellipse-button{
+    max-width: 100px;
     background-color: whitesmoke;
     border: none;
     border-radius: 15px;
     padding: 10px;
+    margin: 0 auto;
     cursor: pointer;
 }
 .ellipse-button a{
