@@ -12,13 +12,15 @@
     <form action="{% url 'users:login' %}" method="POST" class="form-group">
         {% csrf_token %}
         {{ form.as_p }}<br>
-        <input class="form-button login" type="submit" value="Login">
+        <div>
+            <input class="form-button login" type="submit" value="Login">
+        </div>
     </form>
 
     <p class="form-group"><b>Don't have an account ?</b></p>
-    <button type="redirect" class="form-button register">
+    <div class="form-button register">
         <a href="{% url 'users:signup' %}" rel="noopener" target="_blank">Create Account</a>
-    </button>
+    </div>
 </div>
 
 {% endblock %}

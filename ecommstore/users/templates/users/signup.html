@@ -12,12 +12,9 @@
 <div class="form-container">
     <form class="form-group" action="{% url 'users:signup' %}" method="POST">
         {% csrf_token %}
-        <!--hidden fields-->
         {% for hidden in form.hidden_fields %}
             {{ hidden }}
         {% endfor %}
-
-        <!--visible fields-->
         {% for field in form.visible_fields %}
             <div class="field-wrapper">
                 {{ field.errors }}
@@ -27,14 +24,15 @@
                 {% endif %}
             </div>
         {% endfor %}
-
-        <input class="form-button register" type="submit" value="Sign Up">
+        <div>
+            <input class="form-button register" type="submit" value="Sign Up">
+        </div>
     </form>
     
     <p class="form-group"><b>Already have an account ?</b></p>
-    <button type="redirect" class="form-button login">
+    <div class="form-button login">
         <a href="{% url 'users:login' %}" rel="noopener" target="_blank">Login</a>
-    </button>
+    </div>
 </div>
 
 {% endblock %}
