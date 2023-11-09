@@ -60,6 +60,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'users.context_processors.add_logout_status',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -125,7 +126,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# CUSTOM DEFINED SETTINGS
+
+
+# CUSTOM DEFINED SETTINGS / CUSTOM CONFIGURATIONS
+
 # CustomerProfile Model Auth
 AUTH_USER_MODEL = 'users.UserProfile'
 
