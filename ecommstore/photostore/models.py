@@ -25,19 +25,19 @@ class Product(models.Model):
     ]
 
     THEME_CHOICES = [
-        ('mountain', 'Mountain'),
-        ('lake', 'Lake'),
-        ('polar', 'Polar'),
-        ('forest', 'Forest'),
-        ('tree','Tree'),
-        ('flowers', 'Flowers'),
+        ('MT', 'Mountain'),
+        ('LK', 'Lake'),
+        ('PLR', 'Polar'),
+        ('FRST', 'Forest'),
+        ('TR','Tree'),
+        ('FLWR', 'Flowers'),
     ]
 
-    SIZE_CHOICES =[
-        ('L', 'Big'),
-        ('M', 'Medium'),
-        ('S', 'Small'),
-    ]
+    # SIZE_CHOICES =[
+    #     ('L', 'Big'),
+    #     ('M', 'Medium'),
+    #     ('S', 'Small'),
+    # ]
 
     STATUS_CHOICES = [
         ('AVL', 'Available'),
@@ -48,8 +48,9 @@ class Product(models.Model):
     description = models.TextField('Image Description', max_length=200, null=True, blank=True)
     type = models.CharField('Type', max_length=10, choices=TYPE_CHOICES)
     theme = models.CharField('Theme', max_length=20, choices=THEME_CHOICES)
-    size = models.CharField('Resolution', max_length=10, choices=SIZE_CHOICES)
-    item_url = models.URLField('URL', max_length=250, unique=True)
+    # size = models.CharField('Resolution', max_length=10, choices=SIZE_CHOICES)
+    # item_url = models.URLField('URL', max_length=250, unique=True)
+    image = models.ImageField('Image', upload_to='images', default='images/art-mountain.jfif')
     status = models.CharField('Status', max_length=30, choices=STATUS_CHOICES)
 
 
