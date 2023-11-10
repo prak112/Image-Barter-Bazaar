@@ -3,15 +3,14 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class UserProfile(AbstractUser):
-    USER_CHOICES = [
-        ('Artist', 'Art'),
-        ('Photographer', 'Photography'),
-        ('Enthusiast', 'Curiosity')
-    ]
+    class UserType(models.TextChoices):
+        ARTIST = 'Art', 'Artist'
+        PHOTOGRAPHER = 'Photography', 'Photographer'
+        ENTHUSIAST = 'Curiosity', 'Enthusiast'
 
-    # AbstractUser model fields - username, first_name, last_name, email, username, password, is_staff, is_active, date_joined
+    # AbstractUser model fields - first_name, last_name, email, username, password, is_staff, is_active, date_joined
     # define additional or custom fields
-    customer_type = models.CharField('Interested in ?', max_length=20, choices=USER_CHOICES)
+    customer_type = models.CharField('Profession/Hobby', max_length=20, choices=UserType.choices)
     bio = models.TextField('Bio', max_length=200, null=True, blank=True)
 
     def __str__(self):

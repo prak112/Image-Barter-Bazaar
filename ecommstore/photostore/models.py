@@ -6,21 +6,17 @@ from users.models import UserProfile
 
 class Customer(models.Model): 
     user_info = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="user_information")
-    fullname = models.CharField('Full Name', max_length=128, unique=True)
-    # name = models.OneToOneField(UserProfile, on_delete=models.CASCADE, to_field='fullname', related_name='customer_data', default='NewUpdate')
-    type = models.CharField('Customer Type', max_length=20)
+    full_name = models.CharField('Full Name', max_length=128, unique=True)
+    user_type = models.CharField('Customer Type', max_length=20)
 
     # build fullname in UserProfile/utils.py
-    def save_fullname(self, *args, **kwargs):
-        self.fullname = f"{self.user_info.first_name} {self.user_info.last_name}"
-        super().save_fullname(*args, **kwargs)
-
-    def save_customerType(self, *args, **kwargs):
-        self.type = self.user_info.customer_type
-        super().save_customerType(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        self.full_name = f"{self.user_info.first_name} {self.user_info.last_name}"
+        self.user_type = self.user_info.customer_type
+        super(Customer, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f"Customer-{self.fullname}\nCategory-{self.type}"
+        return f"Customer-{self.full_name}\nCategory-{self.user_type}"
 
 
 
@@ -44,7 +40,7 @@ class Product(models.Model):
         ('OOPS', 'Out of Stock')
     ]
     
-    author = models.OneToOneField(Customer, on_delete=models.CASCADE, to_field='fullname', related_name="author_fullname")  # related to UserProfile Model
+    author = models.OneToOneField(Customer, on_delete=models.CASCADE, to_field='full_name', related_name="author_fullname")  # related to UserProfile Model
     title = models.CharField('Title', max_length=100, null=True)
     description = models.TextField('Image Description', max_length=200, null=True, blank=True)
     category = models.CharField('Type', max_length=10, choices=CATEGORY_CHOICES)
