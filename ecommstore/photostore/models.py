@@ -1,14 +1,16 @@
 from django.db import models
-
 from users.models import UserProfile
+
 
 # Create your models here.
 
 class Customer(models.Model): 
     user_info = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="user_information")
     fullname = models.CharField('Full Name', max_length=128, unique=True)
+    # name = models.OneToOneField(UserProfile, on_delete=models.CASCADE, to_field='fullname', related_name='customer_data', default='NewUpdate')
     type = models.CharField('Customer Type', max_length=20)
 
+    # build fullname in UserProfile/utils.py
     def save_fullname(self, *args, **kwargs):
         self.fullname = f"{self.user_info.first_name} {self.user_info.last_name}"
         super().save_fullname(*args, **kwargs)
@@ -17,9 +19,13 @@ class Customer(models.Model):
         self.type = self.user_info.customer_type
         super().save_customerType(*args, **kwargs)
 
+    def __str__(self):
+        return f"Customer-{self.fullname}\nCategory-{self.type}"
 
-class Product(models.Model):
-    TYPE_CHOICES = [
+
+
+class Product(models.Model): 
+    CATEGORY_CHOICES = [
         ('PH', 'Photo'),
         ('ART', 'Art'),
     ]
@@ -33,25 +39,21 @@ class Product(models.Model):
         ('FLWR', 'Flowers'),
     ]
 
-    # SIZE_CHOICES =[
-    #     ('L', 'Big'),
-    #     ('M', 'Medium'),
-    #     ('S', 'Small'),
-    # ]
-
     STATUS_CHOICES = [
         ('AVL', 'Available'),
         ('OOPS', 'Out of Stock')
     ]
-    author = models.OneToOneField(Customer, on_delete=models.PROTECT, to_field='fullname', related_name="author_fullname")  # related to Customers Model
+    
+    author = models.OneToOneField(Customer, on_delete=models.CASCADE, to_field='fullname', related_name="author_fullname")  # related to UserProfile Model
     title = models.CharField('Title', max_length=100, null=True)
     description = models.TextField('Image Description', max_length=200, null=True, blank=True)
-    type = models.CharField('Type', max_length=10, choices=TYPE_CHOICES)
+    category = models.CharField('Type', max_length=10, choices=CATEGORY_CHOICES)
     theme = models.CharField('Theme', max_length=20, choices=THEME_CHOICES)
-    # size = models.CharField('Resolution', max_length=10, choices=SIZE_CHOICES)
-    # item_url = models.URLField('URL', max_length=250, unique=True)
     image = models.ImageField('Image', upload_to='images', default='images/art-mountain.jfif')
     status = models.CharField('Status', max_length=30, choices=STATUS_CHOICES)
+
+    def __str__(self):
+        return f"Image-{self.title}, authored by {self.author}\nTheme-{self.theme}\nAvailability-{self.status}"
 
 
 
@@ -80,3 +82,6 @@ class OrderDetail(models.Model):
     def save_quantity(self, *args, **kwargs):
         self.quantity = len(self.product.id)
         super().save_quantity(*args, **kwargs)
+    
+    def __str__(self):
+        return f"Order ID-{self.order.id}\nProduct-{self.product}\nQuantity-{self.quantity}"
