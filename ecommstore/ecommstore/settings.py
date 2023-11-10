@@ -135,3 +135,9 @@ AUTH_USER_MODEL = 'users.UserProfile'
 
 # Database-backed sessions
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+# Media storage and URL
+import os
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
