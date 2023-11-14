@@ -11,12 +11,14 @@ class Customer(models.Model):
 
     # build fullname in UserProfile/utils.py
     def save(self, *args, **kwargs):
-        self.full_name = f"{self.user_info.first_name} {self.user_info.last_name}".capitalize()
+        fname = f"{self.user_info.first_name}".capitalize() 
+        lname = f"{self.user_info.last_name}".capitalize()
+        self.full_name = f"{fname} {lname}"   
         self.customer_type = self.user_info.user_type
         super(Customer, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.full_name}-{self.customer_type}\n"
+        return f"\n{self.full_name}-{self.customer_type}\n"
 
 
 
@@ -49,7 +51,7 @@ class Product(models.Model):
     status = models.CharField('Status', max_length=30, choices=STATUS_CHOICES)
 
     def __str__(self):
-        return f"{self.title}, authored by {self.author}\tAvailability-{self.status}\n"
+        return f"\n{self.title}, authored by {self.author}\tAvailability-{self.status}\n"
 
 
 
@@ -66,7 +68,7 @@ class Order(models.Model):
     barter_exchange = models.BooleanField('Photo Exchanged ?', default=False, help_text="Clarifies if customer exchanged photos or not")
 
     def __str__(self):
-        return f"{self.customer.full_name}\tOrder Status-{self.order_status}\n"
+        return f"\n{self.customer.full_name}\tOrder Status-{self.order_status}\n"
     
 
 
@@ -80,4 +82,4 @@ class OrderDetail(models.Model):
         super().save_quantity(*args, **kwargs)
     
     def __str__(self):
-        return f"OrderID-{self.order.id}\n"
+        return f"\nOrderID-{self.order.id}\n"

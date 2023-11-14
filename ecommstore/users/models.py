@@ -16,5 +16,5 @@ class UserProfile(AbstractUser):
     def __str__(self):
         fname = f"{self.first_name}".capitalize() 
         lname = f"{self.last_name}".capitalize()
-        return f"{fname} {lname}"   
+        return f"\n{fname} {lname}\n"   
 
