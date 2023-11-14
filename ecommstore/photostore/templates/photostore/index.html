@@ -8,6 +8,8 @@
     {% else %}
         <h1 class="heading"> Welcome to PG's Picsies! </h1>
     {% endif %}
+    <!-- Welcome Intro - shape, text and button -->
+    {% if request.user.is_authenticated %}
     <div class="ellipse">
         <div class="ellipse-text">
             <p>
@@ -15,13 +17,24 @@
             <p> 
             The photos and art are for free, only if 🥁 
             you share the love ❤️ for Planet Earth 🌏</p>
-            <p>
-            Confused ? Sign up 🙃 to know more!</p>
-            <div class="ellipse-button">
-                <a href="{% url 'users:signup' %}">Sign Up!</a>
-            </div>
         </div>
     </div>
+    {% else %}
+        <div class="ellipse">
+            <div class="ellipse-text">
+                <p>
+                Welcome to the world of Photography and Art!</p>
+                <p> 
+                The photos and art are for free, only if 🥁 
+                you share the love ❤️ for Planet Earth 🌏</p>
+                <p>
+                Confused ? Sign up 🙃 to know more!</p>
+                <div class="ellipse-button">
+                    <a href="{% url 'users:signup' %}">Sign Up!</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
     <br>
 
     <!--- Photo and Art of the Day -->
