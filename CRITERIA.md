@@ -48,9 +48,9 @@ Footer
 
 Technical implementation requirements of the Web service (Ready around week 3) :
 
-1. [ ] Adding a customer registration page where the user can create an account on the site.
+1. [X] Adding a customer registration page where the user can create an account on the site.
 
-2. [ ] Logging in on the site is done in real and data secure manner.
+2. [X] Logging in on the site is done in real and data secure manner.
 
 3. [ ] Customer:
    - When the customer is logged in to the site, he has a page where he can edit his own information (link in the Header section.)

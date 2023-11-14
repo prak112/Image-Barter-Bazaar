@@ -137,12 +137,12 @@ J -->|Buyer filters by| E
 
 ## **Week 1: Project Setup and HTML/CSS**
 - [X] Project Setup: Create a Django project.
-- [ ] HTML/CSS: Review and strengthen HTML and CSS skills.
+- [X] HTML/CSS: Review and strengthen HTML and CSS skills.
 - Resources: Online HTML/CSS tutorials, Django documentation.
 
 ## **Week 2: Django Fundamentals**
 - [X] Django Basics: Learn about Django's project structure, settings, and apps.
-- [ ] Models: Create Django models for products and categories.
+- [X] Models: Create Django models for products and categories.
 - Resources: Official Django documentation, Django for Beginners book.
 
 ## **Week 3: Django Views and Templates**
@@ -151,47 +151,48 @@ J -->|Buyer filters by| E
 - Resources: Django documentation on views and templates.
 
 ## **Week 4: User Authentication**
-- [ ] User Authentication: Implement user registration and login functionality.
-- [ ] Custom User Model: Create a custom user model with additional fields.
+- [X] User Authentication: Implement user registration and login functionality.
+- [X] Custom User Model: Create a custom user model with additional fields.
 - Resources: Django authentication documentation, Django for Beginners book.
-
-## **Week 5: JavaScript Basics**
-- [ ] JavaScript Fundamentals: Start learning JavaScript from scratch (Vanilla JS).
-- [ ] Interactive Features: Enhance your product pages with basic interactivity.
-- Resources: MDN JavaScript guide, JavaScript.info, freeCodeCamp's JavaScript curriculum.
-
-## **Week 6: Frontend Interactivity with JavaScript**
-- [ ] Dynamic Content: Use JavaScript to load products dynamically.
-- [ ] Event Handling: Implement user interactions like adding products to the cart.
-- Resources: JavaScript tutorials, interactive coding platforms like CodePen.
-
-## **Week 7: Django REST Framework**
-- [ ] API Development: Learn to build RESTful APIs with Django REST Framework.
-- [ ] API Endpoints: Create API endpoints for product data.
-- Resources: Django REST Framework documentation, DRF tutorials.
 
 ## **Week 8: Real-time Updates (WebSockets)**
 - [ ] WebSocket Basics: Understand WebSocket communication.
 - [ ] Implement Real-Time: Add real-time features like instant cart updates.
 - Resources: WebSockets tutorials, Django Channels documentation.
 
-## **Week 9: User Authorization and Permissions**
+## OPTIONAL
+**Week 5: JavaScript Basics**
+- [ ] JavaScript Fundamentals: Start learning JavaScript from scratch (Vanilla JS).
+- [ ] Interactive Features: Enhance your product pages with basic interactivity.
+- Resources: MDN JavaScript guide, JavaScript.info, freeCodeCamp's JavaScript curriculum.
+
+**Week 6: Frontend Interactivity with JavaScript**
+- [ ] Dynamic Content: Use JavaScript to load products dynamically.
+- [ ] Event Handling: Implement user interactions like adding products to the cart.
+- Resources: JavaScript tutorials, interactive coding platforms like CodePen.
+
+**Week 7: Django REST Framework**
+- [ ] API Development: Learn to build RESTful APIs with Django REST Framework.
+- [ ] API Endpoints: Create API endpoints for product data.
+- Resources: Django REST Framework documentation, DRF tutorials.
+
+**Week 9: User Authorization and Permissions**
 - [ ] Authorization: Implement user roles (e.g., admin, customer).
 - [ ] Permission Control: Set up authorization for views and API endpoints.
 - Resources: Django authorization documentation.
 
-## **Week 10: Database Optimization and Transactions**
+**Week 10: Database Optimization and Transactions**
 - [ ] SQL Skills: Deepen your SQL knowledge for database queries.
 - [ ] Transactions: Learn about database transactions and ACID properties.
 - [ ] Database Optimization: Optimize database queries for performance.
 - Resources: SQL tutorials, SQL optimization guides.
 
-## **Week 11: Advanced JavaScript**
+**Week 11: Advanced JavaScript**
 - [ ] Advanced JavaScript Concepts: Dive deeper into JavaScript, including DOM manipulation.
 - [ ] Implement Complex Features: Enhance user experience with advanced JS features.
 - Resources: Advanced JavaScript courses, MDN web APIs.
 
-## **Week 12: Final Testing and Deployment**
+**Week 12: Final Testing and Deployment**
 - [ ] Testing: Write unit and integration tests for your application.
 - [ ] Deployment: Deploy your Django application to a hosting platform (e.g., Heroku).
 - Resources: Django testing documentation, deployment guides.
