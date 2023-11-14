@@ -58,7 +58,8 @@ def login_view(request):
 
 def user_profile(request):
     return render(request, 'users/user_profile.html')
-
+# def edit_profile(request):
+#     return render(request, 'users/edit_profile.html')
 
 
 # LOGOUT
