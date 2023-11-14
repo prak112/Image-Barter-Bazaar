@@ -4,9 +4,9 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 class UserProfile(AbstractUser):
     class UserType(models.TextChoices):
-        ARTIST = 'Art', 'Artist'
-        PHOTOGRAPHER = 'Photography', 'Photographer'
-        ENTHUSIAST = 'Curiosity', 'Enthusiast'
+        ART = 'Designer', 'Artist'
+        PHOTOGRAPHY = 'Shutterbug', 'Photographer'
+        CURIOSITY = 'Aficionado', 'Enthusiast'
 
     # AbstractUser model fields - first_name, last_name, email, username, password, is_staff, is_active, date_joined
     # define additional or custom fields
