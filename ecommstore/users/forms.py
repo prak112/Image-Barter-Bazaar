@@ -7,5 +7,5 @@ from users.models import UserProfile
 class RegForm(UserCreationForm):
     class Meta:
         model = UserProfile
-        fields = ["first_name", "last_name", "email", "customer_type", "bio", "username"]
+        fields = ["first_name", "last_name", "email", "user_type", "bio", "username"]
     

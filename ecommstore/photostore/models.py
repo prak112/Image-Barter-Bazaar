@@ -7,16 +7,16 @@ from users.models import UserProfile
 class Customer(models.Model): 
     user_info = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="user_information")
     full_name = models.CharField('Full Name', max_length=128, unique=True)
-    user_type = models.CharField('Customer Type', max_length=20)
+    customer_type = models.CharField('Customer Type', max_length=20)
 
     # build fullname in UserProfile/utils.py
     def save(self, *args, **kwargs):
-        self.full_name = f"{self.user_info.first_name} {self.user_info.last_name}"
-        self.user_type = self.user_info.customer_type
+        self.full_name = f"{self.user_info.first_name} {self.user_info.last_name}".capitalize()
+        self.customer_type = self.user_info.user_type
         super(Customer, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f"Customer-{self.full_name}\nCategory-{self.user_type}"
+        return f"{self.full_name}-{self.customer_type}"
 
 
 
@@ -40,7 +40,7 @@ class Product(models.Model):
         ('OOPS', 'Out of Stock')
     ]
     
-    author = models.OneToOneField(Customer, on_delete=models.CASCADE, to_field='full_name', related_name="author_fullname")  # related to UserProfile Model
+    author = models.OneToOneField(Customer, on_delete=models.CASCADE, to_field='full_name', related_name="author_fullname")  # related to Customer Model
     title = models.CharField('Title', max_length=100, null=True)
     description = models.TextField('Image Description', max_length=200, null=True, blank=True)
     category = models.CharField('Type', max_length=10, choices=CATEGORY_CHOICES)
@@ -49,7 +49,7 @@ class Product(models.Model):
     status = models.CharField('Status', max_length=30, choices=STATUS_CHOICES)
 
     def __str__(self):
-        return f"Image-{self.title}, authored by {self.author}\nTheme-{self.theme}\nAvailability-{self.status}"
+        return f"{self.title}, authored by {self.author}\nAvailability-{self.status}"
 
 
 
@@ -66,7 +66,7 @@ class Order(models.Model):
     barter_exchange = models.BooleanField('Photo Exchanged ?', default=False, help_text="Clarifies if customer exchanged photos or not")
 
     def __str__(self):
-        return f"Customer ID {self.customer_id}\nOrdered on {self.order_date}\nOrder Status : {self.order_status}"
+        return f"{self.customer.full_name}\nOrder Status-{self.order_status}"
     
 
 
@@ -80,4 +80,4 @@ class OrderDetail(models.Model):
         super().save_quantity(*args, **kwargs)
     
     def __str__(self):
-        return f"Order ID-{self.order.id}\nProduct-{self.product}\nQuantity-{self.quantity}"
+        return f"OrderID-{self.order.id}"
