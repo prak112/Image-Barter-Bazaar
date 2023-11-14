@@ -102,3 +102,25 @@ a{
     font-size: 16px;
     padding: 20px;
 }
+
+/* User Profile */
+.profile-container{
+    margin: 0 auto;
+}
+.profile-content {
+    list-style-type: circle;
+}
+.profile-container .profile-content li{
+    padding-bottom: 10px;
+}
+.profile-button{
+    max-width: 150px;
+    height: 40px;
+    border: none;
+    border-radius: 15px;
+    background-color: #0099FF;
+}
+.profile-button:hover{
+    background-color: #092fff;
+    cursor: pointer;
+}
