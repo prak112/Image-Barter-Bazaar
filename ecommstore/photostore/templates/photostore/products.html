@@ -46,8 +46,8 @@
             {% csrf_token %}
             <select name="type" class="dropdown-menu">
                 <option value="" disabled selected>All Types</option>
-                {% for type in types %}
-                    <option value="{{ type }}">{{ type }}</option>
+                {% for category in categories %}
+                    <option value="{{ category }}">{{ category }}</option>
                 {% endfor %}
             </select>
             <select name="theme" class="dropdown-menu">
@@ -56,160 +56,54 @@
                     <option value="{{ theme }}">{{ theme }}</option>
                 {% endfor %}
             </select>
-            <select name="size" class="dropdown-menu">
-                <option value="" disabled selected>All Sizes</option>
-                {% for size in sizes %}
-                    <option value="{{ size }}">{{ size }}</option>
+            <select name="author" class="dropdown-menu">
+                <option value="" disabled selected>All Authors</option>
+                {% for author in authors %}
+                    <option value="{{ author }}">{{ author }}</option>
                 {% endfor %}
             </select>
             <input type="submit" value="Apply Filters" class="dropdown-button">
         </form>
     </div>
 
+    <!---add all products in for loop here--->
     <div class="product-container">
-        <div class="product"> 
-            <div class="box-item">
-                <!--image source-->
-                <img src="{% static 'images/photo-mountain.jpg' %}" alt="pexels-photo-mountain">
-            </div>
-            <div class="box-item">
-                <!--image description-->
-                <p>
-                    <span class="box-item-title">Photo Sample 1</span><br>
-                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
-                    <cite>Photo by Daniel Handl from Pexels</cite> 
-                </p>
-            </div>
-            <button>
-                <!--add to cart-->
-                <a href="">Add To Cart</a>
-            </button>
-        </div> 
-        <div class="product">
-            <div class="box-item">
-                <img src="{% static 'images/photo-mountain.jpg' %}" alt="pexels-photo-mountain">
-            </div>            
-            <div class="box-item">
-                <p>
-                    <span class="box-item-title">Photo Sample 2</span><br>
-                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
-                    <cite>Photo by Daniel Handl from Pexels</cite> 
-                </p>
-            </div>
-            <button>
-                <a href="">Add To Cart</a>
-            </button>
-        </div>    
-        <div class="product">
-            <div class="box-item">
-                <img src="{% static 'images/photo-mountain.jpg' %}" alt="pexels-photo-mountain">
-            </div>
-            <div class="box-item">
-                <p>
-                    <span class="box-item-title">Photo Sample 3</span><br>
-                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
-                    <cite>Photo by Daniel Handl from Pexels</cite> 
-                </p>
-            </div>
-            <button>
-                <a href="">Add To Cart</a>
-            </button>
-        </div>
-    </div>
-    <div class="product-container">
-        <div class="product"> 
-            <div class="box-item">
-                <img src="{% static 'images/art-mountain.jfif' %}" alt="bing-art-mountain">
-            </div>
-            <div class="box-item">
-                <p>
-                    <span class="box-item-title">Photo Sample 1</span><br>
-                    A classic landscape art of mountains, lake and a forest.<br>
-                    <cite>Generated with Bing Image Creator, Generated with AI ∙ November 3, 2023 at 1:39 PM</cite>
-                </p>
-            </div>
-            <button>
-                <a href="">Add To Cart</a>
-            </button>
-        </div> 
-        <div class="product">
-            <div class="box-item">
-                <img src="{% static 'images/art-mountain.jfif' %}" alt="bing-art-mountain">
-            </div>
-            <div class="box-item">
-                <p>
-                    <span class="box-item-title">Photo Sample 1</span><br>
-                    A classic landscape art of mountains, lake and a forest.<br>
-                    <cite>Generated with Bing Image Creator, Generated with AI ∙ November 3, 2023 at 1:39 PM</cite>
-                </p>
-            </div>
-            <button>
-                <a href="">Add To Cart</a>
-            </button>
-        </div>    
-        <div class="product">
-            <div class="box-item">
-                <img src="{% static 'images/art-mountain.jfif' %}" alt="bing-art-mountain">
-            </div>
-            <div class="box-item">
-                <p>
-                    <span class="box-item-title">Photo Sample 1</span><br>
-                    A classic landscape art of mountains, lake and a forest.<br>
-                    <cite>Generated with Bing Image Creator, Generated with AI ∙ November 3, 2023 at 1:39 PM</cite>
-                </p>
-            </div>
-            <button>
-                <a href="">Add To Cart</a>
-            </button>
-        </div>
-    </div>
-    <div class="product-container">
-        <div class="product"> 
-            <div class="box-item">
-                <img src="{% static 'images/photo-mountain.jpg' %}" alt="pexels-photo-mountain">
-            </div>
-            <div class="box-item">
-                <p>
-                    <span class="box-item-title">Photo Sample 1</span><br>
-                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
-                    <cite>Photo by Daniel Handl from Pexels</cite> 
-                </p>
-            </div>
-            <button>
-                <a href="">Add To Cart</a>
-            </button>
-        </div> 
-        <div class="product">
-            <div class="box-item">
-                <img src="{% static 'images/photo-mountain.jpg' %}" alt="pexels-photo-mountain">
-            </div>            
-            <div class="box-item">
-                <p>
-                    <span class="box-item-title">Photo Sample 2</span><br>
-                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
-                    <cite>Photo by Daniel Handl from Pexels</cite> 
-                </p>
-            </div>
-            <button>
-                <a href="">Add To Cart</a>
-            </button>
-        </div>    
-        <div class="product">
-            <div class="box-item">
-                <img src="{% static 'images/photo-mountain.jpg' %}" alt="pexels-photo-mountain">
-            </div>
-            <div class="box-item">
-                <p>
-                    <span class="box-item-title">Photo Sample 3</span><br>
-                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
-                    <cite>Photo by Daniel Handl from Pexels</cite> 
-                </p>
-            </div>
-            <button>
-                <a href="">Add To Cart</a>
-            </button>
-        </div>
-    </div>
+        {% for product in all_products %}
+            <div class="product"> 
+                <div class="box-item">
+                    <!--image source-->
+                    <img src="{% static product.image %}" alt="{{ product.title }}">
+                </div>
+                <div class="box-item">
+                    <!--image description-->
+                    <p>
+                        <span class="box-item-title">{{ product.title }}</span>
+                        {{ product.description }}
+                        <br>
+                        {% if product.category == 'PH' %}
+                            <cite>Image Source : By {{ product.author }} from <a class="photo-source" href="{{ product.image_url }}">Pexels</a></cite>
+                        {% else %}
+                            <cite>Image Source : <a class="photo-source" href="{{ product.image_url }}" target="_blank" rel="noopener">Bing Image Creator</a></cite>
+                        {% endif %}
+                        Availablity: {{ product.status }}
+                    </p>
+                </div>
 
+                <!--add to cart-->
+                <button>
+                    <a href="">Add To Cart</a>
+                </button>
+            </div>
+        {% endfor %}
+        </div>
+<div class="pagination">
+    {% if content_page.has_previous %}
+        <a href="{% url 'photostore:products' %}?page={{ content_page.previous_page_number }}">Previous Page</a>
+    {% endif %}  
+        <p>{{ content_page.page_number }}</p>
+    {% if content_page.has_next %}
+        <a href="{% url 'photostore:products' %}?page={{ content_page.next_page_number }}">Next Page</a>
+    {% endif %}
+</div>
 </main>
 {% endblock %}

@@ -2,8 +2,10 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-
+# import models
+from photostore.models import Product
 
 # Create your views here.
 def index(request):
@@ -20,7 +22,28 @@ def index(request):
 
 
 def products(request):
-    return render(request, 'photostore/products.html')
+    all_products = Product.objects.all()
+    # context = {"all_products": all_products,} 
+    #               "categories": categories, "themes": themes, "authors": authors}
+
+    # define pagination terms
+    items_per_page = 12
+    paginator = Paginator(all_products, items_per_page)
+
+    # current page number
+    current_page = request.GET.get('page')
+
+    try:
+        # display page content
+        content_page = paginator.page(current_page)
+    except PageNotAnInteger:
+        content_page = paginator.page(1)
+    except EmptyPage:
+        # display last page, if out of range
+        content_page = paginator.page(paginator.num_pages)
+
+    context = {"all_products": content_page,}
+    return render(request, 'photostore/products.html', context)
 
 # def search(request, query):
 #     if request.method == "POST":
