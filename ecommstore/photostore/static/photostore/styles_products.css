@@ -16,8 +16,8 @@
 
     display: flex;
     flex-direction: column;
-    align-items: first baseline;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
 }
 
 .product .box-item
@@ -41,6 +41,9 @@
     flex-direction: column;
     font-size: small;
 }
+.product cite a{
+    color: goldenrod;
+}
 .product button a{
     font-size: small;
 }
@@ -54,15 +57,12 @@
     font-weight: 400;
 } 
 .product button a:hover{
-    font-size: medium;
     color: black;
 }
 .product button:hover{
     background-color: greenyellow;
     cursor: pointer;
     margin: 0 auto;
-    font-weight: 500;
-    transition-duration: 0.3s;
 }
 
 .dropdown-container {
@@ -98,3 +98,9 @@
     color: whitesmoke;
 }
 
+.pagination{
+    display: flex;
+    justify-content: center;
+    color:aliceblue;
+    padding: 10px;
+}
