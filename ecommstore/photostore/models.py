@@ -43,18 +43,17 @@ class Product(models.Model):
         ('OOPS', 'Out of Stock')
     ]
     
-    #author = models.OneToOneField(Customer, on_delete=models.CASCADE, to_field='full_name', related_name="author_fullname")  # related to Customer Model
     author = models.CharField('Author', max_length=100, null=True)
     title = models.CharField('Title', max_length=100, null=True)
     description = models.TextField('Image Description', max_length=200, null=True, blank=True)
     image_url = models.URLField('Source', default='https://www.pexels.com/')
     category = models.CharField('Type', max_length=10, choices=CATEGORY_CHOICES)
     theme = models.CharField('Theme', max_length=20, choices=THEME_CHOICES)
-    image = models.ImageField('Image', upload_to='images', default='images/art-mountain.jfif')
+    image = models.ImageField('Image', upload_to='images', default='images/flower-gold-mohar.jpg')
     status = models.CharField('Status', max_length=30, choices=STATUS_CHOICES)
 
     def __str__(self):
-        return f"\n{self.title}, authored by {self.author}\tAvailability-{self.status}\n"
+        return f"\n{self.title}, authored by {self.author}\tAvailability-{self.get_status_display()}\n"
 
 
 
