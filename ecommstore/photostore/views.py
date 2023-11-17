@@ -8,23 +8,70 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from photostore.models import Product
 
 # Create your views here.
+# HOME views
 def index(request):
+    import random
+
     if request.user.is_authenticated:        
         fname = f"{request.session.get('first_name')}".capitalize() 
         lname = f"{request.session.get('last_name')}".capitalize()
-        context = {
-            "message" : f"{fname} {lname}! Welcome to PG's Picsies!"
-        }
-        return render(request, 'photostore/index.html', context=context)
+        
+        # collect themes
+        theme_choices = Product.THEME_CHOICES
+        theme_codes = [theme[0] for theme in theme_choices]
+        theme_names = [theme[1] for theme in theme_choices]
 
+        # 'Theme of the Day' section
+        # Random Theme label
+        theme_index = random.choice(range(len(theme_choices)))
+        theme_label = theme_names[theme_index]
+
+        # Randomized Theme pictures
+        theme_count = 9    # homepage display
+        # filter based on chosen theme_label
+        theme_set = Product.objects.filter(theme=theme_codes[theme_index])   
+        rand_theme_inds = random.choices(range(theme_set.count()), k=theme_count)
+        # collect random theme images using randomized indices
+        rand_theme_pics = [theme_set[ind] for ind in rand_theme_inds]    
+
+
+        # randomize themes for 'Photo' and 'Art' of the day pictures
+        # filter by categoy
+        photos = Product.objects.filter(category='PH')
+        art = Product.objects.filter(category='ART')
+
+        # randomize and pick theme
+        rand_theme = random.choice(theme_codes)
+
+        # randomize and pick image
+        rand_photo_ind = random.choice(range(photos.count()))
+        rand_photo = photos[rand_photo_ind]
+
+        rand_art_ind = random.choice(range(art.count()))
+        rand_art = art[rand_art_ind]
+
+        context = {
+            "message" : f"{fname} {lname}! Welcome to PG's Picsies!",
+            "random_photo" : rand_photo,
+            "random_art" : rand_art,
+            "theme_label" : theme_label,
+            "theme_pictures" : rand_theme_pics,
+        }       
+        return render(request, 'photostore/index.html', context=context)
+    
     else:
         return render(request, 'photostore/index.html')
 
+# def search(request, query):
+#     if request.method == "POST":
+#         return render(request, 'search.html')
+#     else:
+#         return HttpResponseRedirect(reverse('index'))
 
+
+# PRODUCTS views
 def products(request):
     all_products = Product.objects.all()
-    # context = {"all_products": all_products,} 
-    #               "categories": categories, "themes": themes, "authors": authors}
 
     # define pagination terms
     items_per_page = 12
@@ -42,16 +89,15 @@ def products(request):
         # display last page, if out of range
         content_page = paginator.page(paginator.num_pages)
 
-    context = {"all_products": content_page,}
+    context = {"all_products": content_page,
+               "random_photo" : index.random_photo,
+               "random_art" : index.random_art,
+             }
     return render(request, 'photostore/products.html', context)
 
-# def search(request, query):
-#     if request.method == "POST":
-#         return render(request, 'search.html')
-#     else:
-#         return HttpResponseRedirect(reverse('index'))
 
 
+# CHECKOUT views
 def checkout(request):
     return render(request, 'photostore/checkout.html')
 def payment(request, choice):
