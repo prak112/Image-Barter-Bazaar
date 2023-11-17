@@ -95,15 +95,21 @@
                 </button>
             </div>
         {% endfor %}
+    </div>
+    <div class="pagination-container">
+        <div class="pagination-display">
+            {% if all_products.has_previous %}
+                <p class="pagination-display-button"><a href="{% url 'photostore:products' %}?page={{ all_products.previous_page_number }}">Previous Page</a></p>
+            {% else %}
+                <p class="pagination-home"><a href="{% url 'photostore:index' %}">Back to Home</a></p>
+            {% endif %}
+            <p class="pagination-display">Page {{ all_products.number }} of {{ all_products.paginator.num_pages }}</p>
+            {% if all_products.has_next %}
+                <p class="pagination-display-button"><a href="{% url 'photostore:products' %}?page={{ all_products.next_page_number }}">Next Page</a></p>
+            {% else %}
+                <p class="pagination-home"><a href="{% url 'photostore:index' %}">Back to Home</a></p>
+            {% endif %}
         </div>
-<div class="pagination">
-    {% if content_page.has_previous %}
-        <a href="{% url 'photostore:products' %}?page={{ content_page.previous_page_number }}">Previous Page</a>
-    {% endif %}  
-        <p>{{ content_page.page_number }}</p>
-    {% if content_page.has_next %}
-        <a href="{% url 'photostore:products' %}?page={{ content_page.next_page_number }}">Next Page</a>
-    {% endif %}
-</div>
+    </div>
 </main>
 {% endblock %}

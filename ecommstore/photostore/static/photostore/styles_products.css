@@ -65,6 +65,7 @@
     margin: 0 auto;
 }
 
+/* DROPDOWN FILTER */
 .dropdown-container {
     display: flex;
     margin: auto;
@@ -98,9 +99,26 @@
     color: whitesmoke;
 }
 
-.pagination{
-    display: flex;
-    justify-content: center;
+/* PAGINATION */
+.pagination-container{
     color:aliceblue;
     padding: 10px;
+}
+.pagination-display{
+    display: flex;
+    max-width: 25%;   /*width, height of the box -- essential to contain items in the center*/
+    max-height: 100%;
+    margin: 0 auto;
+
+    color: lightcoral;
+    padding: 10px;
+}
+.pagination-display .pagination-home a{
+    color: greenyellow;
+    font-weight: 600 ;
+}
+.pagination-display .pagination-display-button a{
+    color: goldenrod;
+    font-weight: 600 ;
+    padding: 5px;
 }
