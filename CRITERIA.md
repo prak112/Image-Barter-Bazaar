@@ -25,9 +25,9 @@ Footer
    - [X] Generate footer content
 
 2. [X] Front page
-   - [ ]Show page 5 random product
+   - [X]Show 5 pages random product
 
-3. [X] Search page
+3. [ ] Search page
    - [ ] List the products based on the user's search
 
 4. [ ] Product page (the page can be accessed either through the product on the front page or the product on the search page)
