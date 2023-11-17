@@ -6,8 +6,16 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # import models
 from photostore.models import Product
+from forms import SearchForm
 
-# Create your views here.
+# Global variables
+# collect all themes
+theme_choices = Product.THEME_CHOICES
+theme_codes = [theme[0] for theme in theme_choices]
+theme_names = [theme[1] for theme in theme_choices]
+
+
+
 # HOME views
 def index(request):
     import random
@@ -17,9 +25,9 @@ def index(request):
         lname = f"{request.session.get('last_name')}".capitalize()
         
         # collect themes
-        theme_choices = Product.THEME_CHOICES
-        theme_codes = [theme[0] for theme in theme_choices]
-        theme_names = [theme[1] for theme in theme_choices]
+        # theme_choices = Product.THEME_CHOICES
+        # theme_codes = [theme[0] for theme in theme_choices]
+        # theme_names = [theme[1] for theme in theme_choices]
 
         # 'Theme of the Day' section
         # Random Theme label
@@ -62,11 +70,30 @@ def index(request):
     else:
         return render(request, 'photostore/index.html')
 
-# def search(request, query):
-#     if request.method == "POST":
-#         return render(request, 'search.html')
-#     else:
-#         return HttpResponseRedirect(reverse('index'))
+
+def search(request):
+    
+
+    if request.method == "POST":
+        themes = theme_names
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            query = form.cleaned_data["query"]
+            query_terms = query.split(' ')
+            for theme in themes:
+                for term in query_terms:
+                    if term.lower() == theme.lower(): 
+                        search_results = Product.objects.filter(theme=theme)                
+                        context = {
+                            "query" : query,
+                            "search_results" : search_results,
+                            }
+                        return render(request, 'photostore/search.html', context)
+    else:
+        form = SearchForm()
+        return render(request, 'photostore/search.html', context={"form": form,})
+
+
 
 
 # PRODUCTS views
@@ -90,10 +117,9 @@ def products(request):
         content_page = paginator.page(paginator.num_pages)
 
     context = {"all_products": content_page,
-               "random_photo" : index.random_photo,
-               "random_art" : index.random_art,
              }
     return render(request, 'photostore/products.html', context)
+
 
 
 

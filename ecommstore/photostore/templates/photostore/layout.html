@@ -21,11 +21,15 @@
                 </a>
                 </div>
             <div class="search-area">
-                <form action="" method="POST">
+                <form action="{% url 'photostore:search' %}" method="POST">
                     {% csrf_token %}
-                    <input class="search-bar" type="text" placeholder="Search here...">
-                    <button class="search-button" type="submit">
-                        <img class="search-icon" src="{% static 'photostore/search-icon.jfif' %}" alt="search-icon">
+                 <!--   <input class="search-bar" type="text" placeholder="Enter search query like 'Mountains'">
+                     {{ form }}
+                 -->
+                        <button class="search-button" type="submit">
+                        <a href="{% url 'photostore:search' %}">
+                            <img class="search-icon" src="{% static 'photostore/search-icon.jfif' %}" alt="search-icon">
+                        </a>
                     </button>
                 </form>
             </div>
