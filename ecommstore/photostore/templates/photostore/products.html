@@ -78,14 +78,15 @@
                     <!--image description-->
                     <p>
                         <span class="box-item-title">{{ product.title }}</span>
-                        {{ product.description }}
-                        <br>
+                        <span>{{ product.description }}</span>
+                        <span>Theme : {{ product.get_theme_display }}</span>
+                        
                         {% if product.category == 'PH' %}
                             <cite>Image Source : By {{ product.author }} from <a class="photo-source" href="{{ product.image_url }}">Pexels</a></cite>
                         {% else %}
                             <cite>Image Source : <a class="photo-source" href="{{ product.image_url }}" target="_blank" rel="noopener">Bing Image Creator</a></cite>
                         {% endif %}
-                        Availablity: {{ product.status }}
+                        <b>{{ product.get_status_display }}</b>
                     </p>
                 </div>
 
