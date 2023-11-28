@@ -7,13 +7,17 @@
     <!--- Photo and Art of the Day -->
     <div class="box">
         <div class="box-item">
-            <img src="{% static 'images/photo-mountain.jpg' %}" alt="pexels-photo-mountain">
+            <img src="{% static random_photo.image %}" alt="{{ random_photo.title }}">
         </div>
         <div class="box-item">
             <p>       
                 <span class="box-item-title">Photo of the Day</span><br>
-                A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
-                <cite>Photo by Daniel Handl from Pexels</cite>
+                <b>Theme</b> : {{ random_photo.get_theme_display }}<br>
+                {{ random_photo.title }}<br>
+                {{ random_photo.description }}<br>
+                <cite>Image Source : By {{ random_photo.author }} from <a class="photo-source" href="{{ random_photo.image_url }}"  target="_blank" rel="noopener">Pexels</a></cite>
+                <br>
+                <b>{{ random_photo.get_status_display }}</b>            
             </p>
         </div>
     </div>
@@ -22,14 +26,16 @@
         <div class="box-item">
             <p>
                 <span class="box-item-title">Art of the Day</span><br>
-                A classic landscape art of mountains, lake and a forest.<br>
-                <cite>Generated with Bing Image Creator, Generated with AI ∙ November 3, 2023 at 1:39 PM</cite>
+                <b>Theme</b> : {{ random_art.get_theme_display }}<br>
+                {{ random_art.title }}<br>
+                {{ random_art.description }}<br>
+                <cite>Image Source : <a href="{{ random_art.image_url }}"  target="_blank" rel="noopener">Bing Image Creator</a></cite>
+                <br>
+                <b>{{ random_photo.get_status_display }}</b>            
             </p>
         </div>
         <div class="box-item">
-            <img src="{% static 'images/art-mountain.jfif' %}" alt="bing-art-mountain">
-            <!---"https://edusakky-my.sharepoint.com/:i:/g/personal/prakirth_govardhanam_edu_sakky_fi/Ee-ARzV7eW1Os0w_9qmP_GgBLA4gIwcJpY_HGrpWcP-khA?e=NUI4VS
-                -->
+            <img src="{% static random_art.image %}" alt="{{ random_art.title }}">
         </div>
     </div>
 
@@ -42,30 +48,65 @@
             3- all dropdowns can be inside one form! - chosen
     -->
     <div class="dropdown-container">
-        <form action="" method="POST">
-            {% csrf_token %}
-            <select name="type" class="dropdown-menu">
+        <form action="{% url 'photostore:filter_products' %}" method="GET">
+            <select name="category" class="dropdown-menu" required>
                 <option value="" disabled selected>All Types</option>
                 {% for category in categories %}
-                    <option value="{{ category }}">{{ category }}</option>
+                    <option value="{{ category }}" aria-required="true">{{ category }}</option>
                 {% endfor %}
             </select>
-            <select name="theme" class="dropdown-menu">
+            <select name="theme" class="dropdown-menu" required>
                 <option value="" disabled selected>All Themes</option>
                 {% for theme in themes %}
-                    <option value="{{ theme }}">{{ theme }}</option>
+                    <option value="{{ theme }}" aria-required="true">{{ theme }}</option>
                 {% endfor %}
             </select>
-            <select name="author" class="dropdown-menu">
+            <select name="author" class="dropdown-menu" required>
                 <option value="" disabled selected>All Authors</option>
                 {% for author in authors %}
-                    <option value="{{ author }}">{{ author }}</option>
+                    <option value="{{ author }}" aria-required="true">{{ author }}</option>
                 {% endfor %}
             </select>
             <input type="submit" value="Apply Filters" class="dropdown-button">
         </form>
     </div>
 
+    {% if filtered_products %}
+        <h1 class="heading">Images related to "{{ category_selected }}", "{{ theme_selected }}" & "{{ author_selected }}"</h1>
+        <div class="product-container">
+            {% for product in filtered_products %}
+                <div class="product"> 
+                    <div class="box-item">
+                        <!--image source-->
+                        <img src="{% static product.image %}" alt="{{ product.title }}">
+                    </div>
+                    <div class="box-item">
+                        <!--image description-->
+                        <p>
+                            <span class="box-item-title">{{ product.title }}</span>
+                            <span>{{ product.description }}</span>
+                            <span>Theme : {{ product.get_theme_display }}</span>
+                            
+                            {% if product.category == 'PH' %}
+                                <cite>Image Source : By {{ product.author }} from <a class="photo-source" href="{{ product.image_url }}">Pexels</a></cite>
+                            {% else %}
+                                <cite>Image Source : <a class="photo-source" href="{{ product.image_url }}" target="_blank" rel="noopener">Bing Image Creator</a></cite>
+                            {% endif %}
+                            <b>{{ product.get_status_display }}</b>
+                        </p>
+                    </div>
+                    <!--add to cart-->
+                    <button>
+                        {% if request.user.is_authenticated %}
+                            <a href="">Add To Cart</a>
+                        {% else %}
+                            <a href="{% url 'users:login' %}">Add To Cart</a>
+                        {% endif %}
+                    </button>
+                </div>
+            {% endfor %}
+    {% else %}
+    <h1 class="heading">No images for selected filters.</h1>
     <!---add all products in for loop here--->
     <div class="product-container">
         {% for product in all_products %}
@@ -89,10 +130,13 @@
                         <b>{{ product.get_status_display }}</b>
                     </p>
                 </div>
-
                 <!--add to cart-->
                 <button>
-                    <a href="">Add To Cart</a>
+                    {% if request.user.is_authenticated %}
+                        <a href="">Add To Cart</a>
+                    {% else %}
+                        <a href="{% url 'users:login' %}">Add To Cart</a>
+                    {% endif %}
                 </button>
             </div>
         {% endfor %}
@@ -112,5 +156,7 @@
             {% endif %}
         </div>
     </div>
+    {% endif %}
+
 </main>
 {% endblock %}
