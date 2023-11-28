@@ -27,11 +27,11 @@ Footer
 2. [X] Front page
    - [X]Show 5 pages random product
 
-3. [ ] Search page
+3. [X] Search page
    - [ ] List the products based on the user's search
 
-4. [ ] Product page (the page can be accessed either through the product on the front page or the product on the search page)
-   - [ ] Details of a certain product
+4. [X] Product page (the page can be accessed either through the product on the front page or the product on the search page)
+   - [X] Details of a certain product
    - [ ] Can add the product to the shopping cart
 
 5. [ ] Shopping cart
@@ -53,13 +53,13 @@ Technical implementation requirements of the Web service (Ready around week 3) :
 2. [X] Logging in on the site is done in real and data secure manner.
 
 3. [ ] Customer:
-   - When the customer is logged in to the site, he has a page where he can edit his own information (link in the Header section.)
-   - If the user is logged in, his information is filled in directly in the shopping cart.
+   - [ ] When the customer is logged in to the site, he has a page where he can edit his own information (link in the Header section.)
+   - [ ] If the user is logged in, his information is filled in directly in the shopping cart.
 
 4. [ ] Admin pages: (the styling of the pages can be simpler, but still practical)
-   - Only admin users can access the pages
-   - Admin front page with links to listings of products, users and orders
-   - Added CRUD operations (Create, Read, Update and Delete) for products, for users and orders.
+   - [ ] Only admin users can access the pages
+   - [ ] Admin front page with links to listings of products, users and orders
+   - [ ] Added CRUD operations (Create, Read, Update and Delete) for products, for users and orders.
 
 
 
