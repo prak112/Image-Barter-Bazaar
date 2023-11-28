@@ -3,52 +3,48 @@
 
 
 {% block content %}
+<!--
+    <h1 class="heading">Search for...</h1>
+    <form action = "{% url 'photostore:search' %}" method="GET">
+        {{ form.query }}
+        {{ form.submit }}
+    </form>
+-->
+    {% if search_results %}
+        <h2 class="heading">Search Results for "{{ query }}"</h2>
+        <div class="product-container">
+            {% for product in search_results %}
+                <div class="product"> 
+                    <div class="box-item">
+                        <!--image source-->
+                        <img src="{% static product.image %}" alt="{{ product.title }}">
+                    </div>
+                    <div class="box-item">
+                        <!--image description-->
+                        <p>
+                            <span class="box-item-title">{{ product.title }}</span>
+                            <span>{{ product.description }}</span>
+                            <span>Theme : {{ product.get_theme_display }}</span>
+                            
+                            {% if product.category == 'PH' %}
+                                <cite>Image Source : By {{ product.author }} from <a class="photo-source" href="{{ product.image_url }}">Pexels</a></cite>
+                            {% else %}
+                                <cite>Image Source : <a class="photo-source" href="{{ product.image_url }}" target="_blank" rel="noopener">Bing Image Creator</a></cite>
+                            {% endif %}
+                            <b>{{ product.get_status_display }}</b>
+                        </p>
+                    </div>
 
-{{ form }}
-
-{% if search_results %}
-<h2 class="heading">Search Results for {{ query }}</h2>
-<div class="product-container">
-    {% for product in search_results %}
-        <div class="product"> 
-            <div class="box-item">
-                <!--image source-->
-                <img src="{% static product.image %}" alt="{{ product.title }}">
-            </div>
-            <div class="box-item">
-                <!--image description-->
-                <p>
-                    <span class="box-item-title">{{ product.title }}</span>
-                    <span>{{ product.description }}</span>
-                    <span>Theme : {{ product.get_theme_display }}</span>
-                    
-                    {% if product.category == 'PH' %}
-                        <cite>Image Source : By {{ product.author }} from <a class="photo-source" href="{{ product.image_url }}">Pexels</a></cite>
-                    {% else %}
-                        <cite>Image Source : <a class="photo-source" href="{{ product.image_url }}" target="_blank" rel="noopener">Bing Image Creator</a></cite>
-                    {% endif %}
-                    <b>{{ product.get_status_display }}</b>
-                </p>
-            </div>
-
-            <!--add to cart-->
-            <button>
-                <a href="">Add To Cart</a>
-            </button>
+                    <!--add to cart-->
+                    <button>
+                        {% if request.user.is_authenticated %}
+                            <a href="">Add To Cart</a>
+                        {% else %}
+                            <a href="{% url 'users:login' %}">Add To Cart</a>
+                        {% endif %}
+                    </button>
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
-</div>
-
-{% else %}
-    <h2 class="heading">Oops! No images in this theme yet.</h2>
-    <div>
-        <p>
-            <span class="box-item-title">Contribute if you can</span>
-            <p>Add images to this theme :</p>
-            <button>
-                <a href="">Upload Here</a>
-            </button>
-        </p>
-    </div>
-{% endif %}
+    {% endif %}
 {% endblock %}

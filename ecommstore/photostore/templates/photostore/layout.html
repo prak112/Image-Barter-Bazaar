@@ -19,16 +19,13 @@
                 <a href="{% url 'photostore:index' %}">
                     <img class="logo" src="{% static 'photostore/logo.jpg' %}" alt="logo">
                 </a>
-                </div>
+            </div>
             <div class="search-area">
-                <form action="{% url 'photostore:search' %}" method="POST">
-                    {% csrf_token %}
-                 <!--   <input class="search-bar" type="text" placeholder="Enter search query like 'Mountains'">
-                     {{ form }}
-                 -->
-                        <button class="search-button" type="submit">
+                <form action="{% url 'photostore:search' %}" method="GET">
+                    <input class="search-bar" type="text" name="query" placeholder="Search like 'Mountains', 'Trees'..."/>
+                    <button class="search-button" type="submit">
                         <a href="{% url 'photostore:search' %}">
-                            <img class="search-icon" src="{% static 'photostore/search-icon.jfif' %}" alt="search-icon">
+                            <img class="search-icon" src="{% static 'photostore/search-icon.jfif' %}" alt="search-icon"/>
                         </a>
                     </button>
                 </form>
