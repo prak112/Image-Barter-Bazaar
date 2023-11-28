@@ -1,0 +1,16 @@
+{% extends "photostore/layout.html" %}
+{% load static %}
+
+
+{% block content %}
+    <h2 class="heading">Oops! No images for "{{ query }}" yet.</h2>
+    <div>
+        <p>
+            <span class="box-item-title">Contribute if you can</span>
+            <p>Add images to this theme :</p>
+            <button>
+                <a href="">Upload Here</a>
+            </button>
+        </p>
+    </div>
+{% endblock %}
