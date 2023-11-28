@@ -50,9 +50,9 @@ header .logo{
 }
 
 header .search-area{
-    padding-left: 40px;
-    margin: 0 auto;
-    max-width: 600px;
+    padding-left: 20px;
+    margin: 10px auto;
+    width: 600px;
 }   
 header .search-bar{
     background-color: rgba(75, 8, 82, 0.926);
@@ -60,14 +60,13 @@ header .search-bar{
     width: 100%;
     border: none;
     padding: 10px;
-    margin-right: 10px;
 }
 header .search-button{
     background-color: rgba(75, 8, 82, 0.926);
     border: none;
-    border-radius: 50%;
+    border-radius: 10%;
     padding: 10px;
-    margin-right: 10px;
+    margin: 0 auto;
 }
 header .search-icon{
     width: 15px;
