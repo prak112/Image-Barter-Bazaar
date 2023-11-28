@@ -3,13 +3,27 @@
 
 {% block content %}
 <main>
-    {% if request.user.is_authenticated %}
-        <h1 class="heading"> {{ message }} </h1>
-    {% else %}
-        <h1 class="heading"> Welcome to PG's Picsies! </h1>
-    {% endif %}
-    <!-- Welcome Intro - shape, text and button -->
-    {% if request.user.is_authenticated %}
+{% if request.user.is_authenticated %}
+    <h1 class="heading"> {{ message }} </h1>
+{% else %}
+    <h1 class="heading"> Welcome to PG's Picsies! </h1>
+{% endif %}
+<!-- Welcome Intro - shape, text and button -->
+{% if request.user.is_authenticated %}
+<div class="ellipse">
+    <div class="ellipse-text">
+        <p>
+        Welcome to the world of Photography and Art!</p>
+        <p> 
+        The photos and art are for free, only if 🥁 
+        you share the love ❤️ for Planet Earth 🌏</p>
+        <p>
+        This platform is based on barter-exchange system, 
+        a photo for a photo, if you wish to contribute 🫶🏻
+        </p>
+    </div>
+</div>
+{% else %}
     <div class="ellipse">
         <div class="ellipse-text">
             <p>
@@ -18,34 +32,20 @@
             The photos and art are for free, only if 🥁 
             you share the love ❤️ for Planet Earth 🌏</p>
             <p>
-            This platform is based on barter-exchange system, 
-            a photo for a photo, if you wish to contribute 🫶🏻
-            </p>
-        </div>
-    </div>
-    {% else %}
-        <div class="ellipse">
-            <div class="ellipse-text">
-                <p>
-                Welcome to the world of Photography and Art!</p>
-                <p> 
-                The photos and art are for free, only if 🥁 
-                you share the love ❤️ for Planet Earth 🌏</p>
-                <p>
-                Confused ? Sign up 🙃 to know more!</p>
-                <div class="ellipse-button">
-                    <a href="{% url 'users:signup' %}">Sign Up!</a>
-                </div>
+            Confused ? Sign up 🙃 to know more!</p>
+            <div class="ellipse-button">
+                <a href="{% url 'users:signup' %}">Sign Up!</a>
             </div>
         </div>
-    {% endif %}
+    </div>
+{% endif %}
     <br>
 
     <!--- Photo and Art of the Day -->
     <div class="box">
         <!--- add random PHOTO here--->
         <div class="box-item">
-            <img src="{% static random_photo.image %}" alt="random_photo.title">
+            <img src="{% static random_photo.image %}" alt="{{ random_photo.title }}">
         </div>
         <div class="box-item">
             <p>       
@@ -76,15 +76,12 @@
         <div class="box-item">
             <img src="{% static random_art.image %}" alt="{{ random_art.title }}">
         </div>
+        <!-- 'add to cart' / 'check it out' button-->
     </div>
 
 
     <!--- Products content based on Theme of the Day -->
-    {% if not request.user.is_authenticated %}
-        <h2 class="heading">Login to See Theme of the Day!</h2>
-    {% else %}
-        <h2 class="heading">Theme of the Day - {{ theme_label }}</h2>
-    {% endif %}
+    <h2 class="heading">Theme of the Day - {{ theme_label }}</h2>
 
     <div class="product-container">
         {% for product in theme_pictures %}
@@ -96,8 +93,7 @@
                 <p>
                     <span class="box-item-title">{{ product.title }}</span>
                     <span>{{ product.description }}</span>
-                    <span>Theme : {{ product.get_theme_display }}</span>
-                    
+                    <span>Theme : {{ product.get_theme_display }}</span>    
                     {% if product.category == 'PH' %}
                         <cite>Image Source : By {{ product.author }} from <a class="photo-source" href="{{ product.image_url }}">Pexels</a></cite>
                     {% else %}
@@ -107,111 +103,17 @@
                 </p>
             </div>
             <button>
-                <a href="">Add To Cart</a>
+                {% if request.user.is_authenticated %}
+                    <a href="">Add To Cart</a>
+                {% else %}
+                    <a href="{% url 'users:login' %}">Add To Cart</a>
+                {% endif %}
             </button>
         </div>
         {% endfor %}
     </div>
 </main>
 {% endblock %}
-
-<!---
-    <div class="product-container">
-        <div class="product"> 
-            <div class="box-item">
-                <img src="{% static 'images/photo-mountain.jpg' %}" alt="pexels-photo-mountain">
-            </div>
-            <div class="box-item">
-                <p>
-                    <span class="box-item-title">Photo Sample 1</span><br>
-                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
-                    <cite>Photo by Daniel Handl from Pexels</cite> 
-                </p>
-            </div>
-            <button>
-                <a href="">Add To Cart</a>
-            </button>
-        </div> 
-        <div class="product">
-            <div class="box-item">
-                <img src="{% static 'images/photo-mountain.jpg' %}" alt="pexels-photo-mountain">
-            </div>            
-            <div class="box-item">
-                <p>
-                    <span class="box-item-title">Photo Sample 2</span><br>
-                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
-                    <cite>Photo by Daniel Handl from Pexels</cite> 
-                </p>
-            </div>
-            <button>
-                <a href="">Add To Cart</a>
-            </button>
-        </div>    
-        <div class="product">
-            <div class="box-item">
-                <img src="{% static 'images/photo-mountain.jpg' %}" alt="pexels-photo-mountain">
-            </div>
-            <div class="box-item">
-                <p>
-                    <span class="box-item-title">Photo Sample 3</span><br>
-                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
-                    <cite>Photo by Daniel Handl from Pexels</cite> 
-                </p>
-            </div>
-            <button>
-                <a href="">Add To Cart</a>
-            </button>
-        </div>
-    </div>
-    <div class="product-container">
-        <div class="product"> 
-            <div class="box-item">
-                <img src="{% static 'images/photo-mountain.jpg' %}" alt="pexels-photo-mountain">
-            </div>
-            <div class="box-item">
-                <p>
-                    <span class="box-item-title">Photo Sample 1</span><br>
-                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
-                    <cite>Photo by Daniel Handl from Pexels</cite> 
-                </p>
-            </div>
-            <button>
-                <a href="">Add To Cart</a>
-            </button>
-        </div> 
-        <div class="product">
-            <div class="box-item">
-                <img src="{% static 'images/photo-mountain.jpg' %}" alt="pexels-photo-mountain">
-            </div>            
-            <div class="box-item">
-                <p>
-                    <span class="box-item-title">Photo Sample 2</span><br>
-                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
-                    <cite>Photo by Daniel Handl from Pexels</cite> 
-                </p>
-            </div>
-            <button>
-                <a href="">Add To Cart</a>
-            </button>
-        </div>    
-        <div class="product">
-            <div class="box-item">
-                <img src="{% static 'images/photo-mountain.jpg' %}" alt="pexels-photo-mountain">
-            </div>
-            <div class="box-item">
-                <p>
-                    <span class="box-item-title">Photo Sample 3</span><br>
-                    A breathtaking view of majestic mountains with a half moon glimmering in the sky.<br>
-                    <cite>Photo by Daniel Handl from Pexels</cite> 
-                </p>
-            </div>
-            <button>
-                <a href="">Add To Cart</a>
-            </button>
-        </div>
-    </div>
-    <br>
--->
 
 
 
