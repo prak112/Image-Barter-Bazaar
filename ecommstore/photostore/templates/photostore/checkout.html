@@ -7,18 +7,27 @@
         <p>
             My Cart
             <img class="checkout-cart-icon" src="{% static 'photostore/checkout-cart-icon.png' %}" alt="checkout-cart-icon"/>
-            <span class="checkout-items">(3)</span>
+            <span class="checkout-items">( {{ cart|length }} )</span>
         </p>
     </div>
     <div class="checkout-container">
+        {% for product in cart %}
         <div class="product-container">
             <div class="product">
-                <img src="{% static 'images/art-mountain.jfif' %}" alt="bing-art-mountain"/>
+                <img src="{% static product.image %}" alt="{{ product.title }}"/>
+                <!--image description-->
                 <p>
-                    <span class="product-title">Mountain Art by Bing Image Creator</span><br>
-                    A classic landscape art of mountains, lake and a forest.<br>
-                    <cite>Generated with Bing Image Creator</cite>
-                </p>            
+                    <span class="box-item-title">{{ product.title }}</span><br>
+                    <span>{{ product.description }}</span><br>
+                    <span>Theme : {{ product.get_theme_display }}</span><br>
+                    
+                    {% if product.category == 'PH' %}
+                        <cite>Image Source : By {{ product.author }} from <a class="photo-source" href="{{ product.image_url }}">Pexels</a></cite>
+                    {% else %}
+                        <cite>Image Source : <a class="photo-source" href="{{ product.image_url }}" target="_blank" rel="noopener">Bing Image Creator</a></cite>
+                    {% endif %}
+                    <b>{{ product.get_status_display }}</b>
+                </p>           
                 <div class="options">
                     <button class="change-button">
                         <a href="">Change</a>
@@ -29,8 +38,10 @@
                 </div>
             </div>
         </div>
-
-        <div class="product-container">
+        {% endfor %}
+    </div>
+<!--    
+    <div class="product-container">
             <div class="product">
                 <img src="{% static 'images/photo-mountain.jpg' %}" alt="pexels-photo-mountain"/>
                 <p>       
@@ -68,14 +79,14 @@
             </div>
         </div>
     </div>
-
+-->
     <div class="spacer"></div>
 
     <div class="payment-title">
         <p>
             Payment
             <img class="checkout-cart-icon" src="{% static 'photostore/checkout-cart-icon.png' %}" alt="checkout-cart-icon"/>
-            <span class="payment-items">(3)</span>
+            <span class="payment-items">( {{ cart|length }} )</span>
         </p>
     </div>
     <div class="payment-container">
