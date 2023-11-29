@@ -60,6 +60,8 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'photostore.context_processors.global_context.global_context',
+                'photostore.context_processors.products_context.products_context',
                 'users.context_processors.add_logout_status',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
