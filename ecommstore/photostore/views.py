@@ -83,6 +83,15 @@ def filter_products(request):
 
 
 # CHECKOUT views
+def add_to_cart(request, id):
+    cart = []
+    cart_item = Product.objects.get(id=id)
+    cart.append(cart_item)
+    context = {
+        "cart": cart,
+    }
+    return render(request, 'photostore/checkout.html', context)
+
 def checkout(request):
     return render(request, 'photostore/checkout.html')
 
