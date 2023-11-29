@@ -105,8 +105,9 @@
                     </button>
                 </div>
             {% endfor %}
+        </div>
     {% else %}
-    <h1 class="heading">No images for selected filters.</h1>
+    <h1 class="heading">No filters selected.</h1>
     <!---add all products in for loop here--->
     <div class="product-container">
         {% for product in all_products %}
@@ -141,22 +142,34 @@
             </div>
         {% endfor %}
     </div>
+    {% endif %}
+
     <div class="pagination-container">
         <div class="pagination-display">
-            {% if all_products.has_previous %}
+            <!-- previous page button -->
+            {% if all_products and all_products.has_previous %}
                 <p class="pagination-display-button"><a href="{% url 'photostore:products' %}?page={{ all_products.previous_page_number }}">Previous Page</a></p>
+            {% elif filtered_products and filtered_products.has_previous %}
+                <p class="pagination-display-button"><a href="{% url 'photostore:filter_products' %}?page={{ filtered_products.previous_page_number }}">Previous Page</a></p>
             {% else %}
                 <p class="pagination-home"><a href="{% url 'photostore:index' %}">Back to Home</a></p>
             {% endif %}
-            <p class="pagination-display">Page {{ all_products.number }} of {{ all_products.paginator.num_pages }}</p>
-            {% if all_products.has_next %}
+            <!-- page number -->
+            {% if all_products %}
+                <p class="pagination-display">Page {{ all_products.number }} of {{ all_products.paginator.num_pages }}</p>
+            {% else %}
+                <p class="pagination-display">Page {{ filtered_products.number }} of {{ filtered_products.paginator.num_pages }}</p>
+            {% endif %}
+            <!-- next page button -->
+            {% if all_products and all_products.has_next %}
                 <p class="pagination-display-button"><a href="{% url 'photostore:products' %}?page={{ all_products.next_page_number }}">Next Page</a></p>
+            {% elif filtered_products and filtered_products.has_next %}
+                <p class="pagination-display-button"><a href="{% url 'photostore:filter_products' %}?page={{ filtered_products.next_page_number }}">Next Page</a></p>
             {% else %}
                 <p class="pagination-home"><a href="{% url 'photostore:index' %}">Back to Home</a></p>
             {% endif %}
         </div>
     </div>
-    {% endif %}
 
 </main>
 {% endblock %}
