@@ -23,9 +23,7 @@ def index(request):
     # if user not authenticated
     else:
         return render(request, 'photostore/index.html') 
-
-    
-
+ 
 
 def search(request):
     # django SearchForm removed, to reduce complexity
@@ -65,19 +63,20 @@ def products(request):
 
 def filter_products(request):
     category_selected = request.GET.get('category')
-    theme_selected = get_theme_code(request.GET.get('theme'))
+    theme_selected = request.GET.get('theme')
     author_selected = request.GET.get('author')
 
-    filtered_products = Product.objects.filter(category__icontains=category_selected) | Product.objects.filter(theme=theme_selected) | Product.objects.filter(author=author_selected)
+    selected_theme_code = get_theme_code(theme_selected)
+    filtered_products = Product.objects.filter(category__icontains=category_selected) | Product.objects.filter(theme=selected_theme_code) | Product.objects.filter(author=author_selected)
 
-    items_per_page = 6
-    page_content = paginate(request, products_list=filtered_products, items_per_page=items_per_page)
+    # items_per_page = 6
+    # page_content = paginate(request, products_list=filtered_products, items_per_page=items_per_page)
 
     context = {
         "category_selected": category_selected,
         "theme_selected": theme_selected,
         "author_selected": author_selected,
-        "filtered_products": page_content,        
+        "filtered_products": filtered_products,        
     }
     return render(request, 'photostore/products.html', context)
 
