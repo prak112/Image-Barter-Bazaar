@@ -98,7 +98,7 @@
                     <!--add to cart-->
                     <button>
                         {% if request.user.is_authenticated %}
-                            <a href="">Add To Cart</a>
+                            <a href="{% url 'photostore:add-to-cart' id=product.id %}">Add To Cart</a>
                         {% else %}
                             <a href="{% url 'users:login' %}">Add To Cart</a>
                         {% endif %}
@@ -134,7 +134,7 @@
                 <!--add to cart-->
                 <button>
                     {% if request.user.is_authenticated %}
-                        <a href="">Add To Cart</a>
+                        <a href="{% url 'photostore:checkout' {{ product.id }} %}">Add To Cart</a>
                     {% else %}
                         <a href="{% url 'users:login' %}">Add To Cart</a>
                     {% endif %}
