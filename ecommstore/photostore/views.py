@@ -1,11 +1,11 @@
 # import libraries
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, InvalidPage
 
 # app-related imports
-from photostore.models import Product
+from photostore.models import Product, Cart
 from photostore.forms import SearchForm
 from .util import paginate, get_theme_code
 
@@ -83,22 +83,33 @@ def filter_products(request):
 
 
 # CHECKOUT views
-def add_to_cart(request, id):
-    cart = []
-    cart_item = Product.objects.get(id=id)
-    cart.append(cart_item)
+from django.http import JsonResponse
+
+def add_to_cart(request, product_id):
+    request.session['product_added'] = True
+    item_to_add = Product.objects.get(id=product_id)
+    
+    # insert data to Cart model
+    cart_item = Cart()
+    cart_item.item = item_to_add
+    cart_item.quantity = 2 # hard-coded for functionality test
+    cart_item.save()
+     
     context = {
-        "cart": cart,
-    }
-    return render(request, 'photostore/checkout.html', context)
+        'cart' : Cart.objects.all(),
+        }
+    return render(request, 'photostore/cart.html', context)
+
 
 def checkout(request):
     return render(request, 'photostore/checkout.html')
 
+
 def payment(request, choice):
-    return render(request, 'photostore/payment.html', context={
-        "choice": choice,
-    })
+    context = {
+        'choice' : choice,
+    }
+    return render(request, 'photostore/payment.html', context)
 
 
 
