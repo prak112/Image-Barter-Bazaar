@@ -11,6 +11,7 @@
         </p>
     </div>
     <div class="checkout-container">
+    {% if cart %}
         {% for product in cart %}
         <div class="product-container">
             <div class="product">
@@ -39,6 +40,9 @@
             </div>
         </div>
         {% endfor %}
+    {% else %}
+        <p class="empty-cart">Your cart is empty. <a href="{% url 'photostore:products' %}">Go Add some!</a></p>
+    {% endif %}
     </div>
 <!--    
     <div class="product-container">

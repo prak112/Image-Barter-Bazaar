@@ -73,6 +73,17 @@
 {
     font-size: small;
 }
+.checkout-container .empty-cart{
+    text-align: center;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: large;
+    font-style: italic;
+    font-weight: 500;
+}
+.empty-cart a{
+    color: purple;
+}
 
 
 /*buttons*/
