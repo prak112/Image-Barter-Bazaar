@@ -130,13 +130,21 @@ header .checkout-cart-icon:hover{
 
 
 /*FOOTER*/
+@media (max-width:600px){
+    footer{
+        position: relative;
+    }
+}
+
 footer{
     position: relative;
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
     background-color: rgba(0, 0, 255, 0.416);
-    padding: 10px;
+    padding: 0px;
     font-size: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
 footer .logo{
     width: 50px;
