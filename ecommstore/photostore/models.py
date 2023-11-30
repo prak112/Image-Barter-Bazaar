@@ -59,7 +59,7 @@ class Product(models.Model):
 
 # staging items for purchase
 class Cart(models.Model):
-    item = models.ManyToManyField(Product, blank=True, related_name="shipped_products")
+    item = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, related_name="shipped_products")
     quantity = models.IntegerField()
 
     def save_quantity(self, *args, **kwargs):
