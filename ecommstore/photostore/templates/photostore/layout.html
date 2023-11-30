@@ -51,8 +51,8 @@
                 <a href="{% url 'photostore:about_us' %}" target="_blank" rel="noopener">About Us</a>
             </div>
             <div class="nav-menu item">
-                <a href="{% url 'photostore:checkout' %}" target="_blank" rel="noopener">
-                    <img class="cart-icon" src="{% static 'photostore/cart-icon.jpg' %}" alt="cart-icon">
+                <a class="checkout-cart-icon" href="{% url 'photostore:checkout' %}" target="_blank" rel="noopener">
+                    <img class="checkout-cart-icon" src="{% static 'photostore/checkout-cart-icon.png' %}" alt="checkout-cart-icon">
                 </a>
             </div>
         </nav>
@@ -82,8 +82,9 @@
                 </li>
                 <li>
                     <a href="{% url 'photostore:products' %}" target="_blank" rel="noopener">Products</a>
-                    <p>Photo Credits : Pexels</p>
-                    <p>Art Credits : Pexels & Bing Copilot</p>
+                    <p>Photo Credits : <cite>Pexels</cite></p>
+                    <p>Art Credits : <cite>Bing Image Creator</cite> & <cite>Pexels</cite></p>
+                    <p>Cart Icons Credits :  <cite><a href="https://www.pikpng.com/search.html?k=cart+icon">Pikpng</a></cite></p>
                 </li>
                 <li>
                     <a href="{% url 'photostore:license' %}" target="_blank" rel="noopener">Copyrights</a>

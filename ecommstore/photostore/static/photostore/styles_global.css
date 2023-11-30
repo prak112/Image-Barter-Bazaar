@@ -69,6 +69,7 @@ header .search-button{
     padding: 10px;
     margin: 0 auto;
 }
+/*
 header .search-icon{
     width: 15px;
     height: 15px;
@@ -78,6 +79,7 @@ header .search-icon{
 header .search-icon:hover{
     cursor: pointer;
 }
+*/
 
 header nav{
     display: flex;
@@ -90,7 +92,7 @@ header nav{
 header .nav-menu{
     margin: 10px auto;
 }
-header .nav-menu :hover{
+header .nav-menu :hover:not(.checkout-cart-icon:hover){
     cursor: pointer;
     background-color: rgba(75, 233, 122, 0.771);
     
@@ -107,19 +109,23 @@ a{
     text-decoration: none;
     color: whitesmoke;
 }
-/*
-header a:hover{
-    color: burlywood;
-    cursor: pointer;
-}*/
 header .login:hover{
-    color: #f2f;
+    color: purple;
 }
 
-header .cart-icon{
-    width: 25px;
-    height: 20px;
-    object-fit: contain;
+header .checkout-cart-icon{
+    width: 50px;
+    height: 30px;
+    object-fit: fill;
+    background-color: grey;
+    border: 2px solid rgb(223, 238, 18);
+    border-radius: 25%;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+header .checkout-cart-icon:hover{
+    cursor: pointer;
+    background-color: rgba(75, 233, 122, 0.771);
 }
 
 

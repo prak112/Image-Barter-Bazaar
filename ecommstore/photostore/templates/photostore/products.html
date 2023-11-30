@@ -9,6 +9,18 @@
         <div class="box-item">
             <img src="{% static random_photo.image %}" alt="{{ random_photo.title }}">
         </div>
+        <!--add to cart-->
+        <button>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'photostore:add-to-cart' id=product.id %}">
+                    <img class="cart-icon" src="{% static 'photostore/add-to-cart.png' %}" alt="add-to-cart-icon"/>
+                </a>
+            {% else %}
+                <a href="{% url 'users:login' %}">
+                    <img class="cart-icon" src="{% static 'photostore/add-to-cart.png' %}" alt="add-to-cart-icon"/>
+                </a>
+            {% endif %}
+        </button>
         <div class="box-item">
             <p>       
                 <span class="box-item-title">Photo of the Day</span><br>
@@ -34,6 +46,18 @@
                 <b>{{ random_photo.get_status_display }}</b>            
             </p>
         </div>
+        <!--add to cart-->
+        <button>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'photostore:add-to-cart' id=product.id %}">
+                    <img class="cart-icon" src="{% static 'photostore/add-to-cart.png' %}" alt="add-to-cart-icon"/>
+                </a>
+            {% else %}
+                <a href="{% url 'users:login' %}">
+                    <img class="cart-icon" src="{% static 'photostore/add-to-cart.png' %}" alt="add-to-cart-icon"/>
+                </a>
+            {% endif %}
+        </button>        
         <div class="box-item">
             <img src="{% static random_art.image %}" alt="{{ random_art.title }}">
         </div>
@@ -98,9 +122,13 @@
                     <!--add to cart-->
                     <button>
                         {% if request.user.is_authenticated %}
-                            <a href="{% url 'photostore:add-to-cart' id=product.id %}">Add To Cart</a>
+                            <a href="{% url 'photostore:add-to-cart' id=product.id %}">
+                                <img class="cart-icon" src="{% static 'photostore/add-to-cart.png' %}" alt="add-to-cart-icon"/>
+                            </a>
                         {% else %}
-                            <a href="{% url 'users:login' %}">Add To Cart</a>
+                            <a href="{% url 'users:login' %}">
+                                <img class="cart-icon" src="{% static 'photostore/add-to-cart.png' %}" alt="add-to-cart-icon"/>
+                            </a>
                         {% endif %}
                     </button>
                 </div>
@@ -134,9 +162,13 @@
                 <!--add to cart-->
                 <button>
                     {% if request.user.is_authenticated %}
-                        <a href="{% url 'photostore:checkout' {{ product.id }} %}">Add To Cart</a>
+                        <a href="{% url 'photostore:add-to-cart' id=product.id %}">
+                            <img class="cart-icon" src="{% static 'photostore/add-to-cart.png' %}" alt="add-to-cart-icon"/>
+                        </a>
                     {% else %}
-                        <a href="{% url 'users:login' %}">Add To Cart</a>
+                        <a href="{% url 'users:login' %}">
+                            <img class="cart-icon" src="{% static 'photostore/add-to-cart.png' %}" alt="add-to-cart-icon"/>
+                        </a>
                     {% endif %}
                 </button>
             </div>

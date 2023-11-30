@@ -44,11 +44,14 @@
 .product cite a{
     color: goldenrod;
 }
-.product button a{
-    font-size: small;
+
+.cart-icon{
+    width: 30px;
+    height: 20px;
+    object-fit: contain;
 }
-.product button{
-    background-color: black;
+button{
+    background-color: grey;
     cursor: pointer;
     padding: 6px;
     border-radius: 10px;
@@ -56,14 +59,16 @@
     margin: 0 auto;
     font-weight: 400;
 } 
-.product button a:hover{
+button a:hover{
     color: black;
 }
-.product button:hover{
+button:hover{
     background-color: greenyellow;
     cursor: pointer;
     margin: 0 auto;
 }
+ 
+
 
 /* DROPDOWN FILTER */
 .dropdown-container {
