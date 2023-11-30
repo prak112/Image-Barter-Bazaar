@@ -2,6 +2,19 @@
 {% load static %}
 
 {% block content %}
+<!-- user info, products info -->
+    <h1 class="heading">User Information</h1>
+    <div class="user-info">
+        <p>
+            <span class="box-item-title">Name</span><br>
+            <span>{{ request.user.first_name }} {{ request.user.last_name }}</span>
+        </p>
+        <p>
+            <span class="box-item-title">Email</span><br>
+            <span>{{ request.user.email }}</span>
+        </p>
+    </div>
+
     <h1 class="heading">Checkout</h1>
     <div class="checkout-title">
         <p>
@@ -40,50 +53,17 @@
             </div>
         </div>
         {% endfor %}
+        <div class="payment-button">
+            <a href="{% url 'photostore:payment' %}">Go To Payment</a>
+        </div>
     {% else %}
         <p class="empty-cart">Your cart is empty. <a href="{% url 'photostore:products' %}">Go Add some!</a></p>
     {% endif %}
     </div>
-<!--    
-    <div class="product-container">
-            <div class="product">
-                <img src="{% static 'images/photo-mountain.jpg' %}" alt="pexels-photo-mountain"/>
-                <p>       
-                    <span class="product-title">Mountain Photo by Daniel Handl</span><br>
-                    A breathtaking view of mountains with a half moon in the sky.<br>
-                    <cite>Photo by Daniel Handl from Pexels</cite>
-                </p>
-                <div class="options">
-                    <button class="change-button">
-                        <a href="">Change</a>
-                    </button>
-                    <button class="remove-button">
-                        <a href="">Remove</a>
-                    </button>
-                </div>
-            </div>
-        </div>
 
-        <div class="product-container">
-            <div class="product">
-                <img src="{% static 'images/art-mountain.jfif' %}" alt="bing-art-mountain"/>
-                <p>
-                    <span class="product-title">Mountain Art by Bing Image Creator</span><br>
-                    A classic landscape art of mountains, lake and a forest.<br>
-                    <cite>Generated with Bing Image Creator</cite>
-                </p>            
-                <div class="options">
-                    <button class="change-button">
-                        <a href="">Change</a>
-                    </button>
-                    <button class="remove-button">
-                        <a href="">Remove</a>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
--->
+
+    <!-- payment info -->
+<!---
     <div class="spacer"></div>
 
     <div class="payment-title">
@@ -114,4 +94,5 @@
             <br>
         </div>
     </div>
+-->
 {% endblock %}

@@ -10,9 +10,9 @@
             <img src="{% static random_photo.image %}" alt="{{ random_photo.title }}">
         </div>
         <!--add to cart-->
-        <button>
+        <button id="add-to-cart">
             {% if request.user.is_authenticated %}
-                <a href="{% url 'photostore:add-to-cart' id=product.id %}">
+                <a href="{% url 'photostore:add-to-cart'  product_id=random_photo.id %}">
                     <img class="cart-icon" src="{% static 'photostore/add-to-cart.png' %}" alt="add-to-cart-icon"/>
                 </a>
             {% else %}
@@ -47,9 +47,9 @@
             </p>
         </div>
         <!--add to cart-->
-        <button>
+        <button id="add-to-cart">
             {% if request.user.is_authenticated %}
-                <a href="{% url 'photostore:add-to-cart' id=product.id %}">
+                <a href="{% url 'photostore:add-to-cart' product_id=random_art.id %}">
                     <img class="cart-icon" src="{% static 'photostore/add-to-cart.png' %}" alt="add-to-cart-icon"/>
                 </a>
             {% else %}
@@ -120,9 +120,9 @@
                         </p>
                     </div>
                     <!--add to cart-->
-                    <button>
+                    <button id="add-to-cart">
                         {% if request.user.is_authenticated %}
-                            <a href="{% url 'photostore:add-to-cart' id=product.id %}">
+                            <a href="{% url 'photostore:add-to-cart' product_id=product.id %}">
                                 <img class="cart-icon" src="{% static 'photostore/add-to-cart.png' %}" alt="add-to-cart-icon"/>
                             </a>
                         {% else %}
@@ -160,9 +160,9 @@
                     </p>
                 </div>
                 <!--add to cart-->
-                <button>
+                <button id="add-to-cart">
                     {% if request.user.is_authenticated %}
-                        <a href="{% url 'photostore:add-to-cart' id=product.id %}">
+                        <a href="{% url 'photostore:add-to-cart' product_id=product.id %}">
                             <img class="cart-icon" src="{% static 'photostore/add-to-cart.png' %}" alt="add-to-cart-icon"/>
                         </a>
                     {% else %}

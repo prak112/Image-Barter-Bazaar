@@ -1,0 +1,54 @@
+{% extends "photostore/layout.html" %}
+{% load static %}
+
+{% block content %}
+<!-- products info -->
+<h1 class="heading">Checkout</h1>
+    <div class="checkout-title">
+        <p>
+            My Cart
+            <img class="checkout-cart-icon" src="{% static 'photostore/checkout-cart-icon.png' %}" alt="checkout-cart-icon"/>
+            <span class="checkout-items">( {{ cart|length }} )</span>
+        </p>
+    </div>
+    <div class="checkout-container">
+    {% if cart %}
+        {% for product in cart %}
+        <div class="product-container">
+            <div class="product">
+                <img src="{% static product.item.image %}" alt="{{ product.item.title }}"/>
+                <!--image description-->
+                <p>
+                    <span class="box-item-title">{{ product.item.title }}</span><br>
+                    <span>{{ product.item.description }}</span><br>
+                    <span>Theme : {{ product.item.get_theme_display }}</span><br>
+                    
+                    {% if product.category == 'PH' %}
+                        <cite>Image Source : By {{ product.item.author }} from <a class="photo-source" href="{{ product.item.image_url }}">Pexels</a></cite>
+                    {% else %}
+                        <cite>Image Source : <a class="photo-source" href="{{ product.item.image_url }}" target="_blank" rel="noopener">Bing Image Creator</a></cite>
+                    {% endif %}
+                    <b>{{ product.get_status_display }}</b>
+                </p>           
+                <div class="options">
+                    <button class="change-button">
+                        <a href="">Change</a>
+                    </button>
+                    <button class="remove-button">
+                        <a href="">Remove</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="goto-button">
+            <a href="{% url 'photostore:checkout' %}">Go To Checkout</a>
+        </div>
+        <div class="goto-button">
+            <a href="{% url 'photostore:products' %}">Continue Shopping</a>
+        </div>
+    {% else %}
+        <p class="empty-cart">Your cart is empty. <a href="{% url 'photostore:products' %}">Go Add some!</a></p>
+    {% endif %}
+    </div>
+{% endblock %}

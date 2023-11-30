@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static 'photostore/styles_products.css' %}">
     <link rel="stylesheet" href="{% static 'photostore/styles_checkout.css' %}">
     <link rel="stylesheet" href="{% static 'photostore/styles_about.css' %}">
+    <script src="{% static 'photostore/scripts_checkout.js' %}" defer></script>
 </head>
 <body>
     <header>
@@ -23,13 +24,13 @@
             <div class="search-area">
                 <form action="{% url 'photostore:search' %}" method="GET">
                     <input class="search-bar" type="text" name="query" placeholder="Search like 'Mountains', 'Trees'..."/>
-                    <!--
-                        <button class="search-button" type="submit">
-                        <a href="{% url 'photostore:search' %}">
-                            <img class="search-icon" src="{% static 'photostore/search-icon.jfif' %}" alt="search-icon"/>
-                        </a>
+                <!--
+                    <button class="search-button" type="submit">
+                    <a href="{% url 'photostore:search' %}">
+                        <img class="search-icon" src="{% static 'photostore/search-icon.jfif' %}" alt="search-icon"/>
+                    </a>
                     </button>
-    -->
+                -->
                 </form>
             </div>
             {% if request.user.is_authenticated %}
@@ -60,6 +61,9 @@
 
 
     {% block content %}
+        {% if request.session.product_added %}
+            {% include 'photostore/notifications.html' %}
+        {% endif %}
     {% endblock %}
 
 

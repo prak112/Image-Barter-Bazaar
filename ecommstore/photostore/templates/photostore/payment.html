@@ -3,18 +3,49 @@
 
 
 {% block content %}
+<!-- user info, products info, payment info -->
 
-        {% if choice == 'Yes' %}
-
-        <h1 class="heading">Your Order</h1>
-        <div class="checkout-title">
+    <div class="payment-title">
+        <p>
+            Payment
+            <img class="checkout-cart-icon" src="{% static 'photostore/checkout-cart-icon.png' %}" alt="checkout-cart-icon"/>
+            <span class="payment-items">( {{ cart|length }} )</span>
+        </p>
+    </div>
+    <div class="payment-container">
+        <div class="payment-procedure">
             <p>
-                My Cart
-                <img class="checkout-cart-icon" src="{% static 'photostore/checkout-cart-icon.png' %}" alt="checkout-cart-icon"/>
-                <span class="checkout-items">(3)</span>
+                The procedure is simple.<br><br>Upload an image (photo or art)&nbsp;&nbsp;relevant to Nature either
+                digital or manual. However, you should be the only one holding the copyrights, i.e., image should be your
+                own creation.<br><br>If you feel generous, feel free to upload more 🫶🏻        
             </p>
         </div>
-        <div class="checkout-container">
+        <div class="payment-button">
+            <fieldset class="options">
+                <legend>Do you want to "Pay With Image" ?</legend>
+                <button>                    
+                    <a href="{%url 'photostore:payment' choice='Yes' %}">Yes</a>
+                </button>
+                <button>
+                    <a href="{% url 'photostore:payment' choice='No' %}">No</a>
+                </button>
+            </fieldset>
+            <br>
+        </div>
+    </div>
+
+    {% if choice == 'Yes' %}
+    <h1 class="heading">Your Order</h1>
+    <div class="checkout-title">
+        <p>
+            My Cart
+            <img class="checkout-cart-icon" src="{% static 'photostore/checkout-cart-icon.png' %}" alt="checkout-cart-icon"/>
+            <span class="checkout-items">(3)</span>
+        </p>
+    </div>
+   
+    <!--     
+    <div class="checkout-container">
             <div class="product-container">
                 <div class="product">
                     <img src="{% static 'images/bing-art-mountain.jfif' %}" alt="bing-art-mountain"/>
@@ -72,7 +103,7 @@
                 </div>
             </div>
         </div>
-
+    -->
 
 
         <div class="payment-button">

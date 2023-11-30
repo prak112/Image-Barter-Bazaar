@@ -50,7 +50,7 @@
         <!--add to cart-->
         <button>
             {% if request.user.is_authenticated %}
-                <a href="{% url 'photostore:add-to-cart' id=product.id %}">
+                <a href="{% url 'photostore:add-to-cart' product_id=random_photo.id %}">
                     <img class="cart-icon" src="{% static 'photostore/add-to-cart.png' %}" alt="add-to-cart-icon"/>
                 </a>
             {% else %}
@@ -88,7 +88,7 @@
         <!--add to cart-->
         <button>
             {% if request.user.is_authenticated %}
-                <a href="{% url 'photostore:add-to-cart' id=product.id %}">
+                <a href="{% url 'photostore:add-to-cart' product_id=random_art.id %}">
                     <img class="cart-icon" src="{% static 'photostore/add-to-cart.png' %}" alt="add-to-cart-icon"/>
                 </a>
             {% else %}
@@ -129,7 +129,7 @@
             <!--add to cart-->
             <button>
                 {% if request.user.is_authenticated %}
-                    <a href="{% url 'photostore:add-to-cart' id=product.id %}">
+                    <a href="{% url 'photostore:add-to-cart' product_id=product.id %}">
                         <img class="cart-icon" src="{% static 'photostore/add-to-cart.png' %}" alt="add-to-cart-icon"/>
                     </a>
                 {% else %}
