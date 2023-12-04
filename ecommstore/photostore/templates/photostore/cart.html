@@ -28,11 +28,18 @@
                     {% else %}
                         <cite>Image Source : <a class="photo-source" href="{{ product.item.image_url }}" target="_blank" rel="noopener">Bing Image Creator</a></cite>
                     {% endif %}
-                    <b>{{ product.get_status_display }}</b>
                 </p>           
                 <div class="options">
                     <button class="change-button">
-                        <a href="">Change</a>
+                        <form action="{% url 'photostore:add-to-cart' product_id=product.item.id %}" method="POST">
+                            {% csrf_token %}
+                            {% if product.quantity > 1 %}
+                                <input class="quantity-input" type="number" name="quantity" id="quantity" value="{{ product.quantity }}">
+                            {% else %}
+                                <input class="quantity-input" type="number" name="quantity" id="quantity" value="1" min="1">
+                            {% endif %}
+                            <input type="submit" value="Change">   
+                        </form>
                     </button>
                     <button class="remove-button">
                         <a href="">Remove</a>
@@ -41,14 +48,18 @@
             </div>
         </div>
         {% endfor %}
-        <div class="goto-button">
-            <a href="{% url 'photostore:checkout' %}">Go To Checkout</a>
-        </div>
+    </div>
+
+    <!-- checkout buttons -->
+    <div class="goto-button-container">
         <div class="goto-button">
             <a href="{% url 'photostore:products' %}">Continue Shopping</a>
         </div>
+        <div class="goto-button">
+            <a href="{% url 'photostore:checkout' %}">Go To Checkout</a>
+        </div>
+    </div>
     {% else %}
         <p class="empty-cart">Your cart is empty. <a href="{% url 'photostore:products' %}">Go Add some!</a></p>
     {% endif %}
-    </div>
 {% endblock %}

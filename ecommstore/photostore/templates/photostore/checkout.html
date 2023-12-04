@@ -6,11 +6,11 @@
     <h1 class="heading">User Information</h1>
     <div class="user-info">
         <p>
-            <span class="box-item-title">Name</span><br>
+            <span class="box-item-title">Name :</span>
             <span>{{ request.user.first_name }} {{ request.user.last_name }}</span>
         </p>
         <p>
-            <span class="box-item-title">Email</span><br>
+            <span class="box-item-title">Email :</span>
             <span>{{ request.user.email }}</span>
         </p>
     </div>
@@ -28,23 +28,31 @@
         {% for product in cart %}
         <div class="product-container">
             <div class="product">
-                <img src="{% static product.image %}" alt="{{ product.title }}"/>
+                <img src="{% static product.item.image %}" alt="{{ product.item.title }}"/>
                 <!--image description-->
                 <p>
-                    <span class="box-item-title">{{ product.title }}</span><br>
-                    <span>{{ product.description }}</span><br>
-                    <span>Theme : {{ product.get_theme_display }}</span><br>
+                    <span class="box-item-title">{{ product.item.title }}</span><br>
+                    <span>{{ product.item.description }}</span><br>
+                    <span>Theme : {{ product.item.get_theme_display }}</span><br>
                     
                     {% if product.category == 'PH' %}
-                        <cite>Image Source : By {{ product.author }} from <a class="photo-source" href="{{ product.image_url }}">Pexels</a></cite>
+                        <cite>Image Source : By {{ product.item.author }} from <a class="photo-source" href="{{ product.item.image_url }}">Pexels</a></cite>
                     {% else %}
-                        <cite>Image Source : <a class="photo-source" href="{{ product.image_url }}" target="_blank" rel="noopener">Bing Image Creator</a></cite>
+                        <cite>Image Source : <a class="photo-source" href="{{ product.item.image_url }}" target="_blank" rel="noopener">Bing Image Creator</a></cite>
                     {% endif %}
                     <b>{{ product.get_status_display }}</b>
                 </p>           
                 <div class="options">
                     <button class="change-button">
-                        <a href="">Change</a>
+                        <form action="{% url 'photostore:add-to-cart' product_id=product.item.id %}" method="POST">
+                            {% csrf_token %}
+                            {% if product.quantity > 1 %}
+                                <input class="quantity-input" type="number" name="quantity" id="quantity" value="{{ product.quantity }}">
+                            {% else %}
+                                <input class="quantity-input" type="number" name="quantity" id="quantity" value="1" min="1">
+                            {% endif %}
+                            <input type="submit" value="Change">   
+                        </form>
                     </button>
                     <button class="remove-button">
                         <a href="">Remove</a>
@@ -53,9 +61,39 @@
             </div>
         </div>
         {% endfor %}
-        <div class="payment-button">
-            <a href="{% url 'photostore:payment' %}">Go To Payment</a>
+    </div>
+
+    <div class="spacer"></div>
+
+    <!-- payment info -->
+    <div class="payment-container">
+        <div class="payment-title">
+            <p>
+                Payment
+                <img class="checkout-cart-icon" src="{% static 'photostore/checkout-cart-icon.png' %}" alt="checkout-cart-icon"/>
+                <span class="payment-items">( {{ cart|length }} )</span>
+            </p>
         </div>
+        <div class="payment-procedure">
+            <p>
+                The procedure is simple.<br><br>Upload an image (photo or art)&nbsp;&nbsp;relevant to Nature either
+                digital or manual. However, you should be the only one holding the copyrights, i.e., image should be your
+                own creation.<br><br>If you feel generous, feel free to upload more 🫶🏻        
+            </p>
+        </div>
+        <div class="payment-button">
+            <fieldset class="options">
+                <legend>Do you want to "Pay With Image" ?</legend>
+                <button>                    
+                    <a href="{%url 'photostore:payment' choice='Yes' %}">Yes</a>
+                </button>
+                <button>
+                    <a href="{% url 'photostore:payment' choice='No' %}">No</a>
+                </button>
+            </fieldset>
+            <br>
+        </div>
+         
     {% else %}
         <p class="empty-cart">Your cart is empty. <a href="{% url 'photostore:products' %}">Go Add some!</a></p>
     {% endif %}

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static 'photostore/styles_products.css' %}">
     <link rel="stylesheet" href="{% static 'photostore/styles_checkout.css' %}">
     <link rel="stylesheet" href="{% static 'photostore/styles_about.css' %}">
+    <link rel="stylesheet" href="{% static 'photostore/styles_notifications.css'  %}">
     <script src="{% static 'photostore/scripts_checkout.js' %}" defer></script>
 </head>
 <body>
@@ -58,12 +59,11 @@
             </div>
         </nav>
     </header>    
-
+    {% if request.session.product_added %}
+        {% include 'photostore/notifications.html' %}
+    {% endif %}
 
     {% block content %}
-        {% if request.session.product_added %}
-            {% include 'photostore/notifications.html' %}
-        {% endif %}
     {% endblock %}
 
 

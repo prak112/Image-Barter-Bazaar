@@ -5,8 +5,8 @@ from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, InvalidPage
 
 # app-related imports
-from photostore.models import Product, Cart
-from photostore.forms import SearchForm
+from photostore.models import Product, Cart, Customer
+from photostore.forms import SearchForm, PaymentForm
 from .util import paginate, get_theme_code
 
 
@@ -86,28 +86,55 @@ def filter_products(request):
 from django.http import JsonResponse
 
 def add_to_cart(request, product_id):
-    request.session['product_added'] = True
+    #request.session['product_added'] = True
+
+    # user_id = request.user.id
+    user_to_add = Customer.objects.get(user_info_id=request.user.id)
     item_to_add = Product.objects.get(id=product_id)
     
     # insert data to Cart model
     cart_item = Cart()
+    cart_item.user = user_to_add
     cart_item.item = item_to_add
-    cart_item.quantity = 2 # hard-coded for functionality test
-    cart_item.save()
+
+    # retrieve quantity
+    cart_item.quantity = request.POST.get('quantity')
+    if cart_item.quantity is None:
+        cart_item.quantity = 1 # default value
      
-    context = {
-        'cart' : Cart.objects.all(),
-        }
-    return render(request, 'photostore/cart.html', context)
+    # save cart info
+    cart_item.save()
+
+    # respond to AJAX request
+    response_data = {'success': True}
+    return JsonResponse(response_data)
+
+
+    # context = {
+    #     'cart' : Cart.objects.all(),
+    #     }
+    # return render(request, 'photostore/cart.html', context)
+
+
+
+# delete-from-cart View (remove button, cart.html/checkout process)
+
 
 
 def checkout(request):
-    return render(request, 'photostore/checkout.html')
+    context = {
+    'cart' : Cart.objects.all(),
+    }
+    return render(request, 'photostore/checkout.html', context) 
+
 
 
 def payment(request, choice):
+    form = PaymentForm()
     context = {
         'choice' : choice,
+        'cart' : Cart.objects.all(),
+        'form' : form,
     }
     return render(request, 'photostore/payment.html', context)
 
