@@ -12,108 +12,35 @@
             <span class="payment-items">( {{ cart|length }} )</span>
         </p>
     </div>
-    <div class="payment-container">
-        <div class="payment-procedure">
-            <p>
-                The procedure is simple.<br><br>Upload an image (photo or art)&nbsp;&nbsp;relevant to Nature either
-                digital or manual. However, you should be the only one holding the copyrights, i.e., image should be your
-                own creation.<br><br>If you feel generous, feel free to upload more 🫶🏻        
-            </p>
-        </div>
-        <div class="payment-button">
-            <fieldset class="options">
-                <legend>Do you want to "Pay With Image" ?</legend>
-                <button>                    
-                    <a href="{%url 'photostore:payment' choice='Yes' %}">Yes</a>
-                </button>
-                <button>
-                    <a href="{% url 'photostore:payment' choice='No' %}">No</a>
-                </button>
-            </fieldset>
-            <br>
-        </div>
-    </div>
-
+    
     {% if choice == 'Yes' %}
-    <h1 class="heading">Your Order</h1>
+    <h1 class="heading">Payment Details</h1>
     <div class="checkout-title">
         <p>
             My Cart
             <img class="checkout-cart-icon" src="{% static 'photostore/checkout-cart-icon.png' %}" alt="checkout-cart-icon"/>
-            <span class="checkout-items">(3)</span>
+            <span class="checkout-items">( {{ cart|length }} )</span>
         </p>
-    </div>
-   
-    <!--     
-    <div class="checkout-container">
-            <div class="product-container">
-                <div class="product">
-                    <img src="{% static 'images/bing-art-mountain.jfif' %}" alt="bing-art-mountain"/>
-                    <p>
-                        <span class="product-title">Mountain Art by Bing Image Creator</span><br>
-                        A classic landscape art of mountains, lake and a forest.<br>
-                        <cite>Generated with Bing Image Creator</cite>
-                    </p>            
-                    <div class="options">
-                        <button class="change-button">
-                            <a href="">Change</a>
-                        </button>
-                        <button class="remove-button">
-                            <a href="">Remove</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="product-container">
-                <div class="product">
-                    <img src="{% static 'images/pexels-photo-mountain.jpg' %}" alt="pexels-photo-mountain"/>
-                    <p>       
-                        <span class="product-title">Mountain Photo by Daniel Handl</span><br>
-                        A breathtaking view of mountains with a half moon in the sky.<br>
-                        <cite>Photo by Daniel Handl from Pexels</cite>
-                    </p>
-                    <div class="options">
-                        <button class="change-button">
-                            <a href="">Change</a>
-                        </button>
-                        <button class="remove-button">
-                            <a href="">Remove</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="product-container">
-                <div class="product">
-                    <img src="{% static 'images/bing-art-mountain.jfif' %}" alt="bing-art-mountain"/>
-                    <p>
-                        <span class="product-title">Mountain Art by Bing Image Creator</span><br>
-                        A classic landscape art of mountains, lake and a forest.<br>
-                        <cite>Generated with Bing Image Creator</cite>
-                    </p>            
-                    <div class="options">
-                        <button class="change-button">
-                            <a href="">Change</a>
-                        </button>
-                        <button class="remove-button">
-                            <a href="">Remove</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    -->
+    </div>   
 
-
-        <div class="payment-button">
+    <div class="payment-form">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}<br>
             <button>
-                <a href="{% url 'photostore:index' %}">Pay with Image</a>
+                <input class="button" type="submit" value="Upload Image">
             </button>
-            <p class="heading">Thank you for your support! 🫶🏻</p>
-        {% else %}
-            <p class="heading">Thanks for visiting!</p>
-        {% endif %}
+        </form>
+
+    <!-- 
+        <button>
+            <a href="{% url 'photostore:index' %}">Pay with Image</a>
+        </button>
+    -->
+        <h2 class="heading">Thank you for your support! 🫶🏻</h2>
+    {% else %}
+        <p class="heading">Thanks for visiting!</p>
+    {% endif %}
     </div>
 
 {% endblock %}
