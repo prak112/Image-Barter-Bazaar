@@ -1,3 +1,35 @@
+/* User Information */
+.user-info{
+    width: 400px;
+    background-color: transparent;
+    text-align: center;
+    border: 2px solid rgba(122, 218, 224, 0.771);
+    border-radius: 20px;
+    padding: 5px;
+    margin: 0 auto;
+    font-size: larger;
+}
+
+
+/* CART - cart.html */
+.goto-button-container{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin: 0 auto;
+}
+.goto-button{
+    background-color: transparent;
+    border: 2px solid rgba(75, 233, 122, 0.771);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0 auto;
+}
+.goto-button:hover{
+    font-weight: 500;
+    background-color: royalblue;
+    transition-duration: 0.3s;
+}
 
 /* CHECKOUT - checkout.html */
 .checkout-title,
@@ -32,10 +64,16 @@
 .checkout-container{
     display: flex;
     flex-wrap: nowrap;
-    overflow-x: auto;
+/*
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+*/
+    overflow-y: scroll;
 
     padding-top: 10px;
+    padding-bottom: 20px;
     max-width: 80%;
+    height: 40%;
     margin: 0 auto;
 
     border:5px solid rgba(27, 163, 152, 0.571);
@@ -104,6 +142,10 @@
 }
 .checkout-container .product .change-button{
     background-color: slateblue;
+    color: whitesmoke
+}
+.checkout-container .product .change-button .quantity-input{
+    width: 50px;
 }
 .checkout-container .product .remove-button{
     background-color: brown;
@@ -123,7 +165,7 @@
 }
 
 
-/* PAYMENT */
+/* PAYMENT - payment.html */
 @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Quicksand:wght@300&family=Raleway:ital,wght@1,100&display=swap');
 
 .spacer{
@@ -145,6 +187,8 @@
     border-radius: 20px;
     border: 2px solid rgba(133, 236, 228, 0.571);
     margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
 
 }
 
@@ -154,24 +198,19 @@
     font-family: 'Architects Daughter', cursive;
     text-align: center;
     margin: 0 auto;
-
     justify-content: space-between;
 }
 
-.payment-button{
+.payment-form{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
-    margin: 10px auto;
+    padding: 20px;
+    margin: 0px auto;
 }
-.payment-button .options{
-    margin: 0 auto;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-.payment-button button{
-    background-color: rgba(75, 233, 122, 0.571);
+
+.payment-form button input{
+    background-color: transparent;
     border: 2px solid rgba(75, 233, 122, 0.771);
     border-radius: 10px;
     padding: 10px;
