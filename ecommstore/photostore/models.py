@@ -59,7 +59,7 @@ class Product(models.Model):
 
 # staging items for purchase
 class Cart(models.Model):
-    customer_info = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, related_name="potential_customers")
+    customer_info = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, related_name="potential_customers")
     item = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, related_name="products_in_cart")
     quantity = models.IntegerField(default=1, null=True)
 
