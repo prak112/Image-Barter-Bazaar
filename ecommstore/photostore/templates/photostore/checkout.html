@@ -2,7 +2,9 @@
 {% load static %}
 
 {% block content %}
-<!-- user info, products info -->
+<div>
+<!-- user info -->
+{% if request.user.is_authenticated %}
     <h1 class="heading">User Information</h1>
     <div class="user-info">
         <p>
@@ -14,7 +16,11 @@
             <span>{{ request.user.email }}</span>
         </p>
     </div>
+{% endif %}
+</div>
 
+<div>
+<!-- products info -->
     <h1 class="heading">Checkout</h1>
     <div class="checkout-title">
         <p>
@@ -24,7 +30,7 @@
         </p>
     </div>
     <div class="checkout-container">
-    {% if cart %}
+    {% if request.user.is_authenticated  and cart %}
         {% for product in cart %}
         <div class="product-container">
             <div class="product">
@@ -40,7 +46,6 @@
                     {% else %}
                         <cite>Image Source : <a class="photo-source" href="{{ product.item.image_url }}" target="_blank" rel="noopener">Bing Image Creator</a></cite>
                     {% endif %}
-                    <b>{{ product.get_status_display }}</b>
                 </p>           
                 <div class="options">
                     <button class="change-button">
@@ -62,75 +67,27 @@
         </div>
         {% endfor %}
     </div>
+</div>
+    <!-- checkout buttons -->
+    <div class="goto-button-container">
+        <div class="goto-button">
+            <a href="{% url 'photostore:products' %}">Continue Shopping</a>
+        </div>
+        <div class="goto-button">
+            <a href="{% url 'photostore:payment' %}">Go To Payment</a>
+        </div>
+    </div>
 
-    <div class="spacer"></div>
-
-    <!-- payment info -->
-    <div class="payment-container">
-        <div class="payment-title">
-            <p>
-                Payment
-                <img class="checkout-cart-icon" src="{% static 'photostore/checkout-cart-icon.png' %}" alt="checkout-cart-icon"/>
-                <span class="payment-items">( {{ cart|length }} )</span>
-            </p>
-        </div>
-        <div class="payment-procedure">
-            <p>
-                The procedure is simple.<br><br>Upload an image (photo or art)&nbsp;&nbsp;relevant to Nature either
-                digital or manual. However, you should be the only one holding the copyrights, i.e., image should be your
-                own creation.<br><br>If you feel generous, feel free to upload more 🫶🏻        
-            </p>
-        </div>
-        <div class="payment-button">
-            <fieldset class="options">
-                <legend>Do you want to "Pay With Image" ?</legend>
-                <button>                    
-                    <a href="{%url 'photostore:payment' choice='Yes' %}">Yes</a>
-                </button>
-                <button>
-                    <a href="{% url 'photostore:payment' choice='No' %}">No</a>
-                </button>
-            </fieldset>
-            <br>
-        </div>
-         
-    {% else %}
+    <!-- if user cart is empty --->
+    {% elif not cart and request.user.is_authenticated %}
         <p class="empty-cart">Your cart is empty. <a href="{% url 'photostore:products' %}">Go Add some!</a></p>
+    <!-- if user not authenticated --->        
+    {% elif not request.user.is_authenticated %}
+        <p class="empty-cart"> <a href="{% url 'users:login' %}">Login</a> to see your information, add products and view your cart.</p>
     {% endif %}
-    </div>
 
-
-    <!-- payment info -->
-<!---
     <div class="spacer"></div>
 
-    <div class="payment-title">
-        <p>
-            Payment
-            <img class="checkout-cart-icon" src="{% static 'photostore/checkout-cart-icon.png' %}" alt="checkout-cart-icon"/>
-            <span class="payment-items">( {{ cart|length }} )</span>
-        </p>
-    </div>
-    <div class="payment-container">
-        <div class="payment-procedure">
-            <p>
-                The procedure is simple.<br><br>Upload an image (photo or art)&nbsp;&nbsp;relevant to Nature either
-                digital or manual. However, you should be the only one holding the copyrights, i.e., image should be your
-                own creation.<br><br>If you feel generous, feel free to upload more 🫶🏻        
-            </p>
-        </div>
-        <div class="payment-button">
-            <fieldset class="options">
-                <legend>Do you want to "Pay With Image" ?</legend>
-                <button>                    
-                    <a href="{%url 'photostore:payment' choice='Yes' %}">Yes</a>
-                </button>
-                <button>
-                    <a href="{% url 'photostore:payment' choice='No' %}">No</a>
-                </button>
-            </fieldset>
-            <br>
-        </div>
-    </div>
--->
+
+</div>
 {% endblock %}
