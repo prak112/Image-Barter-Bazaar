@@ -189,15 +189,40 @@
     margin: 0 auto;
     padding-top: 20px;
     padding-bottom: 20px;
-
 }
+
+.items-purchased{
+    justify-content: space-between;
+    border-radius: 20px;
+    border: 2px solid rgba(133, 236, 228, 0.571);
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Architects Daughter', cursive;
+}
+.items-purchased table{
+    width: 100%;
+    text-align: center;
+}
+.items-purchased table th{
+    color:rgba(16, 203, 236, 0.771);
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+.items-purchased table th, 
+.items-purchased table td{
+    padding: 10px;
+    width: calc(100% - 250px) / 3; 
+}
+
 
 .payment-procedure{
     background-color: rgba(251, 252, 251, 0.89);
     color: black;
+    border-radius: 25px;
     font-family: 'Architects Daughter', cursive;
     text-align: center;
     margin: 0 auto;
+    padding: 10px;
     justify-content: space-between;
 }
 
