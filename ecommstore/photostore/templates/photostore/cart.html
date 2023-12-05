@@ -12,6 +12,7 @@
         </p>
     </div>
     <div class="checkout-container">
+    {% if request.user.is_authenticated %}   
     {% if cart %}
         {% for product in cart %}
         <div class="product-container">
@@ -49,7 +50,6 @@
         </div>
         {% endfor %}
     </div>
-
     <!-- checkout buttons -->
     <div class="goto-button-container">
         <div class="goto-button">
@@ -59,7 +59,15 @@
             <a href="{% url 'photostore:checkout' %}">Go To Checkout</a>
         </div>
     </div>
+    <!-- if user cart is empty --->
     {% else %}
         <p class="empty-cart">Your cart is empty. <a href="{% url 'photostore:products' %}">Go Add some!</a></p>
     {% endif %}
+    <!-- if user not authenticated --->        
+    {% else %}
+    <div class="checkout-container">
+        <p class="empty-cart">Login to add products and view your cart. <a href="{% url 'users:login' %}">Login here.</a></p>
+    </div>
+    {% endif %}
+
 {% endblock %}
