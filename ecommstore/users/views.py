@@ -23,8 +23,8 @@ def signup(request):
             login(request, user)
 
             # create user session data
-            request.session['first_name'] = user.first_name
-            request.session['last_name'] = user.last_name
+            request.session['first_name'] = str(user.first_name).capitalize()
+            request.session['last_name'] = str(user.last_name).capitalize()
 
             return HttpResponseRedirect(reverse('photostore:index'))
         
@@ -47,11 +47,10 @@ def login_view(request):
             login(request, user)
 
             # create user session data
-            request.session['first_name'] = user.first_name
-            request.session['last_name'] = user.last_name
+            request.session['first_name'] = str(user.first_name).capitalize()
+            request.session['last_name'] = str(user.last_name).capitalize()
 
-            return HttpResponseRedirect(reverse('photostore:index'))
-    
+            return HttpResponseRedirect(reverse('photostore:index'))    
     else: 
         return render(request, 'users/login.html', context={"form": AuthenticationForm()})
     
