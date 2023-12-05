@@ -12,8 +12,47 @@
             <span class="payment-items">( {{ cart|length }} )</span>
         </p>
     </div>
+
+    <!-- payment info -->
+    <div class="payment-container">
+        <div class="payment-title">
+            <p>
+                Payment
+                <img class="checkout-cart-icon" src="{% static 'photostore/checkout-cart-icon.png' %}" alt="checkout-cart-icon"/>
+                <span class="payment-items">( {{ cart|length }} )</span>
+            </p>
+        </div>
+        <div class="items-purchased">
+            <p class="heading">Items in the Cart</p>
+            <table>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Theme</th>
+                <th>Quantity</th>
+                {% for product in cart %}
+                <tr>
+                    <td>{{ product.item.title }}</td>
+                    <td>{{ product.item.get_category_display }}</td>
+                    <td>{{ product.item.get_theme_display }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td>
+                        <button class="remove-button">
+                            <a href="{% url 'photostore:remove-from-cart' product_id=product.id %}">Remove</a>
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="payment-procedure">
+            <p>
+                Payment procedure is simple.<br><br>Upload an image (photo or art)&nbsp;&nbsp;relevant to Nature either
+                digital or manual. However, you should be the only one holding the copyrights, i.e., image should be your
+                own creation.<br><br>If you feel generous, feel free to upload more 🫶🏻        
+            </p>
+        </div>
+    </div>    
     
-    {% if choice == 'Yes' %}
     <h1 class="heading">Payment Details</h1>
     <div class="checkout-title">
         <p>
@@ -24,23 +63,15 @@
     </div>   
 
     <div class="payment-form">
-        <form action="" method="POST">
+        <form action="{% url 'photostore:payment' %}" method="POST">
             {% csrf_token %}
             {{ form.as_p }}<br>
             <button>
                 <input class="button" type="submit" value="Upload Image">
             </button>
-        </form>
-
-    <!-- 
-        <button>
-            <a href="{% url 'photostore:index' %}">Pay with Image</a>
-        </button>
-    -->
+        </form>        
         <h2 class="heading">Thank you for your support! 🫶🏻</h2>
-    {% else %}
-        <p class="heading">Thanks for visiting!</p>
-    {% endif %}
-    </div>
+        <p class="heading">See you soon!</p>
+        </div>
 
 {% endblock %}
