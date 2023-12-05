@@ -5,7 +5,8 @@ from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, InvalidPage
 
 # app-related imports
-from photostore.models import Product, Cart, Customer
+from photostore.models import Product, Cart
+from users.models import UserProfile
 from photostore.forms import SearchForm, PaymentForm
 from .util import paginate, get_theme_code
 
@@ -86,57 +87,83 @@ def filter_products(request):
 from django.http import JsonResponse
 
 def add_to_cart(request, product_id):
-    #request.session['product_added'] = True
+    item_to_add = Product.objects.get(id=product_id)   
 
-    # user_id = request.user.id
-    user_to_add = Customer.objects.get(user_info_id=request.user.id)
-    item_to_add = Product.objects.get(id=product_id)
-    
-    # insert data to Cart model
-    cart_item = Cart()
-    cart_item.user = user_to_add
-    cart_item.item = item_to_add
+    # if user authenticated, insert data to Cart model
+    if request.user.is_authenticated:
+        user_profile = UserProfile.objects.get(first_name=request.user.first_name)
+        cart_item = Cart()
+        cart_item.customer_info = user_profile
+        cart_item.item = item_to_add
 
-    # retrieve quantity
-    cart_item.quantity = request.POST.get('quantity')
-    if cart_item.quantity is None:
-        cart_item.quantity = 1 # default value
-     
-    # save cart info
-    cart_item.save()
+        # retrieve quantity
+        cart_item.quantity = request.POST.get('quantity')
+        if cart_item.quantity is None:
+            cart_item.quantity = 1 # default value
 
-    # respond to AJAX request
-    response_data = {'success': True}
-    return JsonResponse(response_data)
+        # save cart info
+        cart_item.save()
 
+        # redirect to calling view
+        calling_url = request.META.get('HTTP_REFERER')
+
+        #TO DO - send notification
+        return redirect(calling_url)
+    else:
+        return HttpResponseRedirect(reverse('users:login'))
+    # after login, revert back to redirect view
 
     # context = {
     #     'cart' : Cart.objects.all(),
     #     }
-    # return render(request, 'photostore/cart.html', context)
+    # return render(request, 'photostore/checkout.html', context)
 
 
-
-# delete-from-cart View (remove button, cart.html/checkout process)
-
+def remove_from_cart(request, product_id):
+    if request.user.is_authenticated:
+        cart_item = Cart.objects.get(id=product_id)
+        cart_item.delete()
+        
+        # get referrer URL or calling_url
+        calling_url = request.META.get('HTTP_REFERER')
+    return redirect(calling_url)
 
 
 def checkout(request):
-    context = {
-    'cart' : Cart.objects.all(),
-    }
-    return render(request, 'photostore/checkout.html', context) 
+    if request.user.is_authenticated:
+        context = {
+            'cart' : Cart.objects.all(),
+            }
+        return render(request, 'photostore/checkout.html', context)
+    else:
+        return HttpResponseRedirect(reverse('users:login'))
+        # after login, revert back to redirect view
 
 
 
-def payment(request, choice):
-    form = PaymentForm()
-    context = {
-        'choice' : choice,
-        'cart' : Cart.objects.all(),
-        'form' : form,
-    }
-    return render(request, 'photostore/payment.html', context)
+def payment(request):
+    # PROCESS insert data for 'Order' and 'OrderDetail' Models
+
+    if request.method == 'POST':
+        form = PaymentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            context = {
+                'message' : 'Thanks for shopping with us! See you soon!'    
+                }
+            return HttpResponseRedirect(reverse('photostore:index'), args=context)
+        else:
+            context = {
+                'cart' : Cart.objects.all(),
+                'form' : form,
+                }
+            return render(request, 'photostore/payment.html', context)
+    else:
+        context = {
+            'cart' : Cart.objects.all(),
+            'form' : PaymentForm(),
+            }
+        return render(request, 'photostore/payment.html', context)
 
 
 
