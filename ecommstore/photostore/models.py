@@ -68,33 +68,33 @@ class Cart(models.Model):
         super().save_quantity(*args, **kwargs)
 
     def __str__(self):
-        return f"\nTotal products sold-{self.quantity}\n"
+        return f"\nCustomer-{self.customer_info.first_name}\nProducts in Cart-{self.quantity}\n"
 
 
 
 # 
 class Order(models.Model):
     ORDER_STATUS_CHOICES = [
-        ('PEN', 'Pending'),
         ('SHIP', 'Shipped'),
         ('DEL', 'Delivered')
     ]
-    customer = models.ForeignKey(Customer, on_delete=models.PROTECT, related_name="order_history")    # related to Customers Model
+    customer_order = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True, related_name="order_history")    # related to Customers Model
     order_date = models.DateTimeField('Date of Order', auto_now=True)
     order_status = models.CharField('Order Status', max_length=30, choices=ORDER_STATUS_CHOICES)
     # instead of price, barter_exchange field will define checkout response
-    barter_exchange = models.BooleanField('Photo Exchange', default=False, help_text="Clarifies if customer exchanged photos or not")
+    # barter_exchange = models.BooleanField('Photo Exchange', default=False, help_text="Clarifies if customer exchanged photos or not")
+    payment = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, related_name="images_exchanged")
 
     def __str__(self):
-        return f"\n{self.customer.full_name}\tOrder Status-{self.order_status}\n"
+        return f"\n{self.customer_order.customer_info}\tOrder Status-{self.order_status}\n"
     
 
 
 # 
-class OrderDetail(models.Model):
-    order_summary = models.ForeignKey(Order, on_delete=models.PROTECT, null=True, related_name="customer_purchases")    # related to Order Model
-    # product = models.ManyToManyField(Product, blank=True, related_name="product_status")      # related to Product Model
-    items_purchased = models.ManyToManyField(Cart, blank=True, related_name="product_inventory")  # related to Cart Model
+# class OrderDetail(models.Model):
+#     order_summary = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, related_name="customer_purchases")    # related to Order Model
+#     # product = models.ManyToManyField(Product, blank=True, related_name="product_status")      # related to Product Model
+#     # items_purchased = models.ManyToManyField(Cart, blank=True, related_name="product_inventory")  # related to Cart Model
     
-    def __str__(self):
-        return f"\nOrderID-{self.order_summary.id}\n"
+#     def __str__(self):
+#         return f"\nOrderID-{self.order_summary.id}\n"
