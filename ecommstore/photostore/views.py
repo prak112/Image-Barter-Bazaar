@@ -2,10 +2,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger, InvalidPage
 
 # app-related imports
-from photostore.models import Product, Cart
+from photostore.models import Product, Cart, Order#, OrderDetail
 from users.models import UserProfile
 from photostore.forms import SearchForm, PaymentForm
 from .util import paginate, get_theme_code
@@ -13,7 +12,7 @@ from .util import paginate, get_theme_code
 
 # HOME views
 def index(request):
-    if request.user.is_authenticated:        
+    if request.user.is_authenticated:
         fname = f"{request.session.get('first_name')}".capitalize() 
         lname = f"{request.session.get('last_name')}".capitalize()
         context = {
@@ -91,27 +90,27 @@ def add_to_cart(request, product_id):
 
     # if user authenticated, insert data to Cart model
     if request.user.is_authenticated:
-        user_profile = UserProfile.objects.get(first_name=request.user.first_name)
+        #user_id = request.session.get('user_id')
+        user_info = UserProfile.objects.get(first_name=request.user.first_name)
         cart_item = Cart()
-        cart_item.customer_info = user_profile
+        cart_item.customer_info = user_info
         cart_item.item = item_to_add
 
         # retrieve quantity
         cart_item.quantity = request.POST.get('quantity')
         if cart_item.quantity is None:
             cart_item.quantity = 1 # default value
-
+                  
         # save cart info
         cart_item.save()
 
         # redirect to calling view
         calling_url = request.META.get('HTTP_REFERER')
 
-        #TO DO - send notification
+        #TO DO - show notification
         return redirect(calling_url)
     else:
         return HttpResponseRedirect(reverse('users:login'))
-    # after login, revert back to redirect view
 
     # context = {
     #     'cart' : Cart.objects.all(),
@@ -131,8 +130,11 @@ def remove_from_cart(request, product_id):
 
 def checkout(request):
     if request.user.is_authenticated:
+        # if user made payment, clear cart_info
+        cart_info = Cart.objects.filter(customer_info=UserProfile.objects.get(first_name=request.user.first_name))
+
         context = {
-            'cart' : Cart.objects.all(),
+            'cart' : cart_info,
             }
         return render(request, 'photostore/checkout.html', context)
     else:
@@ -142,25 +144,48 @@ def checkout(request):
 
 
 def payment(request):
-    # PROCESS insert data for 'Order' and 'OrderDetail' Models
+    # retrieve all 'Cart' instances (items in cart) of user logged in for context
+    cart_info = Cart.objects.filter(customer_info__first_name=request.user.first_name)
+    # order 'Cart' instances by id for 'Order.customer_order'
+    cart_sorted = cart_info.order_by('-id').first()
 
     if request.method == 'POST':
-        form = PaymentForm(request.POST)
+        form = PaymentForm(request.POST, request.FILES)   # request.FILES to access uploaded image
+
         if form.is_valid():
-            form.save()
+            # save 'Product' instance from PaymentForm
+            payment_info = form.save(commit=False)
+            payment_info.save()
+
+            # insert data sequentially for 'Order' model
+            purchase_order = Order()            
+            purchase_order.customer_order = cart_sorted
+
+            if form.cleaned_data['delivery'] == 'EMAIL':
+                purchase_order.order_status = 'DEL'
+            else:
+                purchase_order.order_status = 'SHIP'
+            
+            purchase_order.payment = payment_info
+            purchase_order.save()
+
             context = {
                 'message' : 'Thanks for shopping with us! See you soon!'    
                 }
-            return HttpResponseRedirect(reverse('photostore:index'), args=context)
-        else:
+            
+            return render(request, 'photostore/index.html', context)
+            #return HttpResponseRedirect(reverse('photostore:index'))
+        
+        else:   # validate incomplete form
             context = {
-                'cart' : Cart.objects.all(),
+                'cart' : cart_info,
                 'form' : form,
                 }
             return render(request, 'photostore/payment.html', context)
-    else:
+    
+    else:   # first visit to payment
         context = {
-            'cart' : Cart.objects.all(),
+            'cart' : cart_info,
             'form' : PaymentForm(),
             }
         return render(request, 'photostore/payment.html', context)
