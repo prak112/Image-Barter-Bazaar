@@ -17,23 +17,15 @@ class SearchForm(forms.Form):
     
 
 
-# User chosen Quantity of product, upload to Cart Model
-# class QuantityForm(forms.Form):
-#     quantity = forms.IntegerField(widget=forms.NumberInput(attrs=
-#                                                            { 'class': 'quantity-input',
-#                                                              'min': 1,
-#                                                              'value': 1
-#                                                              }))
-
-    # class Meta:
-    #     model = Cart
-    #     fields = ['quantity']
-
-
-
 # Details to upload image to Product Model
 class PaymentForm(forms.ModelForm):
+    DELIVERY_CHOICES = [('EMAIL', 'By Email'),
+                        ('POST', 'By Post')]
+    delivery = forms.ChoiceField(choices=DELIVERY_CHOICES, widget=forms.RadioSelect)
     class Meta:
         model = Product
-        fields = ['author', 'title', 'description', 'image_url', 'category', 'theme', 'image']
-
+        fields = ['delivery', 'author', 'title', 'description', 'image_url', 'category', 'theme', 'image']
+        # customize field with help-text
+        widgets = {'image': forms.ClearableFileInput(attrs=
+                                                     {'help_text':'Ensure image resolution-1024 * 1024! Thanks!'
+                                                      })}
