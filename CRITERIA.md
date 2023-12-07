@@ -28,19 +28,19 @@ Footer
    - [X]Show 5 pages random product
 
 3. [X] Search page
-   - [ ] List the products based on the user's search
+   - [X] List the products based on the user's search
 
 4. [X] Product page (the page can be accessed either through the product on the front page or the product on the search page)
    - [X] Details of a certain product
-   - [ ] Can add the product to the shopping cart
+   - [X] Can add the product to the shopping cart
 
-5. [ ] Shopping cart
-   - [ ] Shows the products added to the shopping cart
-   - [ ] The user fills in their own information (name, email, address) / User logs in before adding items to cart
-   - [ ] Sends the order (not yet a real order, the information is only sent to the server)
+5. [X] Shopping cart
+   - [X] Shows the products added to the shopping cart
+   - [X] The user fills in their own information (name, email, address) / User logs in before adding items to cart
+   - [X] Sends the order (not yet a real order, the information is only sent to the server)
 
 6. [X] Order confirmation page
-   - After the order, the user will be notified of the order's success.
+   -[ ] After the order, the user will be notified of the order's success.
 
 
 
