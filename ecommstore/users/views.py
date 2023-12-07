@@ -2,17 +2,16 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth import login, logout
+# from django.contrib.auth.views import LoginView, LogoutView   # in urls.py, for django-automated templates and validation
 
 from users.forms import RegForm
+from users.models import UserProfile
+
 
 # Views
 # REGISTRATION
-def signup(request):
-    # import UserProfile model
-    from users.models import UserProfile
-    
+def signup(request):    
     # validate request
     if request.method == "POST":
         form = RegForm(request.POST)
@@ -22,9 +21,13 @@ def signup(request):
             user = form.save()
             login(request, user)
 
-            # create user session data
+            # user session data identifier
+            session_user = UserProfile.objects.get(first_name=user.first_name)
+            request.session['user_id'] = session_user.id
+            # session variables
             request.session['first_name'] = str(user.first_name).capitalize()
             request.session['last_name'] = str(user.last_name).capitalize()
+            request.session.save()
 
             return HttpResponseRedirect(reverse('photostore:index'))
         
@@ -46,19 +49,26 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
 
-            # create user session data
+            # user session data identifier
+            session_user = UserProfile.objects.get(first_name=user.first_name)
+            request.session['user_id'] = session_user.id
+
+            # session variables
             request.session['first_name'] = str(user.first_name).capitalize()
             request.session['last_name'] = str(user.last_name).capitalize()
+            request.session.save()
 
             return HttpResponseRedirect(reverse('photostore:index'))    
     else: 
         return render(request, 'users/login.html', context={"form": AuthenticationForm()})
     
 
+
 def user_profile(request):
     return render(request, 'users/user_profile.html')
 # def edit_profile(request):
 #     return render(request, 'users/edit_profile.html')
+
 
 
 # LOGOUT
