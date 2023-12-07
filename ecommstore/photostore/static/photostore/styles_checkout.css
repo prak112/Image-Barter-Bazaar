@@ -177,7 +177,8 @@
     font-weight: bolder;
 }
 
-.payment-container{
+.payment-container, 
+.payment-form{
     display: flex;
     flex-direction: column;
 
@@ -189,6 +190,12 @@
     margin: 0 auto;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+.payment-form form{
+    list-style: none;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Architects Daughter', cursive;
 }
 
 .items-purchased{

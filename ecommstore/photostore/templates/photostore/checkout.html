@@ -29,8 +29,9 @@
             <span class="checkout-items">( {{ cart|length }} )</span>
         </p>
     </div>
+    <div class="spacer"></div>
     <div class="checkout-container">
-    {% if request.user.is_authenticated  and cart %}
+    {% if request.user.is_authenticated and cart %}
         {% for product in cart %}
         <div class="product-container">
             <div class="product">
@@ -60,7 +61,7 @@
                         </form>
                     </button>
                     <button class="remove-button">
-                        <a href="">Remove</a>
+                        <a href="{% url 'photostore:remove-from-cart' product_id=product.id %}">Remove</a>
                     </button>
                 </div>
             </div>
