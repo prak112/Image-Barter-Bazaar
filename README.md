@@ -16,19 +16,24 @@
 <hr>
 
 # Background
-The aim of the project is to build a functional E-commerce platform without a payment gateway. The tech stack I will be using are mentioned in [Tools](#tools). The project being a skills demonstration for Full-Stack Development will have only browsing functionality and not a checkout.
+The aim of the project is to build a functional E-commerce platform without a payment gateway. The tech stack I will be using are mentioned in [Tools](#tools). The project being a skills demonstration for Full-Stack Development will have  browsing functionality and a barter-exchange checkout.
 
-The E-commmerce platform I have chosen to develop will be a Photo Store like ShutterStock, Pexels, FreePik, etc. However, the pictures and art advertised on the platform will be loaned from either of these websites or from my partner's collection with a watermark.
+The E-commmerce platform I have chosen to develop will be a Photo Store like ShutterStock, Pexels, FreePik, etc. Images advertised on the platform will be loaned. The website consists of :
+- Images theme on the platform is *Nature*
+- Art from *Bing Image Creator*
+- Photos from *Pexels*
+- Users or Customers can be Photographers, Artists or Enthusiasts.
 
-There will be 2 User groups - Buyers and Sellers. Hence, the website views will vary for each of these User groups, since the products they will have access to will be different. A fully functional website allows the following functions to be performed :
-- Authorize and authenticate Users based on their credentials
-- Sellers can create their own profiles
-- Seller can upload photographs and art to the *Inventory*
-- Buyers can browse *Products* and add items to the *Cart*
-- Buyers can browse *Products* through filters - *Category, Inventory, Artist Profile* 
-- *Real-Time Updates* updates inventory items based on the checked-out (Buyer) / checked-in (Seller) items
-- Buyer can *Checkout* with the *Cart*, leads to a success page
-- Seller can land on a success page post-upload to the *Inventory*
+<br>
+
+A fully functional website allows the following functions to be performed :
+- Authorize and authenticate Users(Customers) based on their credentials
+- Customers can :
+  - create their own profiles
+  - Browse *Products* and add items to the *Cart*
+  - Search *Products* through filters - *Category, Inventory, Artist Profile* 
+  - Upload photographs and art to the *Product Inventory* as Payment
+- *Real-Time Updates* updates inventory items based on the checked-out items
 
 </br>
 <hr>
@@ -46,7 +51,7 @@ subgraph USERS
 
   A -->|User Logs In| B
   B -->|Authenticated User is verified| C
-  C -->|System grants access to Authorized User| J
+  C -->|System grants access to Authorized User or Customer| J
 end
 
 subgraph PRODUCT CATALOG
@@ -54,15 +59,15 @@ subgraph PRODUCT CATALOG
   E(Category)
   F(Cart)
   G(Inventory)
-  K(Artist Profile)
+  K(Customer Profile)
   D <-->|Belongs to| E
-  E -->|Buyer Adds items| F
-  F <-->|Buyer Adds/Removes items| G
-  D -->|Seller Uploads Photo/Art| G
-  D -->|Buyer Views profiles| K
-  G -->|System categorises by Artist| K
-  K -->|Buyer Adds items| F
-  D -->|Buyer Adds items| F
+  E -->|Customer adds items to Cart| F
+  F <-->|Customer Adds/Removes items| G
+  D -->|Customer uploads image/s as Payment| G
+  D -->|Customer can edit profile| K
+  G -->|System categorises by filters-Theme,Category,Artist| K
+  K -->|Customer adds items to Cart| F
+  D -->|Customer adds items to Cart| F
 end
 
 subgraph REAL-TIME UPDATES
@@ -71,11 +76,11 @@ end
 
 subgraph CHECKOUT
   L(Payment Gateway)
-  F -->|Buyer Checks Out for Payment|L
+  F -->|Customer Checks Out for Payment|L
 end
 
 G <-->|Server-Client instant communication| H
-J -->|Verified User-Buyer/Seller, accesses Products| D
+J -->|Verified Customer, can add Products to Cart| D
 J -->|Buyer filters by| E
 
 
