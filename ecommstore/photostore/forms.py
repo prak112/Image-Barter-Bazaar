@@ -24,8 +24,12 @@ class PaymentForm(forms.ModelForm):
     delivery = forms.ChoiceField(choices=DELIVERY_CHOICES, widget=forms.RadioSelect)
     class Meta:
         model = Product
-        fields = ['delivery', 'author', 'title', 'description', 'image_url', 'category', 'theme', 'image']
+        fields = ['delivery', 'image', 'author', 'title', 'description', 'image_url', 'category', 'theme']
         # customize field with help-text
         widgets = {'image': forms.ClearableFileInput(attrs=
                                                      {'help_text':'Ensure image resolution-1024 * 1024! Thanks!'
                                                       })}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['image'].label = 'Image as Payment'
