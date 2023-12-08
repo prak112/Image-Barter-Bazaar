@@ -59,7 +59,7 @@ class Product(models.Model):
 
 # staging items for purchase
 class Cart(models.Model):
-    customer_info = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, related_name="potential_customers")
+    customer_info = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, related_name="potential_customers")
     item = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, related_name="products_in_cart")
     quantity = models.IntegerField(default=1, null=True)
 
@@ -68,7 +68,7 @@ class Cart(models.Model):
         super().save_quantity(*args, **kwargs)
 
     def __str__(self):
-        return f"\nCustomer-{self.customer_info.first_name}\nProducts in Cart-{self.quantity}\n"
+        return f"\nCustomer-{self.customer_info.full_name}\nProducts in Cart-{self.quantity}\n"
 
 
 
@@ -86,7 +86,7 @@ class Order(models.Model):
     payment = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, related_name="images_exchanged")
 
     def __str__(self):
-        return f"\n{self.customer_order.customer_info}\tOrder Status-{self.order_status}\n"
+        return f"\n{self.customer_order.customer_info}\tOrder Status-{self.get_order_status_display()}\n"
     
 
 
