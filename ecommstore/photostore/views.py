@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 # app-related imports
-from photostore.models import Product, Cart, Order#, OrderDetail
+from photostore.models import Customer, Product, Cart, Order #, OrderDetail
 from users.models import UserProfile
 from photostore.forms import SearchForm, PaymentForm
 from .util import paginate, get_theme_code
@@ -83,7 +83,7 @@ def filter_products(request):
 
 
 # CHECKOUT views
-from django.http import JsonResponse
+# from django.http import JsonResponse
 
 def add_to_cart(request, product_id):
     item_to_add = Product.objects.get(id=product_id)   
@@ -91,7 +91,7 @@ def add_to_cart(request, product_id):
     # if user authenticated, insert data to Cart model
     if request.user.is_authenticated:
         #user_id = request.session.get('user_id')
-        user_info = UserProfile.objects.get(first_name=request.user.first_name)
+        user_info = Customer.objects.get(user_info__first_name=request.user.first_name)
         cart_item = Cart()
         cart_item.customer_info = user_info
         cart_item.item = item_to_add
@@ -112,11 +112,6 @@ def add_to_cart(request, product_id):
     else:
         return HttpResponseRedirect(reverse('users:login'))
 
-    # context = {
-    #     'cart' : Cart.objects.all(),
-    #     }
-    # return render(request, 'photostore/checkout.html', context)
-
 
 def remove_from_cart(request, product_id):
     if request.user.is_authenticated:
@@ -129,9 +124,27 @@ def remove_from_cart(request, product_id):
 
 
 def checkout(request):
+    from datetime import datetime
+
     if request.user.is_authenticated:
-        # if user made payment, clear cart_info
-        cart_info = Cart.objects.filter(customer_info=UserProfile.objects.get(first_name=request.user.first_name))
+        # If customer made payment, clear previous order cart_info
+        # format current datetime, change datatype similar to Order.order_date
+        current_time = datetime.strptime(datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'), '%Y-%m-%d %H:%M:%S.%f')
+        previous_orders = Order.objects.all()
+
+        # customer's current items
+        cart_info = Cart.objects.filter(customer_info=Customer.objects.get(user_info__first_name=request.user.first_name))     
+
+        # verify customer's previous orders if any
+        for items in previous_orders:
+            # clear previous items, show current items
+            # Order.order_date - to verify payment was completed for customer_order
+            if items.order_date.replace(tzinfo=None) < current_time: 
+                # Product.id - to verify item was in customer_order 
+                if items.customer_order.item.id == cart_info.item.id:                            
+                    cart_info = None # TO-DO remove paid items  # debug ERROR
+            else:
+                cart_info = cart_info
 
         context = {
             'cart' : cart_info,
@@ -139,13 +152,11 @@ def checkout(request):
         return render(request, 'photostore/checkout.html', context)
     else:
         return HttpResponseRedirect(reverse('users:login'))
-        # after login, revert back to redirect view
-
 
 
 def payment(request):
     # retrieve all 'Cart' instances (items in cart) of user logged in for context
-    cart_info = Cart.objects.filter(customer_info__first_name=request.user.first_name)
+    cart_info = Cart.objects.filter(customer_info__user_info__first_name=request.user.first_name)
     # order 'Cart' instances by id for 'Order.customer_order'
     cart_sorted = cart_info.order_by('-id').first()
 
