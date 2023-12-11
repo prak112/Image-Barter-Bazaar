@@ -141,8 +141,8 @@ def checkout(request):
             # Order.order_date - to verify payment was completed for customer_order
             if items.order_date.replace(tzinfo=None) < current_time: 
                 # Product.id - to verify item was in customer_order 
-                if items.customer_order.item.id == cart_info.item.id:                            
-                    cart_info = None # TO-DO remove paid items  # debug ERROR
+                if items.customer_order.item.id == cart_info.item.id:       # debug ERROR                     
+                    cart_info = None # TO-DO remove paid items  
             else:
                 cart_info = cart_info
 
