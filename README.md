@@ -38,8 +38,9 @@ A fully functional website allows the following functions to be performed :
 </br>
 <hr>
 
-# Project Schematic
+# Project Overview
 
+## Schematic
 ```mermaid
 graph TB
 
@@ -54,66 +55,78 @@ subgraph USERS
   C -->|System grants access to Authorized User or Customer| J
 end
 
-subgraph PRODUCT CATALOG
-  D(Products)
-  E(Category)
-  F(Cart)
-  G(Inventory)
+subgraph PRODUCTS
+  D(Home)
+  E(Search)
+  F(Search Results)
+  G(Cart)
+  H(Inventory)
   K(Customer Profile)
-  D <-->|Belongs to| E
-  E -->|Customer adds items to Cart| F
-  F <-->|Customer Adds/Removes items| G
-  D -->|Customer uploads image/s as Payment| G
+  D <-->|search by keywords| E
+  E -->F
+  F -->|Customer adds items to Cart| G
+  G <-->|Database Adds/Removes items| H
   D -->|Customer can edit profile| K
-  G -->|System categorises by filters-Theme,Category,Artist| K
-  K -->|Customer adds items to Cart| F
-  D -->|Customer adds items to Cart| F
+  K -->|Customer adds items to Cart| G
+  D -->|Customer adds items to Cart| G
 end
 
 subgraph REAL-TIME UPDATES
-  H(WebSocket)
+  I(WebSocket<br><em>Not Implemented</em>)
 end
 
 subgraph CHECKOUT
   L(Payment Gateway)
   F -->|Customer Checks Out for Payment|L
+  L-->|Customer uploads image/s as Payment| H
+
 end
 
-G <-->|Server-Client instant communication| H
+G <-->|Server-Client instant communication| I
+I <-->|Server-Client instant communication| H
 J -->|Verified Customer, can add Products to Cart| D
-J -->|Buyer filters by| E
+J -->|search by filters-Theme,Category,Artist| E
 
 
 ```
+<!-- H |System categorises by filters| K -->
 
 
-- **USERS**
-  - This section includes User Authentication & Authorization
-  - System(database and Backend) authenticates and authorizes User based on their credentials, i.e., Buyer/Seller.
-  - Seller, such as Photographers/Artists can upload photos/art, 
-  - Buyer, such as Customers can view profiles of photographers, products and proceed to **CHECKOUT**
+## Features
+### User 
+  - Login/Signup includes User Authentication & Authorization
+  - System(database and Backend) authenticates and authorizes User based on their credentials
+  - Upon successful authentication, Users/Customers can 
+    - View or edit their profiles, 
+    - Browse or search for products and
+    - Proceed to [**Checkout**](#checkout) to barter an image in exchange for the images they would like to own
 
-- **PRODUCT CATALOG**
-  - This section includes Products, Categories, Artists' Profiles, Cart, and Inventory. 
-  - *Products*
-    - Verified Users proceed to different areas from here
-    - Buyer can access - *Artists' Profiles, Cart, Inventory*
-  - *Categories*
-    - Verified Users as Buyer can directly access - *Categories*
+### Home
+  - Customers once authenticated will be welcomed with their name
+  - If unauthenticated Users access the **Home** page they will be redirected to *Login* upon doing either of the following actions :
+    - add image to Cart, Or
+    - access [**Checkout**](#checkout)
+  - Unauthenticated Users can still search or search or browse for images
+
+### Products
+  - *Images*
+    - Verified and Unverified Users can access - *All themes of images*
+    - Only verified Users/Customers can add items to *Cart* and *Checkout* for payment
+  - *Search Filters*
+    - Verified and Unverified Users can filter images by - *Image Theme, Image Type & Artist*
     - Contains grouped *Products*
   - *Cart*
-    - Buyer can add/remove items 
-    - Satisfied Buyer access *Checkout* to purchase the added products
+    - Customer can add/remove items 
+    - Satisfied Customer access *Checkout* to purchase the added products
   - *Inventory*
-    - Buyer can access, to add/remove items to/from *Cart*
     - Groups and Categories items by Artist to assign items to Artists' Profiles
     - *Cart* items trigger *Inventory* updates through *Real-Time Updates*
 
 
-- **CHECKOUT**
+### Checkout
   - Verified User adds items to Cart and proceeds to checkout for payment
 
-- **REAL-TIME UPDATES**
+### Real-Time Updates (*Not Implemented*)
   - Real-time updates via WebSockets enable real-time interactions, including updating the cart and inventory.
 
 </br>
