@@ -134,17 +134,19 @@ def checkout(request):
 
         # customer's current items
         cart_info = Cart.objects.filter(customer_info=Customer.objects.get(user_info__first_name=request.user.first_name))     
-
+        
         # verify customer's previous orders if any
-        for items in previous_orders:
-            # clear previous items, show current items
-            # Order.order_date - to verify payment was completed for customer_order
-            if items.order_date.replace(tzinfo=None) < current_time: 
-                # Product.id - to verify item was in customer_order 
-                if items.customer_order.item.id == cart_info.item.id:       # debug ERROR                     
-                    cart_info = None # TO-DO remove paid items  
-            else:
-                cart_info = cart_info
+        if previous_orders is not None:
+            for paid_items in previous_orders:
+                for items in cart_info:
+                    # clear previous items, show current items  
+                    # Order.order_date - to verify payment was completed for customer_order
+                    if paid_items.order_date.replace(tzinfo=None) < current_time: 
+                        # Product.id - to verify item was in customer_order 
+                        if paid_items.customer_order.item.id == items.item.id:       # debug ERROR                     
+                            cart_info = None # TO-DO remove paid items  
+                    else:
+                        cart_info = cart_info
 
         context = {
             'cart' : cart_info,
