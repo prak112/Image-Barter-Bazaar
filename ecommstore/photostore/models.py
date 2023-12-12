@@ -53,7 +53,7 @@ class Product(models.Model):
     status = models.CharField('Status', max_length=30, choices=STATUS_CHOICES, default='AVL')
 
     def __str__(self):
-        return f"\n{self.title}, authored by {self.author}\tAvailability-{self.get_status_display()}\n"
+        return f"\n{self.title}, authored by {self.author}\nTheme-{self.get_theme_display()}\n"
 
 
 
@@ -68,33 +68,21 @@ class Cart(models.Model):
         super().save_quantity(*args, **kwargs)
 
     def __str__(self):
-        return f"\nCustomer-{self.customer_info.full_name}\nProducts in Cart-{self.quantity}\n"
+        return f"\nCustomer-{self.customer_info.full_name}\nProducts in Cart-{self.item}\n"
 
 
 
-# 
+# Customers' Order history
 class Order(models.Model):
     ORDER_STATUS_CHOICES = [
         ('SHIP', 'Shipped'),
         ('DEL', 'Delivered')
     ]
-    customer_order = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True, related_name="order_history")    # related to Customers Model
+    customer_order = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True, related_name="order_history")
     order_date = models.DateTimeField('Date of Order', auto_now=True)
     order_status = models.CharField('Order Status', max_length=30, choices=ORDER_STATUS_CHOICES)
     # instead of price, barter_exchange field will define checkout response
-    # barter_exchange = models.BooleanField('Photo Exchange', default=False, help_text="Clarifies if customer exchanged photos or not")
     payment = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, related_name="images_exchanged")
 
     def __str__(self):
         return f"\n{self.customer_order.customer_info}\tOrder Status-{self.get_order_status_display()}\n"
-    
-
-
-# 
-# class OrderDetail(models.Model):
-#     order_summary = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, related_name="customer_purchases")    # related to Order Model
-#     # product = models.ManyToManyField(Product, blank=True, related_name="product_status")      # related to Product Model
-#     # items_purchased = models.ManyToManyField(Cart, blank=True, related_name="product_inventory")  # related to Cart Model
-    
-#     def __str__(self):
-#         return f"\nOrderID-{self.order_summary.id}\n"
