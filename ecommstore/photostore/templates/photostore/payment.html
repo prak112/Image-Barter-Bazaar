@@ -87,7 +87,16 @@
     <div class="payment-form">
         <form action="{% url 'photostore:payment' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+            {% for field in form.visible_fields %}
+            <p>
+                {{ field.errors }}
+                {{ field.label_tag }}<br>
+                {{ field }}<br>
+            </p>
+            {% endfor %}
             <br>
             <button>
                 <input class="button" type="submit" value="Upload Image">

@@ -32,4 +32,4 @@ class PaymentForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['image'].label = 'Image as Payment'
+        self.fields['image'].label = 'Image as Payment (preferred resolution: 1024 * 1024)'
