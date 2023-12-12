@@ -1,11 +1,13 @@
-<h1 align="center"> Ecommerce Photo Store - 🎨 <i>PG's Pixies</i> 📸 </h1>
+<h1 align="center"> Ecommerce Photo Store - 🎨 <i>PG's Picsies</i> 📸 </h1>
 
 </br>
 <hr>
 
 # Contents
 - [Background](#background)
-- [Project Schematic](#project-schematic)
+- [Project Overview](#project-schematic)
+  - [Schematic](#schematic)
+  - [Features](#features)
 - [Tools](#tools)
 - [Implementation](#implementation)
 - [Topics Covered](#topics-covered)
