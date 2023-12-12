@@ -107,6 +107,11 @@ K |Customer adds items to Cart| G
     - View or edit their profiles, 
     - Browse or search for products and
     - Proceed to [**Checkout**](#checkout) to barter an image in exchange for the images they would like to own
+- **User *login* page**
+![Login page](/screenshots/login.png)
+
+- **User *registration* page** ( logo and text remain the same for sign up page as well )
+![Sign Up page](/screenshots/signup.png)
 
 ### Home 
   - Customers once authenticated will be welcomed with their name
@@ -122,16 +127,19 @@ K |Customer adds items to Cart| G
 <!--
 ![Text](path/to/image)
 -->
-![Non-User Home page view](/screenshots/home-nonUser.png)
-
+- **Non-User *Home* page**
+![Non-User Home page](/screenshots/home-nonUser.png)
+- **User *Home* page** 
+![User Home page](/screenshots/home-user.png)
 
 
 ### Products
   - *Images*
-    - Verified and Unverified Users can access all images using *Search Filters*
+    - 'Photo' & 'Art of the Day' images,
+    - Authenticated and Unauthenticated Users can access all images using *Search Filters*
     - Only verified Users/Customers can add items to *Cart* and *Checkout* for payment
   - *Search Filters*
-    - Verified and Unverified Users can filter images by - *Image Theme, Image Type & Artist*
+    - Authenticated and Unauthenticated Users can filter images by - *Image Theme, Image Type & Artist*
   - *Cart*
     - After authentication, Customer can :
       - add/remove items 
@@ -142,12 +150,16 @@ K |Customer adds items to Cart| G
     - All images information is accessible
     - All Carted items & Orders are accessible
     - *Cart* items trigger *Inventory* updates through [*Real-Time Updates*](#real-time-updates)
+- **Filter images by Type, Theme and Artist**
+![Products page](/screenshots/products.png)
 
 
 ### Checkout
   - Displays all items added to *Cart*
   - Provides options to 'Change Quantity' or 'Remove', default quantity is 1
   - Provides options to 'Continue Shopping' or 'Proceed to Payment'
+- **Checkout view of verified Customer**
+![Checkout](/screenshots/checkout.png)
 
 ### Payment Gateway
   - Final display of all items added to Cart with quantity
@@ -155,6 +167,13 @@ K |Customer adds items to Cart| G
   - Explains payment procedure
   - Information about payment is to be filled in the form
   - Upon successful payment, redirects to *Home* page with success message
+- **Payment view - payment procedure & items summary**
+![Payment summary](/screenshots/payment1.png)
+- **Payment view - payment information**
+![Payment details](/screenshots/payment2.png)
+- **Successful Payment view - order & payment confirmation message**
+![Payment success message](/screenshots/payment-success.png)
+
 
 ### Real-Time Updates
 <span style="color: red;">Not Implemented</span>
