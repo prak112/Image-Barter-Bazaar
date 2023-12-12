@@ -40,7 +40,7 @@ Footer
    - [X] Sends the order (not yet a real order, the information is only sent to the server)
 
 6. [X] Order confirmation page
-   -[ ] After the order, the user will be notified of the order's success.
+   -[X] After the order, the user will be notified of the order's success.
 
 
 
@@ -52,22 +52,22 @@ Technical implementation requirements of the Web service (Ready around week 3) :
 
 2. [X] Logging in on the site is done in real and data secure manner.
 
-3. [ ] Customer:
+3. [X] Customer:
    - [ ] When the customer is logged in to the site, he has a page where he can edit his own information (link in the Header section.)
-   - [ ] If the user is logged in, his information is filled in directly in the shopping cart.
+   - [X] If the user is logged in, his information is filled in directly in the shopping cart.
 
-4. [ ] Admin pages: (the styling of the pages can be simpler, but still practical)
-   - [ ] Only admin users can access the pages
-   - [ ] Admin front page with links to listings of products, users and orders
-   - [ ] Added CRUD operations (Create, Read, Update and Delete) for products, for users and orders.
-
-
+4. [X] Admin pages: (the styling of the pages can be simpler, but still practical)
+   - [X] Only admin users can access the pages
+   - [X] Admin front page with links to listings of products, users and orders
+   - [X] Added CRUD operations (Create, Read, Update and Delete) for products, for users and orders.
 
 
+<br>
+<hr>
 
 # Assessment Criteria
 
-https://eperusteet.opintopolku.fi/#/fi/ammatillinenperustutkinto/7861752/tägönosat/7862781
+- https://eperusteet.opintopolku.fi/#/fi/ammatillinenperustutkinto/7861752/tägönosat/7862781
 https://eperusetet.opintopolku.fi/#/fi/ammatillinenperustutkinto/7861752/tägånosat/7862794
-The parts of the degree are evaluated separately, i.e. you may get two different grades.
-During the performance of the screen, you get advice, which, depending on the extent of the advice, affects the grade.
+- The parts of the degree are evaluated separately, i.e. you may get two different grades.
+- During the performance of the screen, you get advice, which, depending on the extent of the advice, affects the grade.

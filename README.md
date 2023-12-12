@@ -225,6 +225,7 @@ K |Customer adds items to Cart| G
 - Resources: Django authentication documentation, Django for Beginners book.
 
 ## **Week 8: Real-time Updates (WebSockets)**
+<span style="color: red;"> Not Implemented </span>
 - [ ] WebSocket Basics: Understand WebSocket communication.
 - [ ] Implement Real-Time: Add real-time features like instant cart updates.
 - Resources: WebSockets tutorials, Django Channels documentation.
@@ -246,12 +247,12 @@ K |Customer adds items to Cart| G
 - Resources: Django REST Framework documentation, DRF tutorials.
 
 **Week 9: User Authorization and Permissions**
-- [ ] Authorization: Implement user roles (e.g., admin, customer).
+- [X] Authorization: Implement user roles (e.g., admin, customer).
 - [ ] Permission Control: Set up authorization for views and API endpoints.
 - Resources: Django authorization documentation.
 
 **Week 10: Database Optimization and Transactions**
-- [ ] SQL Skills: Deepen your SQL knowledge for database queries.
+- [X] SQL Skills: Deepen your SQL knowledge for database queries.
 - [ ] Transactions: Learn about database transactions and ACID properties.
 - [ ] Database Optimization: Optimize database queries for performance.
 - Resources: SQL tutorials, SQL optimization guides.
