@@ -55,7 +55,7 @@ subgraph USERS
   C -->|System grants access to Authorized User or Customer| J
 end
 
-subgraph PRODUCTS
+subgraph PLATFORM
   D(Home)
   E(Search)
   F(Search Results)
@@ -65,21 +65,24 @@ subgraph PRODUCTS
   D <-->|search by keywords| E
   E -->F
   F -->|Customer adds items to Cart| G
-  G <-->|Database Adds/Removes items| H
+  G <-->|Backend Adds/Removes items| H
   D -->|Customer can edit profile| K
-  K -->|Customer adds items to Cart| G
   D -->|Customer adds items to Cart| G
 end
 
 subgraph REAL-TIME UPDATES
-  I(WebSocket<br><em>Not Implemented</em>)
+  I(WebSocket<br><em style="color: red;">Not Implemented</em>)
 end
 
 subgraph CHECKOUT
   L(Payment Gateway)
-  F -->|Customer Checks Out for Payment|L
-  L-->|Customer uploads image/s as Payment| H
+  G -->|Customer Checkout|L
+  L-->|Uploaded Image for Payment| H
+end
 
+subgraph ORDERS
+  M(Order History)
+  L -->|<br>Successful payment saves Customer Order & exchanged image|M
 end
 
 G <-->|Server-Client instant communication| I
@@ -89,11 +92,15 @@ J -->|search by filters-Theme,Category,Artist| E
 
 
 ```
-<!-- H |System categorises by filters| K -->
+<!-- 
+H |System categorises by filters| K 
+K |Customer adds items to Cart| G
+
+-->
 
 
 ## Features
-### User 
+### User Login/Sign Up
   - Login/Signup includes User Authentication & Authorization
   - System(database and Backend) authenticates and authorizes User based on their credentials
   - Upon successful authentication, Users/Customers can 
@@ -101,32 +108,57 @@ J -->|search by filters-Theme,Category,Artist| E
     - Browse or search for products and
     - Proceed to [**Checkout**](#checkout) to barter an image in exchange for the images they would like to own
 
-### Home
+### Home 
   - Customers once authenticated will be welcomed with their name
+  - Home page consists of :
+    - 'Photo' & 'Art of the Day' images,
+    - Images related to 'Theme of the Day'
   - If unauthenticated Users access the **Home** page they will be redirected to *Login* upon doing either of the following actions :
     - add image to Cart, Or
     - access [**Checkout**](#checkout)
-  - Unauthenticated Users can still search or search or browse for images
+  - Unauthenticated Users can still :
+    - search for images using the Search bar,
+    - browse images in 'Products'
+<!--
+![Text](path/to/image)
+-->
+![Non-User Home page view](/screenshots/home-nonUser.png)
+
+
 
 ### Products
   - *Images*
-    - Verified and Unverified Users can access - *All themes of images*
+    - Verified and Unverified Users can access all images using *Search Filters*
     - Only verified Users/Customers can add items to *Cart* and *Checkout* for payment
   - *Search Filters*
     - Verified and Unverified Users can filter images by - *Image Theme, Image Type & Artist*
-    - Contains grouped *Products*
   - *Cart*
-    - Customer can add/remove items 
-    - Satisfied Customer access *Checkout* to purchase the added products
+    - After authentication, Customer can :
+      - add/remove items 
+      - access *Checkout* to purchase added products
   - *Inventory*
-    - Groups and Categories items by Artist to assign items to Artists' Profiles
-    - *Cart* items trigger *Inventory* updates through *Real-Time Updates*
+    - Only Admin has access
+    - All Users/Customers information is accessible
+    - All images information is accessible
+    - All Carted items & Orders are accessible
+    - *Cart* items trigger *Inventory* updates through [*Real-Time Updates*](#real-time-updates)
 
 
 ### Checkout
-  - Verified User adds items to Cart and proceeds to checkout for payment
+  - Displays all items added to *Cart*
+  - Provides options to 'Change Quantity' or 'Remove', default quantity is 1
+  - Provides options to 'Continue Shopping' or 'Proceed to Payment'
 
-### Real-Time Updates (*Not Implemented*)
+### Payment Gateway
+  - Final display of all items added to Cart with quantity
+  - Provides options to 'Remove'
+  - Explains payment procedure
+  - Information about payment is to be filled in the form
+  - Upon successful payment, redirects to *Home* page with success message
+
+### Real-Time Updates
+<span style="color: red;">Not Implemented</span>
+
   - Real-time updates via WebSockets enable real-time interactions, including updating the cart and inventory.
 
 </br>
