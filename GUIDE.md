@@ -1,6 +1,12 @@
 <hr>
 
 # Setup Environment
+- In your `bash` terminal, clone the git repository
+    ```bash
+    $ git clone https://github.com/prak112/DevSchool-Project.git
+    ```
+- After successful cloning, change to project directory, `DevSchool-Project`
+
 ## Install Python
 - Visit [Official Python website](https://www.python.org/) and download Python version == 3.11.2 or 3.11.x
 
@@ -50,10 +56,12 @@
 
 ## Implement Database schema
 - Migrate the database design implemented using Django Models in `models.py` in the apps - `photostore` & `users` 
+- After creating the neccessary migration files in the `migrations` directory using the command :
     ```terminal
-    $ (project_env) path/to/dir/ecommstore> python manage.py makemigrations
+    $ python manage.py makemigrations 
     ```
-- After creating the neccessary migration files in the `migrations` directory, move the changes to the database
+    - However, the above command is useless since `models.py` is currently unchanged. 
+    - Hence, we just migrate the existing Django Models using the following command :
     ```terminal
     $ (project_env) path/to/dir/ecommstore> python manage.py migrate
     ```
