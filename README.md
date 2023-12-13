@@ -4,10 +4,12 @@
 <hr>
 
 # Contents
+- [Project Setup](#project-setup)
 - [Background](#background)
 - [Project Overview](#project-schematic)
-  - [Schematic](#schematic)
+  - [Workflow](#workflow)
   - [Features](#features)
+  - [Database Schema](#database-schema)
 - [Tools](#tools)
 - [Implementation](#implementation)
 - [Topics Covered](#topics-covered)
@@ -16,6 +18,10 @@
 
 </br>
 <hr>
+
+# Project Setup
+- Please refer to the [Guidebook](GUIDE.md) for steps to setup the development environment and execute the project.
+
 
 # Background
 The aim of the project is to build a functional E-commerce platform without a payment gateway. The tech stack I will be using are mentioned in [Tools](#tools). The project being a skills demonstration for Full-Stack Development will have  browsing functionality and a barter-exchange checkout.
@@ -41,8 +47,12 @@ A fully functional website allows the following functions to be performed :
 <hr>
 
 # Project Overview
+- Overview presents a detailed review about the project through the following:
+  - Application Workflow,
+  - Application Features,
+  - Database Schema 
 
-## Schematic
+## Workflow
 ```mermaid
 graph TB
 
@@ -73,7 +83,7 @@ subgraph PLATFORM
 end
 
 subgraph REAL-TIME UPDATES
-  I(WebSocket-Not Implemented)
+  I(WebSocket-*Not Implemented*)
 end
 
 subgraph CHECKOUT
@@ -94,11 +104,6 @@ J -->|search by filters-Theme,Category,Artist| E
 
 
 ```
-<!-- 
-H |System categorises by filters| K 
-K |Customer adds items to Cart| G
-
--->
 
 
 ## Features
@@ -182,6 +187,16 @@ K |Customer adds items to Cart| G
 
   - Real-time updates via WebSockets enable real-time interactions, including updating the cart and inventory.
 
+
+
+## Database Schema
+- Database (SQLite) is implemented as an in-built version for Django
+- Django Models are defined using the framework (`models.py`) for each of the apps defined (`users`, `photostore`)  to emulate tables similar to SQL
+- After defining the required models the changes are updated through 'Migrations', which translate the instructions in `models.py` to the database to create/update tables
+- Database schema (below) defines the logical flow of data through the application backend
+![Database Schema](/design/DATABASE-SCHEMA.png)
+
+
 </br>
 <hr>
 
@@ -190,7 +205,6 @@ K |Customer adds items to Cart| G
   - Figma (for design)
   - HTML
   - CSS 
-  - JS
 
 - **Database**
   - SQLite
