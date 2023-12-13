@@ -73,7 +73,7 @@ subgraph PLATFORM
 end
 
 subgraph REAL-TIME UPDATES
-  I(WebSocket<br><em style="color: red;">Not Implemented</em>)
+  I(WebSocket-Not Implemented)
 end
 
 subgraph CHECKOUT
