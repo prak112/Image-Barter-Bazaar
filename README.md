@@ -358,4 +358,5 @@ K |Customer adds items to Cart| G
 <hr>
 
 # Credits
-- **Plan built in collaboration with ChatGPT (GPT-3.5)**
+- **Planning assistance - ChatGPT (GPT-3.5)**
+- **Development assistance - [![built with Codeium](https://codeium.com/badges/main)](https://codeium.com/badges/main)**
