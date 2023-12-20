@@ -1,16 +1,20 @@
-# OVERVIEW
-You can add your own features to the project, which are also taken into account in the evaluation.
-The assignment can be a bit abstract. An example of a side map can be found in Figma  , and a Q&A section can be added there if necessary.
-Note! The project's database will be given to you ready within 44 weeks.
-Programming 45osp requirements (Ready around week 48):
+# Overview
+- [Design](#design)
+- [Frontend & Backend](#frontend--backend)
+- [Functionality](#functionality)
 
-
+<br>
+<hr>
 
 # DESIGN
-- The appearance is not specifically defined, but it must be practical and arranged appropriately for the entire screen. You can look for inspiration online from various existing online stores. 
+- [X] User interface must be practical and arranged appropriately for the entire screen 
+- [X] Look for inspiration online from various existing online stores. 
 - [X] The target screen size is 1920 × 1080, but the page must also look good on larger screens. No need to make less than 1920x1080 or mobile view.
+- [ ] Customise Django Admin user interface through Backend
 
 
+<br>
+<hr>
 
 # FRONTEND & BACKEND
 
@@ -42,7 +46,8 @@ Footer
 6. [X] Order confirmation page
    -[X] After the order, the user will be notified of the order's success.
 
-
+<br>
+<hr>
 
 # FUNCTIONALITY
 
@@ -64,10 +69,3 @@ Technical implementation requirements of the Web service (Ready around week 3) :
 
 <br>
 <hr>
-
-# Assessment Criteria
-
-- https://eperusteet.opintopolku.fi/#/fi/ammatillinenperustutkinto/7861752/tägönosat/7862781
-https://eperusetet.opintopolku.fi/#/fi/ammatillinenperustutkinto/7861752/tägånosat/7862794
-- The parts of the degree are evaluated separately, i.e. you may get two different grades.
-- During the performance of the screen, you get advice, which, depending on the extent of the advice, affects the grade.
