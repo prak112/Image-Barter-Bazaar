@@ -1,0 +1,15 @@
+{% extends 'users/layout.html' %}
+{% load static %}
+
+{% block content %}
+    <h1 class="heading">Edit My Profile</h1>
+        <form action="{% url 'users:edit_profile' %}" method="POST" class="form-group">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="form-button register" type="submit" value="Update Profile">
+            <br>
+            <button class="profile-button">
+                <a href="{% url 'users:user_profile' %}">Cancel</a>
+            </button>
+        </form>
+{% endblock %}
