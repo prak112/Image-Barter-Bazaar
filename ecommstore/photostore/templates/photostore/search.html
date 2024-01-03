@@ -36,11 +36,15 @@
                     </div>
 
                     <!--add to cart-->
-                    <button>
+                    <button id="add-to-cart">
                         {% if request.user.is_authenticated %}
-                            <a href="">Add To Cart</a>
+                            <a href="{% url 'photostore:add-to-cart' product_id=product.id %}">
+                                <img class="cart-icon" src="{% static 'photostore/add-to-cart.png' %}" alt="add-to-cart-icon"/>
+                            </a>
                         {% else %}
-                            <a href="{% url 'users:login' %}">Add To Cart</a>
+                            <a href="{% url 'users:login' %}">
+                                <img class="cart-icon" src="{% static 'photostore/add-to-cart.png' %}" alt="add-to-cart-icon"/>
+                            </a>
                         {% endif %}
                     </button>
                 </div>
