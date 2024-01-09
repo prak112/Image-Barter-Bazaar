@@ -1,7 +1,9 @@
 # import libraries
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
+from django.shortcuts import get_object_or_404
+
 
 # app-related imports
 from photostore.models import Customer, Product, Cart, Order #, OrderDetail
