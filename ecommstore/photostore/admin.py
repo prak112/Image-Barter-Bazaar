@@ -7,9 +7,7 @@ from django.urls import reverse, path
 from django.utils.html import format_html
 
 # for CartAdmin-'view_item_link'
-from django.apps import apps
-from django.shortcuts import get_object_or_404
-from django.http import HttpResponse
+from django.http import Http404
 
 
 # Register your models here.
@@ -21,12 +19,26 @@ class CustomerAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("title", "author", "theme", "category")
+    list_display = ("title", "author", "theme", "category", "view_image_link", )
     list_display_links = ("title", )
     list_filter = ("category", "theme", "author", )
     search_fields = ("title__icontains", )
 
-    # def view_image_link(self, obj):
+    def view_image_link(self, obj):
+        url_text = 'Display Image'
+        result = Product.objects.filter(pk=obj.id).values_list('image_url', flat=True)
+        url = ''.join(link for link in result)
+        default_url = "https://www.pexels.com" 
+        
+        # retrieve images stored in media dir
+        if url == default_url:
+            result = Product.objects.get(pk=obj.id)
+            url = result.image.url
+            return format_html('<a href={} target="_blank">{}</a>'.format(url, url_text))            
+        else:
+            return format_html('<a href={} target="_blank">{}</a>'.format(url, url_text))
+
+    view_image_link.short_description = 'Image Preview'
 
 
 
@@ -46,6 +58,7 @@ class CartAdmin(admin.ModelAdmin):
         return format_html('<a href={}>{}</a>', url, url_text)
     view_customer_link.short_description = "Customer"
 
+
     # display item(image) in cart in a new tab
     def view_item_link(self, obj):
         # retrieve image_url 
@@ -53,15 +66,22 @@ class CartAdmin(admin.ModelAdmin):
         # collect image_url as string
         url = ''.join(i for i in result)
         url_text = obj.item.title
-        return format_html('<a href={} target="_blank"><img src={}/>{}</a>'.format(url, url, url_text))
+        return format_html('<a href={} target="_blank">{}</a>'.format(url, url_text))
     view_item_link.short_description = "Item Preview"
 
 
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ("__str__", "view_cart_link", "order_date", "order_status", "payment")
+    list_display = ("view_order_link", "view_cart_link", "order_date", "order_status", "payment")
     list_display_links = ("order_date", )
+
+    def view_order_link(self, obj):
+        order_item = Product.objects.get(pk=obj.customer_order.item.id)
+        url = order_item.image_url
+        url_text = f"{order_item.title} By {order_item.author}" 
+        return format_html('<a href={} target="_blank">{}</a>'.format(url, url_text))
+    view_order_link.short_description = "Order Preview"
 
     def view_cart_link(self, obj):
         url = (
@@ -70,5 +90,5 @@ class OrderAdmin(admin.ModelAdmin):
             + urlencode({"item__title":f"{obj.customer_order.item.title}"})
         )        
         return format_html('<a href={}>Show</a>', url)
-    view_cart_link.short_description = "Details"
+    view_cart_link.short_description = "View Cart"
     
