@@ -10,7 +10,8 @@
 - [X] User interface must be practical and arranged appropriately for the entire screen 
 - [X] Look for inspiration online from various existing online stores. 
 - [X] The target screen size is 1920 × 1080, but the page must also look good on larger screens. No need to make less than 1920x1080 or mobile view.
-- [ ] Customise Django Admin user interface through Backend
+- [X] Customise Django Admin functionality through Backend
+- [ ] Customise Django Admin layout and styles
 
 
 <br>
