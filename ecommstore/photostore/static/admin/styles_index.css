@@ -1,0 +1,47 @@
+/* block extrahead styles for admin/index.html */
+body{
+    background-color: #673f8f;
+    display: flexbox;
+}
+
+.title {    
+    /* glow headings like neon lights */
+    font-size: 32px;
+    font-family: 'Arial', sans-serif;
+    color: #ffffff;
+    text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #00ff00, 0 0 70px #00ff00, 0 0 80px #00ff00, 0 0 100px #00ff00, 0 0 150px #00ff00;
+
+    color: whitesmoke;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.subtitle {
+    font-size: 24px;
+    font-family: 'Arial', sans-serif;
+    color: #c37b7b;
+
+    text-align: center;
+    padding-top: 20px;
+}
+
+.sidebar {
+    background-color: #9d7fbb;
+    color: whitesmoke;
+    width: 20%;
+    height: 95%;
+    position: fixed;
+    top: 5%;
+    right: 0;
+}
+
+.custom-section,
+.models-list {
+    max-width: 650px;   /*width, height of the box -- essential to contain items in the center*/
+    max-height: 550px;
+    display: flex;
+
+    margin: 0 auto;
+    padding: 20px;
+    justify-content: center;
+}

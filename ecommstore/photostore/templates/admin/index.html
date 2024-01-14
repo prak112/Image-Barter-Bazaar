@@ -1,0 +1,42 @@
+{% extends "admin/index.html" %}
+{% load static %}
+
+{% block extrahead %}
+  <link rel="stylesheet" href="{% static 'admin/styles_index.css' %}"/>
+{% endblock %}
+
+
+{% block content %}
+
+  <h1 class="title">Welcome, Admin !</h1>
+  <p class="subtitle">Checkout the stats and database models.</p>
+
+  <div class="custom-section">
+    <h2 class="subtitle">Custom Section</h2>
+    <p class="subtitle">This is a custom section that you can add to the admin index page.</p>
+  </div>  
+
+{% endblock %}
+
+
+<!--- excludes 'Recent Actions' sidebar -->
+{% block sidebar %}
+
+  <div class="sidebar">
+    <p class="title">This is a sidebar.</p>
+  </div>
+
+  <div class="models-list">
+    <p class="title">Models</p>
+
+    {% for model in models %}
+      <div>{{ model.name }}</div>
+      <ul>
+        {% for field in model.fields %}
+          <li>{{ field.name }}</li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  </div>
+
+{% endblock %}
