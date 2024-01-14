@@ -6,8 +6,28 @@ from django.utils.http import urlencode
 from django.urls import reverse, path
 from django.utils.html import format_html
 
-# for CartAdmin-'view_item_link'
-from django.http import Http404
+
+
+# admin site customisation
+class MyAdminSite(admin.AdminSite):
+    site_header = "PG Picsies Admin"
+    # index_title = "Welcome Admin!"
+    index_template = "admin/index.html"
+
+    def index(self, request):
+        models = [Customer, Product, Cart, Order]
+        extra_context = {"models": models}
+        return super().index(request, extra_context=extra_context)
+    
+
+admin_site = MyAdminSite(name="admin")
+admin_site.register(Customer)
+admin_site.register(Product)
+admin_site.register(Cart)
+admin_site.register(Order)
+
+
+
 
 
 # Register your models here.
