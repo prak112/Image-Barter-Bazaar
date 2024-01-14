@@ -33,7 +33,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'photostore',
     'users',
-    'django.contrib.admin',
+    'django.contrib.admin.apps.SimpleAdminConfig',   # for models with custom-admin/index.html
+    #'django.contrib.admin',    # for models with built-in admin/index.html
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
