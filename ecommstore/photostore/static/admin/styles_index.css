@@ -1,7 +1,7 @@
 /* block extrahead styles for admin/index.html */
 body{
     background-color: #673f8f;
-    display: flexbox;
+    text-align: center;
 }
 
 .title {    
