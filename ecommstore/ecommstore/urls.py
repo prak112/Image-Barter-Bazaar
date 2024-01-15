@@ -25,7 +25,7 @@ from photostore.admin import admin_site
 
 
 urlpatterns = [
-    path('admin/', admin_site.urls),
+    path('admin/', admin_site.urls, name='customadmin'),
     path('', include("photostore.urls")),
     path('users/', include("users.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
