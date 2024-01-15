@@ -57,8 +57,11 @@ ROOT_URLCONF = 'ecommstore.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [
+            # 'django.template.loaders.filesystem.Loader',
+            # 'django.template.loaders.app_directories.Loader',
+        ],
+        'APP_DIRS': True,  # change to False to activate updated DIRS
         'OPTIONS': {
             'context_processors': [
                 'photostore.context_processors.global_context.global_context',
