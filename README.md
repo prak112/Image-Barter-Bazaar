@@ -240,12 +240,13 @@ J -->|search by filters-Theme,Category,Artist| E
 - [X] Custom User Model: Create a custom user model with additional fields.
 - Resources: Django authentication documentation, Django for Beginners book.
 
-## **Week 8: Real-time Updates (WebSockets)**
+## **Week 5: Real-time Updates (WebSockets)**
 <span style="color: red;"> Not Implemented </span>
 - [ ] WebSocket Basics: Understand WebSocket communication.
 - [ ] Implement Real-Time: Add real-time features like instant cart updates.
 - Resources: WebSockets tutorials, Django Channels documentation.
 
+<!--
 ## OPTIONAL
 **Week 5: JavaScript Basics**
 - [ ] JavaScript Fundamentals: Start learning JavaScript from scratch (Vanilla JS).
@@ -282,7 +283,7 @@ J -->|search by filters-Theme,Category,Artist| E
 - [ ] Testing: Write unit and integration tests for your application.
 - [ ] Deployment: Deploy your Django application to a hosting platform (e.g., Heroku).
 - Resources: Django testing documentation, deployment guides.
-
+-->
 </br>
 <hr>
 
@@ -295,6 +296,7 @@ J -->|search by filters-Theme,Category,Artist| E
 1. **HTML/CSS Fundamentals:**
    - Review and strengthen your HTML and CSS skills.
 
+<!--
 2. **JavaScript Basics:**
    - Learn JavaScript fundamentals (Vanilla JS).
    - Enhance product pages with basic interactivity.
@@ -302,8 +304,9 @@ J -->|search by filters-Theme,Category,Artist| E
 3. **Frontend Interactivity:**
    - Use JavaScript to load products dynamically.
    - Implement user interactions like adding products to the cart.
+-->
 
-4. **Django Templating:**
+2. **Django Templating:**
    - Build HTML templates for product pages using Django's template engine.
    - Serve static files (CSS, JS) in Django.
 </details>
@@ -319,7 +322,11 @@ J -->|search by filters-Theme,Category,Artist| E
 2. **User Authentication:**
    - Implement user registration and login functionality.
    - Create a custom user model with additional fields.
-
+  
+3. **Django Views:**
+   - Create views to render product listings and detail pages.
+   - Set up authorization for views.
+<!--
 3. **Django Views and API Development:**
    - Create views to render product listings and detail pages.
    - Set up authorization for views and API endpoints.
@@ -333,6 +340,7 @@ J -->|search by filters-Theme,Category,Artist| E
 6. **Testing and Deployment:**
    - Write unit and integration tests for your application.
    - Deploy your Django application to a hosting platform (e.g., Heroku).
+-->
 </details>
 
 <details>
@@ -343,6 +351,10 @@ J -->|search by filters-Theme,Category,Artist| E
 1. **Database Design:**
    - Create Django models for products and categories.
 
+2. **Customise Admin**
+   - Customise Models functionality for desired views
+
+<!--
 2. **Django REST Framework:**
    - Build RESTful APIs with Django REST Framework.
    - Create API endpoints for product data.
@@ -351,6 +363,7 @@ J -->|search by filters-Theme,Category,Artist| E
    - Deepen SQL knowledge for database queries.
    - Learn about database transactions and ([ACID properties](https://www.geeksforgeeks.org/acid-properties-in-dbms/)).
    - Optimize database queries for performance.
+  -->
 </details>
 
 </br>
@@ -360,13 +373,13 @@ J -->|search by filters-Theme,Category,Artist| E
 - Django
   - [Official Django Documentation](https://docs.djangoproject.com/)
   - [CS50-Web Programming](https://cs50.harvard.edu/web/2020/weeks/3/)
-  - [MDN Django Web Framework (Mozilla Developer Network)](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django)
+  <!-- - [MDN Django Web Framework (Mozilla Developer Network)](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django) -->
 
 - SQLite
   - [Official SQLite Documentation](https://www.sqlite.org/docs.html)
-
+<!--
 - [JavaScript - freeCodeCamp](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/)
-
+-->
 
 </br>
 <hr>
