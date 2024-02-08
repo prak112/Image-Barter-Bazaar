@@ -55,11 +55,12 @@ def login_view(request):
             # request.session['user_id'] = session_user.id
             if session_user.first_name == 'super':
                 return redirect('admin:index')
-
-            # session variables
-            request.session['first_name'] = str(user.first_name).capitalize()
-            request.session['last_name'] = str(user.last_name).capitalize()
-            request.session.save()
+            
+            else:
+                # session variables
+                request.session['first_name'] = str(user.first_name).capitalize()
+                request.session['last_name'] = str(user.last_name).capitalize()
+                request.session.save()
 
             return HttpResponseRedirect(reverse('photostore:index'))    
     else: 
