@@ -35,7 +35,6 @@ body{
     right: 0;
 }
 
-.custom-section,
 .models-list {
     max-width: 650px;   /*width, height of the box -- essential to contain items in the center*/
     max-height: 550px;
@@ -44,4 +43,30 @@ body{
     margin: 0 auto;
     padding: 20px;
     justify-content: center;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-between; */
+    align-items: center;
+    padding-top: 50px;
+}
+
+.sidebar-item{
+    border-radius: 25%;
+    padding: 15px;
+    margin: 5px;
+    font-size: 30px;
+    color: whitesmoke;
+    font-family: 'Arial', sans-serif;
+}
+.sidebar-item :hover{
+    cursor: pointer;
+    background-color: rgba(180, 75, 233, 0.771);
+    
+    border: 2px solid rgba(194, 75, 233, 0.771);
+    border-radius: 25%;
+    padding: 15px;
 }
