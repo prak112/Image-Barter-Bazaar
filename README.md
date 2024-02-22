@@ -302,13 +302,13 @@ J -->|search by filters-Theme,Category,Artist| E
 - Django
   - [Official Django Documentation](https://docs.djangoproject.com/)
   - [CS50-Web Programming](https://cs50.harvard.edu/web/2020/weeks/3/)
-  - [MDN Django Web Framework (Mozilla Developer Network)](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django)
+  <!-- - [MDN Django Web Framework (Mozilla Developer Network)](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django) -->
 
 - SQLite
   - [Official SQLite Documentation](https://www.sqlite.org/docs.html)
-
+<!--
 - [JavaScript - freeCodeCamp](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/)
-
+-->
 
 </br>
 <hr>
