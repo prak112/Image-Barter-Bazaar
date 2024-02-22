@@ -62,7 +62,7 @@
                     <td>{{ product.quantity }}</td>
                     <td>
                         <button class="remove-button">
-                            <a href="{% url 'photostore:remove-from-cart' product_id=product.id %}">Remove</a>
+                            <a href="{% url 'photostore:remove-from-cart' cart_id=product.id %}">Remove</a>
                         </button>
                     </td>
                 </tr>

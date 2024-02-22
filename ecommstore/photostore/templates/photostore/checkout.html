@@ -49,19 +49,19 @@
                     {% endif %}
                 </p>           
                 <div class="options">
-                    <button class="change-button">
-                        <form action="{% url 'photostore:add-to-cart' product_id=product.item.id %}" method="POST">
+                    <button class="add-button">
+                        <form action="{% url 'photostore:change-quantity' cart_id=product.id %}" method="POST">
                             {% csrf_token %}
                             {% if product.quantity > 1 %}
                                 <input class="quantity-input" type="number" name="quantity" id="quantity" value="{{ product.quantity }}">
                             {% else %}
                                 <input class="quantity-input" type="number" name="quantity" id="quantity" value="1" min="1">
                             {% endif %}
-                            <input type="submit" value="Change">   
+                            <input type="submit" value="Add">   
                         </form>
                     </button>
                     <button class="remove-button">
-                        <a href="{% url 'photostore:remove-from-cart' product_id=product.id %}">Remove</a>
+                        <a href="{% url 'photostore:remove-from-cart' cart_id=product.id %}">REMOVE</a>
                     </button>
                 </div>
             </div>

@@ -110,14 +110,35 @@ def add_to_cart(request, product_id):
         calling_url = request.META.get('HTTP_REFERER')
 
         #TO DO - show notification
+            # when user adds "In Stock" item
+            # when user add "Out of Stock" item / disable 'add-to-cart' button
         return redirect(calling_url)
     else:
         return HttpResponseRedirect(reverse('users:login'))
 
 
-def remove_from_cart(request, product_id):
+
+def change_quantity(request, cart_id):
+    # only authenticated user can reach this view, hence no need for .is_authenticated
+    # filter Cart for cart_id
+    item_to_update = Cart.objects.get(pk=cart_id)
+
+    # update quantity of the verified cart_id
+    update_quantity = request.POST.get('quantity')
+    item_to_update.quantity = update_quantity
+    
+    # save cart
+    item_to_update.save()
+
+    # return to calling_url
+    calling_url = request.META.get('HTTP_REFERER')
+    return redirect(calling_url)
+
+
+
+def remove_from_cart(request, cart_id):
     if request.user.is_authenticated:
-        cart_item = Cart.objects.get(id=product_id)
+        cart_item = Cart.objects.get(id=cart_id)
         cart_item.delete()
         
         # get referrer URL or calling_url

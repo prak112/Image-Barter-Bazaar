@@ -28,7 +28,7 @@
 .goto-button:hover{
     font-weight: 500;
     background-color: royalblue;
-    transition-duration: 0.3s;
+    /*transition-duration: 0.3s;*/
 }
 
 /* CHECKOUT - checkout.html */
@@ -140,12 +140,12 @@
     border: 2px solid black;
     font-weight: 400;
 }
-.checkout-container .product .change-button{
-    background-color: slateblue;
+.checkout-container .product .add-button{
+    background-color: rgb(88, 67, 222);
     color: whitesmoke
 }
-.checkout-container .product .change-button .quantity-input{
-    width: 50px;
+.checkout-container .product .add-button .quantity-input{
+    width: 10px;
 }
 .checkout-container .product .remove-button{
     background-color: brown;
@@ -153,11 +153,11 @@
 
 .checkout-container .product button:hover{
     cursor: pointer;
-    font-weight: 500;
+    /*font-weight: 500;
     transition-duration: 0.3s;
     transform: translateY(-2px);
-}
-.checkout-container .product .change-button:hover{
+*/}
+.checkout-container .product .add-button:hover{
     background-color: blue;
 }
 .checkout-container .product .remove-button:hover{
