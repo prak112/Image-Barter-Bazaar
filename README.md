@@ -1,18 +1,12 @@
 <h1 align="center"> Ecommerce Photo Store - 🎨 <i>PG's Picsies</i> 📸 </h1>
 
-</br>
 <hr>
 
 # Contents
 - [Project Setup](#project-setup)
 - [Background](#background)
-- [Project Overview](#project-schematic)
-  - [Workflow](#workflow)
-  - [Features](#features)
-  - [Database Schema](#database-schema)
+- [Project Overview](#project-overview)
 - [Tools](#tools)
-- [Implementation](#implementation)
-- [Topics Covered](#topics-covered)
 - [Resources](#resources)
 - [Credits](#credits)
 
@@ -24,33 +18,38 @@
 
 
 # Background
-The aim of the project is to build a functional E-commerce platform without a payment gateway. The tech stack I will be using are mentioned in [Tools](#tools). The project being a skills demonstration for Full-Stack Development will have  browsing functionality and a barter-exchange checkout.
+The aim of the project is to build a functional E-commerce platform with a built-in payment gateway. For tech stack check [Tools](#tools). The platform being a skills demonstration for Full-Stack Development will have browsing functionality and a barter-exchange checkout.
 
-The E-commmerce platform I have chosen to develop will be a Photo Store like ShutterStock, Pexels, FreePik, etc. Images advertised on the platform will be loaned. The website consists of :
-- Images theme on the platform is *Nature*
-- Art from *Bing Image Creator*
+**PG's Picsies** is a Photo store similar to ShutterStock, Pexels, FreePik, etc. Images advertised on the platform will be loaned (check [Credits](#credits)). The website consists of :
+- Images themed on the platform is *Nature*
+- Art from *Bing Copilot Designer*
 - Photos from *Pexels*
 - Users or Customers can be Photographers, Artists or Enthusiasts.
 
 <br>
 
-A fully functional website allows the following functions to be performed :
+In brief, currently the application is capable of performing the following functions:
 - Authorize and authenticate Users(Customers) based on their credentials
-- Customers can :
-  - create their own profiles
+- Users/Customers can :
+  - Register and create their own profiles
   - Browse *Products* and add items to the *Cart*
-  - Search *Products* through filters - *Category, Inventory, Artist Profile* 
-  - Upload photographs and art to the *Product Inventory* as Payment
-- *Real-Time Updates* updates inventory items based on the checked-out items
+  - Search *Products* through filters - *Type, Theme & Author*
+  - Edit their *Cart* - increase/decrease product quantity, remove product
+  - Upload photographs and/or art to the *Product Inventory* as Payment
 
+<br>
+
+The application is fully-functional on a fundamental level (check [Walk-through](#walk-through))
+<br>
+The application will be updated at every chance available, for advanced functionality (check [Features in progress](#features-in-progress))
 </br>
 <hr>
 
 # Project Overview
-- Overview presents a detailed review about the project through the following:
-  - Application Workflow,
-  - Application Features,
-  - Database Schema 
+
+Jump to either of the sections below for a project glimpse.
+
+[Workflow](#workflow) | [Walkthrough](#walkthrough) | [Database Schema](#database-schema) | [Features Implemented](#features-implemented) | [Features In Progress](#features-in-progress)
 
 ## Workflow
 ```mermaid
@@ -83,7 +82,7 @@ subgraph PLATFORM
 end
 
 subgraph REAL-TIME UPDATES
-  I(WebSocket-*Not Implemented*)
+  I(WebSocket - WIP)
 end
 
 subgraph CHECKOUT
@@ -102,11 +101,14 @@ I <-->|Server-Client instant communication| H
 J -->|Verified Customer, can add Products to Cart| D
 J -->|search by filters-Theme,Category,Artist| E
 
-
 ```
+[Back To Main](#project-overview)
 
+## Walk-through
+<blockquote><i>Demo video</i></blockquote>
 
-## Features
+*...production in progress...*
+
 ### User Login/Sign Up
   - Login/Signup includes User Authentication & Authorization
   - System(database and Backend) authenticates and authorizes User based on their credentials
@@ -156,7 +158,7 @@ J -->|search by filters-Theme,Category,Artist| E
     - All Users/Customers information is accessible
     - All images information is accessible
     - All Carted items & Orders are accessible
-    - *Cart* items trigger *Inventory* updates through [*Real-Time Updates*](#real-time-updates)
+
 - **Filter images by Type, Theme and Artist**
 ![Products page](/screenshots/products.png)
 
@@ -182,11 +184,7 @@ J -->|search by filters-Theme,Category,Artist| E
 ![Payment success message](/screenshots/payment-success.png)
 
 
-### Real-Time Updates
-<span style="color: red;">Not Implemented</span>
-
-  - Real-time updates via WebSockets enable real-time interactions, including updating the cart and inventory.
-
+[Back To Main](#project-overview)
 
 
 ## Database Schema
@@ -196,6 +194,7 @@ J -->|search by filters-Theme,Category,Artist| E
 - Database schema (below) defines the logical flow of data through the application backend
 ![Database Schema](/design/DATABASE-SCHEMA.png)
 
+[Back To Main](#project-overview)
 
 </br>
 <hr>
@@ -213,147 +212,90 @@ J -->|search by filters-Theme,Category,Artist| E
   - Django (Python)
 
 </br>
+
+[Back To Top](#contents)
+
 <hr>
 
-# Implementation
-## **Week 0: Project Design**
-- [X] Week 0: Define project directories and files
-- [X] Week 0: Use Figma to build ecommerce store design
+# Features Implemented
+## Project Design
+- [X] Define project directories and files
+- [X] Use Figma to build ecommerce store design
+- Resources: Figma
 
-## **Week 1: Project Setup and HTML/CSS**
+## Project Setup and HTML/CSS
 - [X] Project Setup: Create a Django project.
 - [X] HTML/CSS: Review and strengthen HTML and CSS skills.
 - Resources: Online HTML/CSS tutorials, Django documentation.
 
-## **Week 2: Django Fundamentals**
+## Django Fundamentals
 - [X] Django Basics: Learn about Django's project structure, settings, and apps.
 - [X] Models: Create Django models for products and categories.
-- Resources: Official Django documentation, Django for Beginners book.
+- Resources: Official Django documentation.
 
-## **Week 3: Django Views and Templates**
+## Django Views and Templates
 - [X] Views: Create views to render product listings and detail pages.
 - [X] Templates: Build HTML templates for product pages.
 - Resources: Django documentation on views and templates.
 
-## **Week 4: User Authentication**
+## User Authentication
 - [X] User Authentication: Implement user registration and login functionality.
 - [X] Custom User Model: Create a custom user model with additional fields.
-- Resources: Django authentication documentation, Django for Beginners book.
+- Resources: Django documentation on User authentication.
 
-## **Week 8: Real-time Updates (WebSockets)**
-<span style="color: red;"> Not Implemented </span>
-- [ ] WebSocket Basics: Understand WebSocket communication.
+<br>
+
+[Back To Main](#project-overview)
+
+<br>
+
+# Features In Progress
+- The following features are updated not neccessarily in sequence.
+- Currently learning Javascript, hence would start updating from [Client-side interaction](#client-side-interaction)
+
+## Real-time Updates (WebSockets)
+- [ ] WebSocket Basics: Understand WebSocket communication using Django Channels .
 - [ ] Implement Real-Time: Add real-time features like instant cart updates.
-- Resources: WebSockets tutorials, Django Channels documentation.
+- Resources: [WebSocket Tutorials](https://www.geeksforgeeks.org/django-channels-introduction-and-basic-setup/), Django Channels documentation.
 
-## OPTIONAL
-**Week 5: JavaScript Basics**
-- [ ] JavaScript Fundamentals: Start learning JavaScript from scratch (Vanilla JS).
-- [ ] Interactive Features: Enhance your product pages with basic interactivity.
-- Resources: MDN JavaScript guide, JavaScript.info, freeCodeCamp's JavaScript curriculum.
-
-**Week 6: Frontend Interactivity with JavaScript**
-- [ ] Dynamic Content: Use JavaScript to load products dynamically.
-- [ ] Event Handling: Implement user interactions like adding products to the cart.
-- Resources: JavaScript tutorials, interactive coding platforms like CodePen.
-
-**Week 7: Django REST Framework**
-- [ ] API Development: Learn to build RESTful APIs with Django REST Framework.
-- [ ] API Endpoints: Create API endpoints for product data.
-- Resources: Django REST Framework documentation, DRF tutorials.
-
-**Week 9: User Authorization and Permissions**
+## User Authorization and Permissions
 - [X] Authorization: Implement user roles (e.g., admin, customer).
 - [ ] Permission Control: Set up authorization for views and API endpoints.
 - Resources: Django authorization documentation.
 
-**Week 10: Database Optimization and Transactions**
+## Database Optimization and Transactions
 - [X] SQL Skills: Deepen your SQL knowledge for database queries.
 - [ ] Transactions: Learn about database transactions and ACID properties.
 - [ ] Database Optimization: Optimize database queries for performance.
 - Resources: SQL tutorials, SQL optimization guides.
 
-**Week 11: Advanced JavaScript**
-- [ ] Advanced JavaScript Concepts: Dive deeper into JavaScript, including DOM manipulation.
-- [ ] Implement Complex Features: Enhance user experience with advanced JS features.
-- Resources: Advanced JavaScript courses, MDN web APIs.
+## Client-side interaction 
+### Fundamental Javascript
+- [ ] JavaScript Fundamentals: Start learning JavaScript from scratch (Vanilla JS).
+- [ ] Interactive Features: Enhance your product pages with basic interactivity.
+- Resources: MDN JavaScript guide, JavaScript.info, freeCodeCamp's JavaScript curriculum.
 
-**Week 12: Final Testing and Deployment**
+### Advanced JavaScript
+- [ ] Dynamic Content: Use JavaScript to load products dynamically.
+- [ ] Event Handling: Implement user interactions like adding products to the cart.
+- [ ] Implement Complex Features: Enhance user experience with advanced JS features.
+- Resources: freeCodeCamp JavaScript tutorials, MDN web APIs.
+
+## Django REST Framework
+- [ ] API Development: Learn to build RESTful APIs with Django REST Framework.
+- [ ] API Endpoints: Create API endpoints for product data.
+- Resources: Django REST Framework documentation, DRF tutorials.
+
+## Final Testing and Deployment
 - [ ] Testing: Write unit and integration tests for your application.
-- [ ] Deployment: Deploy your Django application to a hosting platform (e.g., Heroku).
+- [ ] Deployment: Deploy your Django application to a hosting platform (e.g., pythonanywhere).
 - Resources: Django testing documentation, deployment guides.
 
-</br>
+<br>
+
+[Back To Main](#project-overview)
+
 <hr>
-
-# Topics Covered
-<details>
-<summary>
-<b>Frontend Development</b>
-</summary>
-
-1. **HTML/CSS Fundamentals:**
-   - Review and strengthen your HTML and CSS skills.
-
-2. **JavaScript Basics:**
-   - Learn JavaScript fundamentals (Vanilla JS).
-   - Enhance product pages with basic interactivity.
-
-3. **Frontend Interactivity:**
-   - Use JavaScript to load products dynamically.
-   - Implement user interactions like adding products to the cart.
-
-4. **Django Templating:**
-   - Build HTML templates for product pages using Django's template engine.
-   - Serve static files (CSS, JS) in Django.
-</details>
-
-<details>
-<summary>
-<b>Backend Development with Django</b>
-</summary>
-
-1. **Django Basics:**
-   - Understand Django's project structure, settings, and apps.
-
-2. **User Authentication:**
-   - Implement user registration and login functionality.
-   - Create a custom user model with additional fields.
-
-3. **Django Views and API Development:**
-   - Create views to render product listings and detail pages.
-   - Set up authorization for views and API endpoints.
-
-4. **Real-time Updates (WebSockets):**
-   - Implement real-time features like instant cart updates.
-   
-5. **Advanced JavaScript Integration:**
-   - Dive deeper into JavaScript for frontend enhancements.
-   
-6. **Testing and Deployment:**
-   - Write unit and integration tests for your application.
-   - Deploy your Django application to a hosting platform (e.g., Heroku).
-</details>
-
-<details>
-<summary>
-<b>Database Integration with SQLite</b>
-</summary>
-
-1. **Database Design:**
-   - Create Django models for products and categories.
-
-2. **Django REST Framework:**
-   - Build RESTful APIs with Django REST Framework.
-   - Create API endpoints for product data.
-
-3. **Database Optimization and Transactions:**
-   - Deepen SQL knowledge for database queries.
-   - Learn about database transactions and ([ACID properties](https://www.geeksforgeeks.org/acid-properties-in-dbms/)).
-   - Optimize database queries for performance.
-</details>
-
-</br>
 <hr>
 
 # Resources
@@ -374,3 +316,9 @@ J -->|search by filters-Theme,Category,Artist| E
 # Credits
 - **Planning assistance - ChatGPT (GPT-3.5)**
 - **Development assistance - [![built with Codeium](https://codeium.com/badges/main)](https://codeium.com/badges/main)**
+- **Photos** - *[Pexels](https://www.pexels.com)*
+- **Art** - *Bing Copilot Designer*
+
+<br>
+
+[Back To Top](#contents)
