@@ -46,8 +46,17 @@ The application will be updated at every chance available, for advanced function
 <hr>
 
 # Project Overview
+## GOAL
+ To evolve/advance the current application to a Single-Page Application (SPA) using Javascript and React.
 
-Jump to either of the sections below for a project glimpse.
+## REASON
+  - Current application works successfully at a fundamental level. However, advanced features include :
+    - Single-page UI (no multiple tabs redirecting)
+    - Faster response rate
+    - On-screen notifications for User actions (ex. "Item added!", "Order placed.")
+    - Items availability update in "Products" section (ex. "Out of Stock" cannot be ordered but redirected to possible matches)
+
+- Jump to either of the sections below for a glimpse
 
 [Workflow](#workflow) | [Walkthrough](#walkthrough) | [Database Schema](#database-schema) | [Features Implemented](#features-implemented) | [Features In Progress](#features-in-progress)
 
@@ -253,6 +262,8 @@ J -->|search by filters-Theme,Category,Artist| E
 - The following features are updated not neccessarily in sequence.
 - Currently learning Javascript, hence would start updating from [Client-side interaction](#client-side-interaction)
 
+
+
 ## Real-time Updates (WebSockets)
 - [ ] WebSocket Basics: Understand WebSocket communication using Django Channels .
 - [ ] Implement Real-Time: Add real-time features like instant cart updates.
@@ -286,7 +297,7 @@ J -->|search by filters-Theme,Category,Artist| E
 - [ ] API Endpoints: Create API endpoints for product data.
 - Resources: Django REST Framework documentation, DRF tutorials.
 
-## Final Testing and Deployment
+## Testing and Deployment
 - [ ] Testing: Write unit and integration tests for your application.
 - [ ] Deployment: Deploy your Django application to a hosting platform (e.g., pythonanywhere).
 - Resources: Django testing documentation, deployment guides.
