@@ -62,9 +62,12 @@ def login_view(request):
                 request.session['last_name'] = str(user.last_name).capitalize()
                 request.session.save()
 
-            return HttpResponseRedirect(reverse('photostore:index'))    
-    else: 
-        return render(request, 'users/login.html', context={"form": AuthenticationForm()})
+                return HttpResponseRedirect(reverse('photostore:index'))
+
+        else: # errors in login details
+            return render(request, 'users/login.html', context={"form": form})
+            
+    return render(request, 'users/login.html', context={"form": AuthenticationForm()})
     
 
 
