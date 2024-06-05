@@ -41,7 +41,8 @@
                     <span class="box-item-title">{{ product.item.title }}</span><br>
                     <span>{{ product.item.description }}</span><br>
                     <span>Theme : {{ product.item.get_theme_display }}</span><br>
-                    
+                    <span>Quantity: {{ product.quantity }}</span></br>
+
                     {% if product.category == 'PH' %}
                         <cite>Image Source : By {{ product.item.author }} from <a class="photo-source" href="{{ product.item.image_url }}">Pexels</a></cite>
                     {% else %}
@@ -53,11 +54,11 @@
                         <form action="{% url 'photostore:change-quantity' cart_id=product.id %}" method="POST">
                             {% csrf_token %}
                             {% if product.quantity > 1 %}
-                                <input class="quantity-input" type="number" name="quantity" id="quantity" value="{{ product.quantity }}">
+                                <input class="quantity" type="number" name="quantity" id="quantity" value="{{ product.quantity }}">
                             {% else %}
-                                <input class="quantity-input" type="number" name="quantity" id="quantity" value="1" min="1">
+                                <input class="quantity" type="number" name="quantity" id="quantity" min="1" value="1" />
                             {% endif %}
-                            <input type="submit" value="Add">   
+                            <input type="submit" value="Add" />   
                         </form>
                     </button>
                     <button class="remove-button">

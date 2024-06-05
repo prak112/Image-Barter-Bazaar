@@ -144,7 +144,7 @@
     background-color: rgb(88, 67, 222);
     color: whitesmoke
 }
-.checkout-container .product .add-button .quantity-input{
+.checkout-container .product .add-button .quantity{
     width: 10px;
 }
 .checkout-container .product .remove-button{
