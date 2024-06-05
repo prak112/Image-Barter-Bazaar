@@ -3,9 +3,9 @@
 <hr>
 
 # Contents
-- [Project Setup](#project-setup)
-- [Background](#background)
-- [Project Overview](#project-overview)
+- [Setup](#setup)
+- [Overview](#overview)
+- [Walk-through](#walk-through)
 - [Tools](#tools)
 - [Resources](#resources)
 - [Credits](#credits)
@@ -13,11 +13,11 @@
 </br>
 <hr>
 
-# Project Setup
+# Setup
 - Please refer to the [Guidebook](GUIDE.md) for steps to setup the development environment and execute the project.
 
 
-# Background
+# Overview
 The aim of the project is to build a functional E-commerce platform with a built-in payment gateway. For tech stack check [Tools](#tools). The platform being a skills demonstration for Full-Stack Development will have browsing functionality and a barter-exchange checkout.
 
 **PG's Picsies** is a Photo store similar to ShutterStock, Pexels, FreePik, etc. Images advertised on the platform will be loaned (check [Credits](#credits)). The website consists of :
@@ -41,84 +41,20 @@ In brief, currently the application is capable of performing the following funct
 
 The application is fully-functional on a fundamental level (check [Walk-through](#walk-through))
 <br>
-The application will be updated at every chance available, for advanced functionality (check [Features in progress](#features-in-progress))
+The application will be updated at every chance available, for advanced functionality (check [ADD-ONS](/ADD-ONS.md))
 </br>
 <hr>
 
-# Project Overview
-## GOAL
- To evolve/advance the current application to a Single-Page Application (SPA) using Javascript and React.
-
-## REASON
-  - Current application works successfully at a fundamental level. However, advanced features include :
-    - Single-page UI (no multiple tabs redirecting)
-    - Faster response rate
-    - On-screen notifications for User actions (ex. "Item added!", "Order placed.")
-    - Items availability update in "Products" section (ex. "Out of Stock" cannot be ordered but redirected to possible matches)
-
 - Jump to either of the sections below for a glimpse
 
-[Workflow](#workflow) | [Walkthrough](#walkthrough) | [Database Schema](#database-schema) | [Features Implemented](#features-implemented) | [Features In Progress](#features-in-progress)
+> [Workflow](/PROCESS_FLOWS.md) | [Walkthrough](#walkthrough) | [Database Schema](#database-schema) | [Features Implemented](#features-implemented)
 
-## Workflow
-```mermaid
-graph TB
+<br>
+<hr>
 
-subgraph USERS
-  A(User)
-  B(Authentication)
-  C(Authorization)
-  J(Verified User)
+# Walk-through
 
-  A -->|User Logs In| B
-  B -->|Authenticated User is verified| C
-  C -->|System grants access to Authorized User or Customer| J
-end
-
-subgraph PLATFORM
-  D(Home)
-  E(Search)
-  F(Search Results)
-  G(Cart)
-  H(Inventory)
-  K(Customer Profile)
-  D <-->|search by keywords| E
-  E -->F
-  F -->|Customer adds items to Cart| G
-  G <-->|Backend Adds/Removes items| H
-  D -->|Customer can edit profile| K
-  D -->|Customer adds items to Cart| G
-end
-
-subgraph REAL-TIME UPDATES
-  I(WebSocket - WIP)
-end
-
-subgraph CHECKOUT
-  L(Payment Gateway)
-  G -->|Customer Checkout|L
-  L-->|Uploaded Image for Payment| H
-end
-
-subgraph ORDERS
-  M(Order History)
-  L -->|<br>Successful payment saves Customer Order & exchanged image|M
-end
-
-G <-->|Server-Client instant communication| I
-I <-->|Server-Client instant communication| H
-J -->|Verified Customer, can add Products to Cart| D
-J -->|search by filters-Theme,Category,Artist| E
-
-```
-[Back To Main](#project-overview)
-
-## Walk-through
-<blockquote><i>Demo video</i></blockquote>
-
-*...production in progress...*
-
-### User Login/Sign Up
+## User Login/Sign Up
   - Login/Signup includes User Authentication & Authorization
   - System(database and Backend) authenticates and authorizes User based on their credentials
   - Upon successful authentication, Users/Customers can 
@@ -131,7 +67,10 @@ J -->|search by filters-Theme,Category,Artist| E
 - **User *registration* page** ( logo and text remain the same for sign up page as well )
 ![Sign Up page](/screenshots/signup.png)
 
-### Home 
+<br>
+<hr>
+
+## Home Page
   - Customers once authenticated will be welcomed with their name
   - Home page consists of :
     - 'Photo' & 'Art of the Day' images,
@@ -150,8 +89,10 @@ J -->|search by filters-Theme,Category,Artist| E
 - **User *Home* page** 
 ![User Home page](/screenshots/home-user.png)
 
+<br>
+<hr>
 
-### Products
+## Products
   - *Images*
     - 'Photo' & 'Art of the Day' images,
     - Authenticated and Unauthenticated Users can access all images using *Search Filters*
@@ -192,20 +133,16 @@ J -->|search by filters-Theme,Category,Artist| E
 - **Successful Payment view - order & payment confirmation message**
 ![Payment success message](/screenshots/payment-success.png)
 
+<br>
+<hr>
 
-[Back To Main](#project-overview)
+> _Demo video_
 
+*...production in progress...*
 
-## Database Schema
-- Database (SQLite) is implemented as an in-built version for Django
-- Django Models are defined using the framework (`models.py`) for each of the apps defined (`users`, `photostore`)  to emulate tables similar to SQL
-- After defining the required models the changes are updated through 'Migrations', which translate the instructions in `models.py` to the database to create/update tables
-- Database schema (below) defines the logical flow of data through the application backend
-![Database Schema](/design/DATABASE-SCHEMA.png)
+[Back To Contents](#contents)
 
-[Back To Main](#project-overview)
-
-</br>
+<br>
 <hr>
 
 # Tools
@@ -220,10 +157,12 @@ J -->|search by filters-Theme,Category,Artist| E
 - **Backend**
   - Django (Python)
 
+
 </br>
 
-[Back To Top](#contents)
+[Back To Contents](#contents)
 
+<br>
 <hr>
 
 # Features Implemented
@@ -254,81 +193,38 @@ J -->|search by filters-Theme,Category,Artist| E
 
 <br>
 
-[Back To Main](#project-overview)
+[Back To Contents](#contents)
 
 <br>
-
-# Features In Progress
-- The following features are updated not neccessarily in sequence.
-- Currently learning Javascript, hence would start updating from [Client-side interaction](#client-side-interaction)
-
-
-
-## Real-time Updates (WebSockets)
-- [ ] WebSocket Basics: Understand WebSocket communication using Django Channels .
-- [ ] Implement Real-Time: Add real-time features like instant cart updates.
-- Resources: [WebSocket Tutorials](https://www.geeksforgeeks.org/django-channels-introduction-and-basic-setup/), Django Channels documentation.
-
-## User Authorization and Permissions
-- [X] Authorization: Implement user roles (e.g., admin, customer).
-- [ ] Permission Control: Set up authorization for views and API endpoints.
-- Resources: Django authorization documentation.
-
-## Database Optimization and Transactions
-- [X] SQL Skills: Deepen your SQL knowledge for database queries.
-- [ ] Transactions: Learn about database transactions and ACID properties.
-- [ ] Database Optimization: Optimize database queries for performance.
-- Resources: SQL tutorials, SQL optimization guides.
-
-## Client-side interaction 
-### Fundamental Javascript
-- [ ] JavaScript Fundamentals: Start learning JavaScript from scratch (Vanilla JS).
-- [ ] Interactive Features: Enhance your product pages with basic interactivity.
-- Resources: MDN JavaScript guide, JavaScript.info, freeCodeCamp's JavaScript curriculum.
-
-### Advanced JavaScript
-- [ ] Dynamic Content: Use JavaScript to load products dynamically.
-- [ ] Event Handling: Implement user interactions like adding products to the cart.
-- [ ] Implement Complex Features: Enhance user experience with advanced JS features.
-- Resources: freeCodeCamp JavaScript tutorials, MDN web APIs.
-
-## Django REST Framework
-- [ ] API Development: Learn to build RESTful APIs with Django REST Framework.
-- [ ] API Endpoints: Create API endpoints for product data.
-- Resources: Django REST Framework documentation, DRF tutorials.
-
-## Testing and Deployment
-- [ ] Testing: Write unit and integration tests for your application.
-- [ ] Deployment: Deploy your Django application to a hosting platform (e.g., pythonanywhere).
-- Resources: Django testing documentation, deployment guides.
-
-<br>
-
-[Back To Main](#project-overview)
-
 <hr>
-<hr>
+
 
 # Resources
 - Django
   - [Official Django Documentation](https://docs.djangoproject.com/)
-  - [CS50-Web Programming](https://cs50.harvard.edu/web/2020/weeks/3/)
-- [MDN Django Web Framework (Mozilla Developer Network)](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django)
+  - [CS50 Web Programming](https://cs50.harvard.edu/web/2020/weeks/3/)
+  - [Mozilla Developer Network (MDN) - Django tutorial](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django)
 
 - SQLite
   - [Official SQLite Documentation](https://www.sqlite.org/docs.html)
 
-- [JavaScript - freeCodeCamp](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/)
 
-</br>
+<br>
 <hr>
 
 # Credits
-- **Planning assistance - ChatGPT (GPT-3.5)**
-- **Development assistance - [![built with Codeium](https://codeium.com/badges/main)](https://codeium.com/badges/main)**
-- **Photos** - *[Pexels](https://www.pexels.com)*
-- **Art** - *Bing Copilot Designer*
+- **Planning assistance** 
+  - ChatGPT (GPT 3.5)
+- **Development assistance** 
+  - [![built with Codeium](https://codeium.com/badges/main)](https://codeium.com/badges/main)
+  - **GitHub CoPilot**
+- **Photos** 
+  - *[Pexels](https://www.pexels.com)*
+- **Art** 
+  - *Bing Copilot Designer*
 
 <br>
 
-[Back To Top](#contents)
+[Back To Contents](#contents)
+
+<hr>
