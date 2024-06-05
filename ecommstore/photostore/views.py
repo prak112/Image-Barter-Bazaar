@@ -151,7 +151,6 @@ def checkout(request):
 
     if request.user.is_authenticated:
         # If customer made payment, clear previous order cart_info
-        # format current datetime, change datatype similar to Order.order_date
         current_time = datetime.strptime(datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'), '%Y-%m-%d %H:%M:%S.%f')
         previous_orders = Order.objects.all()
 
@@ -162,14 +161,14 @@ def checkout(request):
         if previous_orders is not None:
             for paid_items in previous_orders:
                 for items in cart_info:
-                    # clear previous items, show current items  
-                    # Order.order_date - to verify payment was completed for customer_order
+                    # verify payment was completed for previously ordered items
                     if paid_items.order_date.replace(tzinfo=None) < current_time: 
-                        # Product.id - to verify item was in customer_order 
-                        if paid_items.customer_order.item.id == items.item.id:       # debug ERROR                     
-                            cart_info = None # TO-DO remove paid items  
-                    else:
-                        cart_info = cart_info
+                        # verify items paid for are not in cart_info
+                        if paid_items.customer_order.item.id == items.item.id:
+                            # exclude paid items from cart_info                     
+                            cart_info = cart_info.exclude(id=items.item.id)  
+        else:
+            cart_info = []
 
         context = {
             'cart' : cart_info,
