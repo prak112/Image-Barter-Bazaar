@@ -12,12 +12,12 @@
 
 - Verify installed version in the terminal
     - For Windows:
-        ```terminal
+        ```cmd
         $ path/to/dir> python --version 
         Python 3.11.2
         ```
     - For Linux/macOS:
-        ```terminal
+        ```bash
         $ path/to/dir> python --V 
         Python 3.11.2
         ```
@@ -26,22 +26,22 @@
 - Open a terminal or command prompt and navigate to the directory where you want to create your Django project. 
 - Run the following command to create a new virtual environment
     - For Windows:
-        ```terminal
+        ```cmd
         $ path/to/dir> python -m venv project_env
         ```
     - For Linux/macOS:
-        ```terminal
+        ```bash
         $ path/to/dir> python3 -m venv project_env
         ```    
     - where `project_env` will be the new directory with all virtual environment files
 
 - Activate virtual environment using the command based on your operating system
     - For Windows:
-    ```terminal
+    ```cmd
     $ path/to/dir> project_env\Scripts\activate.bat
     ```
     - For macOS/Linux:
-    ```terminal
+    ```bash
     $ path/to/dir> source project_env/bin/activate
     ```
 
@@ -83,7 +83,7 @@
     ```terminal
     $ (project_env) path/to/dir/ecommstore> python manage.py runserver
     ```
-    - This will start the development server, and you can access your Django project by using the link - http://localhost:8000/
+    - This will start the development server, and you can access your Django project at - http://localhost:8000/
 
 <hr>
 <hr>

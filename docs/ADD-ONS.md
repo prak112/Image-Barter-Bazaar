@@ -65,4 +65,4 @@
 <br>
 <hr>
 
-> [Back To README](/README.md) | [Back To PROCESS_FLOWS](/PROCESS_FLOWS.md)
+> [Back To README](/README.md) | [Back To PROCESS_FLOWS](/docs/PROCESS_FLOWS.md)

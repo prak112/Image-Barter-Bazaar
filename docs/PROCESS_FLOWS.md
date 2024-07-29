@@ -75,4 +75,4 @@ end
 <br>
 <hr>
 
-> [Back To README](/README.md) | [Back To ADD-ONS](/ADD-ONS.md)
+> [Back To README](/README.md) | [Back To ADD-ONS](/docs/ADD-ONS.md)
