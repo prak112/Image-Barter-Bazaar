@@ -142,7 +142,7 @@ The aim of the project is to build a functional E-commerce platform with a built
 <hr>
 
 # Additional Information
-- To know more about project plan, implementation, workflows and further enhancements, see [Wiki](/prak112/Image-Barter-Bazaar/wiki)
+- To know more about project plan, implementation, workflows and further enhancements, see [Wiki](prak112/Image-Barter-Bazaar/wiki)
 
 </br>
 <hr>
