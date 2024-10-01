@@ -45,7 +45,8 @@ The aim of the project is to build a functional E-commerce platform with a built
   - Django (Python)
 
 - **Database**
-  - SQLite
+  - SQLite (Development)
+  - PostgreSQL 17 (Production)
 
 
 </br>
