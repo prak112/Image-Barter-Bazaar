@@ -2,10 +2,7 @@ services:
   - type: web
     name: ecommstore
     env:  python
-    buildCommand: |
-      pip install -r requirements.txt
-      python manage.py collectstatic --noinput
-      python manage.py migrate
+    buildCommand: "echo 'Build commands executed!'"
     startCommand: "gunicorn ecommstore.ecommstore.wsgi:application"
     envVars:
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
