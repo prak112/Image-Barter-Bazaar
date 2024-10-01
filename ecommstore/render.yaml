@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: ecommstore
+    env:  python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn ecommstore.wsgi:application"
+    envVars:
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      DJANGO_SETTINGS_MODULE: "ecommstore.settings"
+    staticPublishPath: "staticFiles"
+    autoDeploy: true
