@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PG's Picsies</title>
+    <title>Image Barter Bazaar</title>
     <link rel="stylesheet" href="{% static 'photostore/styles_global.css' %}">
     <link rel="stylesheet" href="{% static 'photostore/styles_index.css' %}">
     <link rel="stylesheet" href="{% static 'photostore/styles_products.css' %}">
@@ -13,14 +13,14 @@
     <link rel="stylesheet" href="{% static 'photostore/styles_about.css' %}">
     <link rel="stylesheet" href="{% static 'photostore/styles_notifications.css'  %}">
     <!--favicon-->
-    <link rel="icon" href="{% static 'photostore/favicon_io/favicon.ico' %}">
+    <link rel="icon" href="{% static 'photostore/logo.png' %}">
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">
                 <a href="{% url 'photostore:index' %}">
-                    <img class="logo" src="{% static 'photostore/logo.jpg' %}" alt="logo">
+                    <img class="logo" src="{% static 'photostore/logo.png' %}" alt="logo">
                 </a>
             </div>
             <div class="search-area">
@@ -67,8 +67,8 @@
                 <a href="{% url 'photostore:index' %}">
                     <img class="logo" src="{% static 'photostore/logo.jpg' %}" alt="logo">
                     <div class="logo-text">
-                        <p>PG's Picsies © 2023.</p>
-                        <p>Learning & Educational purpose only.</p>
+                        <p>Image Barter Bazaar © 2024</p>
+                        <p>Learning & Educational purposes only.</p>
                     </div>
                 </a>
             </div>
@@ -80,6 +80,7 @@
                 </li>
                 <li>
                     <a href="{% url 'photostore:products' %}" target="_blank" rel="noopener">Products</a>
+                    <p>Logo Credits : <cite><a href="https://www.freepik.com/icon/exchange_17836180#fromView=search&page=1&position=12&uuid=bbefee50-3666-4fcc-b5ed-69a999b0379f">Icon by Rahat</a>, Freepik</cite></p>  
                     <p>Photo Credits : <cite>Pexels</cite></p>
                     <p>Art Credits : <cite>Bing Image Creator</cite> & <cite>Pexels</cite></p>
                     <p>Cart Icons Credits :  <cite><a href="https://www.pikpng.com/search.html?k=cart+icon">Pikpng</a></cite></p>
@@ -88,7 +89,7 @@
                     <a href="{% url 'photostore:license' %}" target="_blank" rel="noopener">Copyrights</a>
                     <p>MIT License : Free to Use</p>
                     <p>Remember to cite source!</p>
-                    <p>Copyright © 2023</p>
+                    <p>Copyright © 2024</p>
                 </li>
             </ul>
         </nav>
