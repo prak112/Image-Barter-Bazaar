@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-ceju!(vo6(jre7bb^w2)z^pe08zvawiqb!p7%-kgnlwz+4^wvw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'image-barter-bazaar.onrender.com',
+]
 
 
 # Application definition
